@@ -140,65 +140,60 @@ if (muteBtn) {
 }
 
 const ALBUMS = [
-  { id:"compile", title:"THE COMPILE", fmt:"LP", yr:"2008–hoy", tag:"ECOPILATORIO",
-    cover:"la espalda del sol", track:"nuevo-duelo.mp3", song:"Nuevo Duelo",
+  { id:"compile", title:"LIFE", fmt:"LP", yr:"2008–hoy", tag:"ECOPILATORIO",
+    cover:"la espalda del sol", track:"nuevo-duelo.mp3", song:"Nuevo Duelo - Diego 900",
     c:["#ff2d2d","#ff7a00"],
     desc:"Mi primer disco: la recopilación de todo lo que he sido hasta ahora. Nací en 2008 y aquí están todas mis demos, directos y descartes.",
-    tracks:["Nacimiento (Intro)","Primeros pasos","La banda","CrossFit en la sangre","Pizzería de verano","Praga, 2024","1º DAM","Outro: seguiré componiendo"] },
+    tracks:["Nacimiento (Intro)","Primeros pasos","La banda","CrossFit (volvere)","Pizzería de verano","Praga, 2024","1º DAM","Outro: seguiré componiendo"] },
 
   { id:"banda", title:"BANDA SONORA", fmt:"LP", yr:"2021–hoy", tag:"MÚSICA",
-    cover:"san francisco", track:"Jovenes-cristianos-de-Bolbaie", song:"Jovenes cristianos de Bolbaie",
+    cover:"san francisco", track:"Jovenes-cristianos-de-Bolbaie", song:"Jovenes cristianos de Bolbaie - Jose Antonio Boluda Ponce",
     c:["#1f6feb","#00c2ff"],
     desc:"Años en la banda de música del pueblo. Ensayos, conciertos y el directo más largo que he hecho nunca.",
-    tracks:["Pasodoble","Ensayo general","Concierto de Navidad","Atempo","Director invitado","Bis"] },
+    tracks:["Pasodoble","Ensayo general","Concierto de Navidad","Entradas","Director invitado","Bis"] },
 
   { id:"batukada", title:"BATUKADA", fmt:"EP", yr:"2022–hoy", tag:"PERCUSIÓN",
      cover:"bitukada", track:"batukada.mp3", song:"Ritmo base",
     c:["#ff7a00","#ffd400"],
     desc:"El EP más ruidoso. Tambor, ritmo y calle. Donde aprendí que el tempo lo manda el grupo.",
-    tracks:["Ritmo base","Llamada","Carnaval","Desfile","Silencio (Outro)"] },
+    tracks:["Ritmo base","Llamada","Musicorp","Desfile","Silencio (Outro)"] },
 
   { id:"praga", title:"PRAGA", fmt:"SGL", yr:"2024", tag:"FIN DE CURSO",
-    cover:"altibajos", track:"a-mi-lao.mp3", song:"A mi lao'",
+    cover:"altibajos", track:"a-mi-lao.mp3", song:"A mi lao' - JM y Tans",
     c:["#7c3aed","#ff2d2d"],
     desc:"Single de viaje de fin de curso. Puente Carlos, reloj astronómico y una foto que no voy a olvidar.",
-    tracks:["Llegada","Puente Carlos","Reloj astronómico","Cerveza","Última noche"] },
+    tracks:["#Llegadaaccidentada","Puente Carlos","Reloj astronómico","Late night talks","Última noche"] },
 
   { id:"crossfit", title:"CROSSFIT SESSIONS", fmt:"SGL", yr:"2022", tag:"ENTRENAMIENTO",
      cover:"tres creus", track:"tabata.mp3", song:"rocky tabata",
     c:["#00ff66","#0b0b0d"],
     desc:"Sencillo de sudor. WOD, barras y la satisfacción de terminar lo que empiezas.",
-    tracks:["Calentamiento","AMRAP","Metcon","PR","Estiramiento"] },
+    tracks:["Estiramiento","Calentamiento","over head squads (asco type shit)","PR","AMRAP"] },
 
   { id:"pizza", title:"PIZZERIA TOPOGIGIO", fmt:"LP", yr:"3 veranos y sumando", tag:"HOSTELERÍA",
-    cover:"mf doom", track:"tu-con-el.mp3", song:"Hora punta",
+    cover:"mf doom", track:"tu-con-el.mp3", song:"Tú con el - Rauw Alejandro",
     c:["#d61f1f","#ffd400"],
     desc:"Tres veranos de camarero en la pizzería del pueblo. Propinas, pedidos y picos de trabajo.",
-    tracks:["Apertura","Comida (hora punta)","Margherita x12","Limpieza","Cierre","Propinas"] },
+    tracks:["Apertura","cenas (hora punta)","placer de lotus x15","Limpieza","La clasica","Cierre",] },
 
   { id:"dam", title:"DAM (THE DEBUT)", fmt:"LP", yr:"curso actual", tag:"ESTUDIOS",
-    track:"dam.mp3", song:"Hola Mundo",
+    cover:"la madruga", track:"nueva-season.mp3", song:"Nueva Season - Delaossa",
     c:["#00c2ff","#1f6feb"],
     desc:"Mi álbum de estudio actual: 1º DAM en el IES Simarro. Código, exámenes y explorando salidas profesionales.",
     tracks:["Hola Mundo","Programación","Sistemas Informáticos","Lenguaje de Marcas","Entornos de Desarrollo","Proyecto final (en producción)"] },
 
   { id:"player", title:"PLAYER 1", fmt:"EP", yr:"siempre", tag:"VIDEOJUEGOS",
-    track:"player.mp3", song:"Ruta 1",
+    cover:"de la forman en que yo quiero", track:"marvel-spiderman.mp3", song:"Spiderman - imsoniac",
     c:["#ff2d2d","#00ff66"],
     desc:"EP gamer. Pokémon es el hilo conductor: la Kanto infinita.",
-    tracks:["¡Elige tu inicial!","Ruta 1","Gym de Brock","Mewtwo (Boss)","SALVANDO…"] },
+    tracks:["¡Elige tu inicial!","Dios de la guerra","Cazando Maquinas"," (Boss fight) - outro","Guardando…"] },
 
   { id:"screen", title:"SCREEN TIME", fmt:"LP", yr:"varios", tag:"SERIES & CINE",
-    track:"screen.mp3", song:"It's gonna be legendary",
+    cover:"ted mosby", track:"In-the-pool.mp3", song:"In the pool - Kensuke Ushio",
     c:["#ffb000","#d61f1f"],
     desc:"Largo de pantallas. Cómo conocí a vuestra madre en serie, Baby Driver y Your Name en cine.",
-    tracks:["It's gonna be legend…","Baby Driver ","Your Name (Kimi no Na wa)","Dandadan","la la land","Escena post cregitditos"] },
+    tracks:["It's gonna be legend…","Baby Driver ","Your Name (Kimi no Na wa)","Dandadan","la la land","Escena post creditos"] },
 
-  { id:"chroma", title:"CHROMA", fmt:"SGL", yr:"estética", tag:"COLORES",
-    track:"chroma.mp3", song:"Rojo",
-    c:["#ff2d2d","#ffd400"],
-    desc:"Sencillo visual: rojo, amarillo y naranja, y también el blanco y negro. Mi paleta de marca.",
-    tracks:["Rojo","Naranja","Amarillo","Monocromo","Cyberpunk"] },
 ];
 
 /* ===== EDAD + CUMPLE ===== */
