@@ -268,6 +268,7 @@ function openModal(id){
   document.body.style.overflow = "hidden";
   setNow(songName(al), !!al.track);
   playTrack(al);
+    markHeard(al.id);
 }
 function closeModal(){
   modal.hidden = true;
@@ -321,3 +322,42 @@ applyTheme(saved);
 setHeader();
 renderGrid();
 updateMuteIcon();
+/* ===== EASTER EGG: progreso + SNAKE // SESIÓN ===== */
+const HEARD_KEY="santi-heard", UNLOCK_KEY="santi-snake-unlocked", BEST_KEY="santi-snake-best";
+const egg=document.getElementById("egg"), toast=document.getElementById("toast");
+function getHeard(){try{return new Set(JSON.parse(localStorage.getItem(HEARD_KEY)||"[]"))}catch(e){return new Set()}}
+function saveHeard(s){try{localStorage.setItem(HEARD_KEY,JSON.stringify([...s]))}catch(e){}}
+function isUnlocked(){try{return localStorage.getItem(UNLOCK_KEY)==="1"}catch(e){return false}}
+function paintProgress(){if(!egg)return;const n=getHeard().size,t=ALBUMS.length;if(n===0){egg.hidden=true;return}egg.hidden=false;egg.innerHTML=isUnlocked()?`★ Sesión completa <b>${t}/${t}</b> · pulsa el logo o el mando`:`★ Álbumes escuchados <b>${n}/${t}</b>`}
+function markHeard(id){const s=getHeard();if(s.has(id)){paintProgress();return}s.add(id);saveHeard(s);if(s.size===ALBUMS.length&&!isUnlocked()){try{localStorage.setItem(UNLOCK_KEY,"1")}catch(e){}document.body.classList.add("has-snake");paintProgress();showToast(`★ <b>EASTER EGG desbloqueado</b> · pulsa el logo`)}else paintProgress()}
+function showToast(html){if(!toast)return;toast.innerHTML=html;toast.hidden=false;clearTimeout(showToast._t);showToast._t=setTimeout(()=>toast.hidden=true,4500)}
+
+let actx=null;
+function beep(freq,dur=.08,type="square",gain=.06){try{if(!actx)actx=new(window.AudioContext||window.webkitAudioContext)();const o=actx.createOscillator(),g=actx.createGain();o.type=type;o.frequency.value=freq;g.gain.value=gain;o.connect(g);g.connect(actx.destination);const t=actx.currentTime;o.start(t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.stop(t+dur+.02)}catch(e){}}
+const SCALE=[261.63,293.66,329.63,392,440,523.25,587.33,659.25,783.99];
+
+const snake=document.getElementById("snake"),canvas=document.getElementById("snakeCanvas"),ctx=canvas?canvas.getContext("2d"):null;
+const snakeScoreEl=document.getElementById("snakeScore"),snakeBestEl=document.getElementById("snakeBest"),snakeOver=document.getElementById("snakeOver"),snakeOverMsg=document.getElementById("snakeOverMsg"),snakePause=document.getElementById("snakePause");
+const GRID=21;let cell=20,snakeArr=[],dir={x:1,y:0},nextDir={x:1,y:0},food=null,score=0,speed=130,alive=false,paused=false,lastStep=0,rafId=0;
+function cssVar(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()||"#888"}
+function hexToRgb(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+c).join("");const n=parseInt(h,16);return[(n>>16)&255,(n>>8)&255,n&255]}
+function mix(a,b,t){const A=hexToRgb(a),B=hexToRgb(b);return`rgb(${Math.round(A[0]+(B[0]-A[0])*t)},${Math.round(A[1]+(B[1]-A[1])*t)},${Math.round(A[2]+(B[2]-A[2])*t)})`}
+function sizeCanvas(){if(!canvas)return;const dpr=window.devicePixelRatio||1,rect=canvas.getBoundingClientRect(),px=Math.max(280,Math.min(rect.width||440,520));canvas.width=px*dpr;canvas.height=px*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);cell=px/GRID}
+function placeFood(){let f;do{f={x:Math.floor(Math.random()*GRID),y:Math.floor(Math.random()*GRID)}}while(snakeArr.some(s=>s.x===f.x&&s.y===f.y));food=f}
+function resetSnake(){snakeArr=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];dir={x:1,y:0};nextDir={x:1,y:0};score=0;speed=130;paused=false;alive=true;if(snakeScoreEl)snakeScoreEl.textContent="0";if(snakeOver)snakeOver.hidden=true;if(snakePause)snakePause.hidden=true;placeFood()}
+function setDir(d){const m={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}},nd=m[d];if(!nd)return;if(nd.x===-dir.x&&nd.y===-dir.y)return;nextDir=nd}
+function step(){dir=nextDir;const h={x:snakeArr[0].x+dir.x,y:snakeArr[0].y+dir.y};if(h.x<0||h.y<0||h.x>=GRID||h.y>=GRID)return gameOver();if(snakeArr.some(s=>s.x===h.x&&s.y===h.y))return gameOver();snakeArr.unshift(h);if(h.x===food.x&&h.y===food.y){score++;if(snakeScoreEl)snakeScoreEl.textContent=score;speed=Math.max(70,speed-3);beep(SCALE[Math.min(SCALE.length-1,2+(score%7))],.09,"square",.07);placeFood()}else snakeArr.pop()}
+function drawVinyl(cx,cy,r){const dark=cssVar("--chip-bg"),ring=cssVar("--line"),c3=cssVar("--c3");ctx.fillStyle=dark;ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.fill();ctx.strokeStyle=ring;ctx.lineWidth=1;for(let rr=r*.45;rr<r;rr+=r*.18){ctx.beginPath();ctx.arc(cx,cy,rr,0,7);ctx.stroke()}ctx.fillStyle=c3;ctx.beginPath();ctx.arc(cx,cy,r*.28,0,7);ctx.fill()}
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+function render(){if(!ctx)return;const W=GRID*cell,bg2=cssVar("--bg2"),line=cssVar("--line"),c1=cssVar("--c1"),c3=cssVar("--c3");ctx.fillStyle=bg2;ctx.fillRect(0,0,W,W);ctx.strokeStyle=line;ctx.globalAlpha=.25;ctx.lineWidth=1;const cx=W/2,cy=W/2;for(let r=cell;r<W*.72;r+=cell*1.4){ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.stroke()}ctx.globalAlpha=.12;ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(W,cy);ctx.moveTo(cx,0);ctx.lineTo(cx,W);ctx.stroke();ctx.globalAlpha=1;if(food){const fx=food.x*cell+cell/2,fy=food.y*cell+cell/2;drawVinyl(fx,fy,cell*.42);ctx.strokeStyle=c3;ctx.globalAlpha=.5+.5*Math.sin(Date.now()/200);ctx.lineWidth=2;ctx.beginPath();ctx.arc(fx,fy,cell*.55,0,7);ctx.stroke();ctx.globalAlpha=1}const n=snakeArr.length;for(let i=n-1;i>=0;i--){const s=snakeArr[i],t=i/Math.max(1,n-1);ctx.fillStyle=i===0?c1:mix(c1,c3,t);const pad=cell*.12,x=s.x*cell+pad,y=s.y*cell+pad,sz=cell-pad*2;roundRect(x,y,sz,sz,i===0?sz*.45:sz*.3);ctx.fill()}const h=snakeArr[0];ctx.fillStyle="#fff";const ex=h.x*cell+cell/2+dir.x*cell*.18-cell*.06,ey=h.y*cell+cell/2+dir.y*cell*.18-cell*.06;ctx.fillRect(ex,ey,cell*.12,cell*.12)}
+function gameOver(){alive=false;beep(140,.22,"sawtooth",.08);setTimeout(()=>beep(90,.3,"sawtooth",.08),120);let best=0;try{best=parseInt(localStorage.getItem(BEST_KEY)||"0",10)}catch(e){}if(score>best){best=score;try{localStorage.setItem(BEST_KEY,String(best))}catch(e){}}if(snakeBestEl)snakeBestEl.textContent=best;if(snakeOverMsg)snakeOverMsg.textContent=`Has sumado ${score} pista${score===1?"":"s"} · Récord ${best}`;if(snakeOver)snakeOver.hidden=false}
+function loop(ts){rafId=requestAnimationFrame(loop);if(!alive||paused){render();return}if(ts-lastStep>=speed){lastStep=ts;step()}render()}
+function openSnake(){if(!snake)return;snake.hidden=false;document.body.style.overflow="hidden";if(snakeBestEl){try{snakeBestEl.textContent=localStorage.getItem(BEST_KEY)||"0"}catch(e){}}sizeCanvas();resetSnake();cancelAnimationFrame(rafId);rafId=requestAnimationFrame(loop);if(actx&&actx.state==="suspended")actx.resume()}
+function closeSnake(){if(!snake)return;snake.hidden=true;document.body.style.overflow="";cancelAnimationFrame(rafId);alive=false}
+document.addEventListener("keydown",e=>{if(!snake||snake.hidden){if(e.key==="Escape"&&modal&&!modal.hidden)closeModal();return}const k=e.key.toLowerCase();if(k==="arrowup"||k==="w")setDir("up");else if(k==="arrowdown"||k==="s")setDir("down");else if(k==="arrowleft"||k==="a")setDir("left");else if(k==="arrowright"||k==="d")setDir("right");else if(k===" "){e.preventDefault();paused=!paused;if(snakePause)snakePause.hidden=!paused}else if(k==="escape")closeSnake()});
+if(snake){snake.querySelectorAll("[data-dir]").forEach(b=>b.addEventListener("click",()=>setDir(b.dataset.dir)));snake.addEventListener("click",e=>{if(e.target.hasAttribute("data-close"))closeSnake()});const retry=document.getElementById("snakeRetry");if(retry)retry.addEventListener("click",()=>resetSnake());let sx=0,sy=0;canvas.addEventListener("pointerdown",e=>{sx=e.clientX;sy=e.clientY});canvas.addEventListener("pointerup",e=>{const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.abs(dx)<20&&Math.abs(dy)<20)return;if(Math.abs(dx)>Math.abs(dy))setDir(dx>0?"right":"left");else setDir(dy>0?"down":"up")})}
+const easterBtn=document.getElementById("easterBtn"),wordmark=document.getElementById("wordmark");
+if(easterBtn)easterBtn.addEventListener("click",openSnake);
+if(wordmark)wordmark.addEventListener("click",()=>{if(isUnlocked())openSnake()});
+if(isUnlocked())document.body.classList.add("has-snake");
+paintProgress();
