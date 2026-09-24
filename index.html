@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="vinilo">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANTI MARTÍNEZ · Discografía</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="top">
+    <div class="top__left">
+      <p class="eyebrow">SANTI MARTÍNEZ CÓRDOBA · 1º DAM</p>
+      <h1 class="wordmark">DISCOGRAFÍA</h1>
+      <p class="tagline">Mi vida, álbum a álbum.</p>
+    </div>
+
+    <div class="top__right">
+      <div class="stats">
+        <div class="stat"><span class="stat__k">EDAD</span><span class="stat__v" id="age">--</span></div>
+        <div class="stat"><span class="stat__k">LANZAMIENTO</span><span class="stat__v" id="bday">--</span></div>
+        <div class="stat"><span class="stat__k">SELO</span><span class="stat__v">SIMARRO REC.</span></div>
+      </div>
+      <div class="themes" role="group" aria-label="Tema">
+        <button class="theme" data-set="vinilo">VINILO</button>
+        <button class="theme" data-set="papel">PAPEL</button>
+        <button class="theme" data-set="pixel">PIXEL</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="section__head">
+        <h2>DISCOGRAFÍA</h2>
+        <p class="hint">Pulsa cualquier álbum para ver su ficha completa.</p>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot__box">
+      <p class="foot__k">CONTACTO</p>
+      <p class="foot__mail" id="mail">santimartinezcordoba@gmail.com</p>
+      <button class="btn-copy" id="copy">COPIAR CORREO</button>
+      <p class="foot__c">© <span id="year"></span> Simarro Rec. · Hecho a mano con HTML, CSS y JS.</p>
+    </div>
+  </footer>
+
+  <div class="now" id="now" aria-hidden="true">
+    <button class="now__btn" id="playBtn" aria-label="Play / Pausa">
+      <svg class="ic ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ic ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+    </button>
+    <div class="now__bars"><i></i><i></i><i></i><i></i></div>
+    <div class="now__txt"><span class="now__k">Reproduciendo:</span> <span class="now__v" id="nowTitle">—</span></div>
+    <div class="now__prog" id="nowProg"><i id="nowBar"></i></div>
+    <span class="now__time" id="nowTime">--:-- / --:--</span>
+    <div class="now__vol">
+      <button class="now__mute" id="muteBtn" aria-label="Silenciar">
+        <svg class="spk" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="body" d="M3 10v4h4l5 5V5L7 10H3z"/>
+          <path class="wave" d="M16 8a5 5 0 0 1 0 8"/>
+          <path class="slash" d="M4 4l16 16"/>
+        </svg>
+      </button>
+      <input class="now__range" id="vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volumen">
+    </div>
+  </div>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal__back" data-close></div>
+    <article class="modal__card" role="dialog" aria-modal="true">
+      <button class="modal__x" data-close aria-label="Cerrar">✕</button>
+      <div class="modal__cover" id="mCover"></div>
+      <div class="modal__info">
+        <p class="modal__fmt" id="mFmt"></p>
+        <h3 class="modal__title" id="mTitle"></h3>
+        <p class="modal__meta" id="mMeta"></p>
+        <p class="modal__desc" id="mDesc"></p>
+        <p class="modal__tracks-k">TRACKLIST</p>
+        <ol class="modal__tracks" id="mTracks"></ol>
+      </div>
+    </article>
+  </div>
+
+  <audio id="dj" preload="none"></audio>
+  <script src="script.js"></script>
+</body>
+</html>
