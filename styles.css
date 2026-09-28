@@ -298,3 +298,4 @@ textarea.form__input{resize:vertical;min-height:110px}
   .now__txt{font-size:.78rem}
   .section__head{flex-direction:column;gap:.4rem}
 }
+:where(button,a,input,select,textarea):focus-visible{outline:3px solid var(--c2);outline-offset:3px}
