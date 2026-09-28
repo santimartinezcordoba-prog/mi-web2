@@ -282,3 +282,19 @@ textarea.form__input{resize:vertical;min-height:110px}
 .form__again{padding:.5rem 1rem;border:2px solid var(--c2);color:var(--c2);font-size:.72rem;letter-spacing:.14em;font-weight:700}
 .form__again:hover{background:var(--c2);color:#fff}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* tablet: 2 columnas de grid, stats en fila compacta */
+@media (max-width:1024px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:2rem 1.4rem}
+  .stat{min-width:96px}
+}
+/* móvil pequeño: header apilado, barra compacta, una columna */
+@media (max-width:480px){
+  .top{align-items:flex-start}
+  .top__right{width:100%}
+  .stats{gap:.4rem}
+  .stat{min-width:0;flex:1 1 auto}
+  .now{gap:.5rem;padding:.6rem .8rem}
+  .now__vol{display:none}
+  .now__txt{font-size:.78rem}
+  .section__head{flex-direction:column;gap:.4rem}
+}
