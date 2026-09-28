@@ -322,6 +322,7 @@ applyTheme(saved);
 setHeader();
 renderGrid();
 updateMuteIcon();
+
 /* ===== EASTER EGG: progreso + SNAKE // SESIÓN ===== */
 const HEARD_KEY="santi-heard", UNLOCK_KEY="santi-snake-unlocked", BEST_KEY="santi-snake-best";
 const egg=document.getElementById("egg"), toast=document.getElementById("toast");
@@ -344,31 +345,37 @@ function hexToRgb(h){h=h.replace("#","");if(h.length===3)h=h.split("").map(c=>c+
 function mix(a,b,t){const A=hexToRgb(a),B=hexToRgb(b);return`rgb(${Math.round(A[0]+(B[0]-A[0])*t)},${Math.round(A[1]+(B[1]-A[1])*t)},${Math.round(A[2]+(B[2]-A[2])*t)})`}
 function sizeCanvas(){if(!canvas)return;const dpr=window.devicePixelRatio||1,rect=canvas.getBoundingClientRect(),px=Math.max(280,Math.min(rect.width||440,520));canvas.width=px*dpr;canvas.height=px*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);cell=px/GRID}
 function placeFood(){let f;do{f={x:Math.floor(Math.random()*GRID),y:Math.floor(Math.random()*GRID)}}while(snakeArr.some(s=>s.x===f.x&&s.y===f.y));food=f}
-function resetSnake(){snakeArr=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];dir={x:1,y:0};nextDir={x:1,y:0};score=0;speed=130;paused=false;alive=true;if(snakeScoreEl)snakeScoreEl.textContent="0";if(snakeOver)snakeOver.hidden=true;if(snakePause)snakePause.hidden=true;placeFood()}
+
+function resetSnake(){
+  snakeArr=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];
+  dir={x:1,y:0};nextDir={x:1,y:0};score=0;speed=130;paused=false;alive=true;
+  if(snakeScoreEl)snakeScoreEl.textContent="0";
+  if(snakeOver){snakeOver.hidden=true;snakeOver.style.removeProperty("display");}
+  if(snakePause){snakePause.hidden=true;snakePause.style.removeProperty("display");}
+  placeFood();
+}
+
 function setDir(d){const m={up:{x:0,y:-1},down:{x:0,y:1},left:{x:-1,y:0},right:{x:1,y:0}},nd=m[d];if(!nd)return;if(nd.x===-dir.x&&nd.y===-dir.y)return;nextDir=nd}
 function step(){dir=nextDir;const h={x:snakeArr[0].x+dir.x,y:snakeArr[0].y+dir.y};if(h.x<0||h.y<0||h.x>=GRID||h.y>=GRID)return gameOver();if(snakeArr.some(s=>s.x===h.x&&s.y===h.y))return gameOver();snakeArr.unshift(h);if(h.x===food.x&&h.y===food.y){score++;if(snakeScoreEl)snakeScoreEl.textContent=score;speed=Math.max(70,speed-3);beep(SCALE[Math.min(SCALE.length-1,2+(score%7))],.09,"square",.07);placeFood()}else snakeArr.pop()}
 function drawVinyl(cx,cy,r){const dark=cssVar("--chip-bg"),ring=cssVar("--line"),c3=cssVar("--c3");ctx.fillStyle=dark;ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.fill();ctx.strokeStyle=ring;ctx.lineWidth=1;for(let rr=r*.45;rr<r;rr+=r*.18){ctx.beginPath();ctx.arc(cx,cy,rr,0,7);ctx.stroke()}ctx.fillStyle=c3;ctx.beginPath();ctx.arc(cx,cy,r*.28,0,7);ctx.fill()}
 function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
 function render(){if(!ctx)return;const W=GRID*cell,bg2=cssVar("--bg2"),line=cssVar("--line"),c1=cssVar("--c1"),c3=cssVar("--c3");ctx.fillStyle=bg2;ctx.fillRect(0,0,W,W);ctx.strokeStyle=line;ctx.globalAlpha=.25;ctx.lineWidth=1;const cx=W/2,cy=W/2;for(let r=cell;r<W*.72;r+=cell*1.4){ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.stroke()}ctx.globalAlpha=.12;ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(W,cy);ctx.moveTo(cx,0);ctx.lineTo(cx,W);ctx.stroke();ctx.globalAlpha=1;if(food){const fx=food.x*cell+cell/2,fy=food.y*cell+cell/2;drawVinyl(fx,fy,cell*.42);ctx.strokeStyle=c3;ctx.globalAlpha=.5+.5*Math.sin(Date.now()/200);ctx.lineWidth=2;ctx.beginPath();ctx.arc(fx,fy,cell*.55,0,7);ctx.stroke();ctx.globalAlpha=1}const n=snakeArr.length;for(let i=n-1;i>=0;i--){const s=snakeArr[i],t=i/Math.max(1,n-1);ctx.fillStyle=i===0?c1:mix(c1,c3,t);const pad=cell*.12,x=s.x*cell+pad,y=s.y*cell+pad,sz=cell-pad*2;roundRect(x,y,sz,sz,i===0?sz*.45:sz*.3);ctx.fill()}const h=snakeArr[0];ctx.fillStyle="#fff";const ex=h.x*cell+cell/2+dir.x*cell*.18-cell*.06,ey=h.y*cell+cell/2+dir.y*cell*.18-cell*.06;ctx.fillRect(ex,ey,cell*.12,cell*.12)}
+
 function gameOver(){
   if (!alive) return;
   alive = false;
 
-  const pause = document.getElementById('snakePause');
-  const over  = document.getElementById('snakeOver');
+  if (snakePause) snakePause.hidden = true;
+  if (snakeOver) { snakeOver.hidden = false; snakeOver.style.removeProperty("display"); }
 
-  // ocultar la pausa (con !important para ganar al display:flex del CSS)
-  if (pause) pause.style.setProperty('display', 'none', 'important');
+  let b = 0;
+  try { b = parseInt(localStorage.getItem(BEST_KEY) || "0", 10) || 0; } catch (e) {}
+  if (score > b) { b = score; try { localStorage.setItem(BEST_KEY, String(b)); } catch (e) {} }
 
-  // asegurar que el game over nativo se vea
-  if (over)  over.style.setProperty('display', 'flex', 'important');
-
-  // guardar récord
-  const s = (typeof score === 'number') ? score
-          : (parseInt(document.getElementById('snakeScore')?.textContent.replace(/\D/g,''),10) || 0);
-  let b = parseInt(localStorage.getItem('santi-snake-best') || '0', 10) || 0;
-  if (s > b){ b = s; try{ localStorage.setItem('santi-snake-best', b); }catch(e){} }
+  if (snakeBestEl) snakeBestEl.textContent = b;
+  if (snakeOverMsg) snakeOverMsg.textContent = "Has sumado " + score + " pistas · Récord " + b;
 }
+
 function loop(ts){rafId=requestAnimationFrame(loop);if(!alive||paused){render();return}if(ts-lastStep>=speed){lastStep=ts;step()}render()}
 function openSnake(){if(!snake)return;snake.hidden=false;document.body.style.overflow="hidden";if(snakeBestEl){try{snakeBestEl.textContent=localStorage.getItem(BEST_KEY)||"0"}catch(e){}}sizeCanvas();resetSnake();cancelAnimationFrame(rafId);rafId=requestAnimationFrame(loop);if(actx&&actx.state==="suspended")actx.resume()}
 function closeSnake(){if(!snake)return;snake.hidden=true;document.body.style.overflow="";cancelAnimationFrame(rafId);alive=false}
@@ -379,61 +386,15 @@ if(easterBtn)easterBtn.addEventListener("click",openSnake);
 if(wordmark)wordmark.addEventListener("click",()=>{if(isUnlocked())openSnake()});
 if(isUnlocked())document.body.classList.add("has-snake");
 paintProgress();
-// ocultar el game over al pulsar su botón (REINTENTAR)
-document.addEventListener('click', function(e){
-  const over = document.getElementById('snakeOver');
-  if (!over || over.hidden) return;
-  const btn = e.target.closest('button, a, [role="button"], [class*="btn" i], [id*="again" i], [id*="retry" i], [id*="reset" i]');
-  if (btn && over.contains(btn)) over.hidden = true;
-}, true);
+
+/* ===== pantalla de muerte: una sola regla, sin parches sueltos ===== */
 (function(){
-  function fix(){
-    var over = document.getElementById('snakeOver');
-    if(!over || over.hidden) return;
-    // contenedor: tapona el canvas y centra en columna
-    over.style.setProperty('position','absolute','important');
-    over.style.setProperty('inset','0','important');
-    over.style.setProperty('display','flex','important');
-    over.style.setProperty('flex-direction','column','important');
-    over.style.setProperty('align-items','center','important');
-    over.style.setProperty('justify-content','center','important');
-    over.style.setProperty('gap','14px','important');
-    over.style.setProperty('background','rgba(8,8,8,.88)','important');
-    over.style.setProperty('z-index','30','important');
-    // hijos: que no estiren
-    Array.prototype.forEach.call(over.children,function(c){
-      c.style.setProperty('display','block','important');
-      c.style.setProperty('width','auto','important');
-      c.style.setProperty('flex','0 0 auto','important');
-      c.style.setProperty('max-width','90%','important');
-    });
-    // el botón (sea <button>, <a> o <div>) como botón normal
-    var btn = over.querySelector('button,a,[class*=btn],[id*=again],[id*=retry],[id*=reset],[class*=again],[class*=retry]');
-    if(btn){
-      btn.style.setProperty('display','inline-block','important');
-      btn.style.setProperty('width','auto','important');
-      btn.style.setProperty('height','auto','important');
-      btn.style.setProperty('padding','10px 18px','important');
-      btn.style.setProperty('background','#ff2a2a','important');
-      btn.style.setProperty('color','#fff','important');
-      btn.style.setProperty('border','1px solid #ff2a2a','important');
-    }
-  }
-  fix();
-  var over = document.getElementById('snakeOver');
-  if(over) new MutationObserver(fix).observe(over,{attributes:true,attributeFilter:['hidden'],childList:true});
-})();
-(function(){
-  var over = document.getElementById('snakeOver');
-  if(!over) return;
-  var SHOW = 'display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:14px !important;background:rgba(8,8,8,.88) !important;';
-  var HIDE = 'display:none !important;';
-  function apply(){ over.setAttribute('style', over.hidden ? HIDE : SHOW); }
-  // el observer viejo dispara antes (microtask); esto lo corrige después (macrotask)
-  new MutationObserver(function(){ setTimeout(apply,0); })
-    .observe(over,{attributes:true,attributeFilter:['hidden'],childList:true});
-  document.addEventListener('click', function(e){
-    if(e.target.closest('#snakeRetry,.snake__retry')){ over.hidden=true; setTimeout(apply,0); }
-  }, true);
-  apply();
+  if (document.getElementById("snake-overlay-fix")) return;
+  var st = document.createElement("style");
+  st.id = "snake-overlay-fix";
+  st.textContent =
+    '#snakeOver[hidden],#snakePause[hidden]{display:none!important}' +
+    '#snakeOver:not([hidden]),#snakePause:not([hidden]){display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:14px;position:absolute;inset:0;z-index:30;background:rgba(8,8,8,.88);color:#fff}' +
+    '#snakeOver .snake__retry,#snakeOver button{display:inline-block!important;width:auto!important;height:auto!important;padding:10px 18px!important;background:#ff2a2a!important;color:#fff!important;border:1px solid #ff2a2a!important}';
+  document.head.appendChild(st);
 })();
