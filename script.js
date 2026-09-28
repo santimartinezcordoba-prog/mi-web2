@@ -350,7 +350,25 @@ function step(){dir=nextDir;const h={x:snakeArr[0].x+dir.x,y:snakeArr[0].y+dir.y
 function drawVinyl(cx,cy,r){const dark=cssVar("--chip-bg"),ring=cssVar("--line"),c3=cssVar("--c3");ctx.fillStyle=dark;ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.fill();ctx.strokeStyle=ring;ctx.lineWidth=1;for(let rr=r*.45;rr<r;rr+=r*.18){ctx.beginPath();ctx.arc(cx,cy,rr,0,7);ctx.stroke()}ctx.fillStyle=c3;ctx.beginPath();ctx.arc(cx,cy,r*.28,0,7);ctx.fill()}
 function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
 function render(){if(!ctx)return;const W=GRID*cell,bg2=cssVar("--bg2"),line=cssVar("--line"),c1=cssVar("--c1"),c3=cssVar("--c3");ctx.fillStyle=bg2;ctx.fillRect(0,0,W,W);ctx.strokeStyle=line;ctx.globalAlpha=.25;ctx.lineWidth=1;const cx=W/2,cy=W/2;for(let r=cell;r<W*.72;r+=cell*1.4){ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.stroke()}ctx.globalAlpha=.12;ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(W,cy);ctx.moveTo(cx,0);ctx.lineTo(cx,W);ctx.stroke();ctx.globalAlpha=1;if(food){const fx=food.x*cell+cell/2,fy=food.y*cell+cell/2;drawVinyl(fx,fy,cell*.42);ctx.strokeStyle=c3;ctx.globalAlpha=.5+.5*Math.sin(Date.now()/200);ctx.lineWidth=2;ctx.beginPath();ctx.arc(fx,fy,cell*.55,0,7);ctx.stroke();ctx.globalAlpha=1}const n=snakeArr.length;for(let i=n-1;i>=0;i--){const s=snakeArr[i],t=i/Math.max(1,n-1);ctx.fillStyle=i===0?c1:mix(c1,c3,t);const pad=cell*.12,x=s.x*cell+pad,y=s.y*cell+pad,sz=cell-pad*2;roundRect(x,y,sz,sz,i===0?sz*.45:sz*.3);ctx.fill()}const h=snakeArr[0];ctx.fillStyle="#fff";const ex=h.x*cell+cell/2+dir.x*cell*.18-cell*.06,ey=h.y*cell+cell/2+dir.y*cell*.18-cell*.06;ctx.fillRect(ex,ey,cell*.12,cell*.12)}
-function gameOver(){alive=false;beep(140,.22,"sawtooth",.08);setTimeout(()=>beep(90,.3,"sawtooth",.08),120);let best=0;try{best=parseInt(localStorage.getItem(BEST_KEY)||"0",10)}catch(e){}if(score>best){best=score;try{localStorage.setItem(BEST_KEY,String(best))}catch(e){}}if(snakeBestEl)snakeBestEl.textContent=best;if(snakeOverMsg)snakeOverMsg.textContent=`Has sumado ${score} pista${score===1?"":"s"} · Récord ${best}`;if(snakeOver)snakeOver.hidden=false}
+function gameOver(){
+  if (!alive) return;
+  alive = false;
+
+  const pause = document.getElementById('snakePause');
+  const over  = document.getElementById('snakeOver');
+
+  // ocultar la pausa (con !important para ganar al display:flex del CSS)
+  if (pause) pause.style.setProperty('display', 'none', 'important');
+
+  // asegurar que el game over nativo se vea
+  if (over)  over.style.setProperty('display', 'flex', 'important');
+
+  // guardar récord
+  const s = (typeof score === 'number') ? score
+          : (parseInt(document.getElementById('snakeScore')?.textContent.replace(/\D/g,''),10) || 0);
+  let b = parseInt(localStorage.getItem('santi-snake-best') || '0', 10) || 0;
+  if (s > b){ b = s; try{ localStorage.setItem('santi-snake-best', b); }catch(e){} }
+}
 function loop(ts){rafId=requestAnimationFrame(loop);if(!alive||paused){render();return}if(ts-lastStep>=speed){lastStep=ts;step()}render()}
 function openSnake(){if(!snake)return;snake.hidden=false;document.body.style.overflow="hidden";if(snakeBestEl){try{snakeBestEl.textContent=localStorage.getItem(BEST_KEY)||"0"}catch(e){}}sizeCanvas();resetSnake();cancelAnimationFrame(rafId);rafId=requestAnimationFrame(loop);if(actx&&actx.state==="suspended")actx.resume()}
 function closeSnake(){if(!snake)return;snake.hidden=true;document.body.style.overflow="";cancelAnimationFrame(rafId);alive=false}
@@ -361,3 +379,61 @@ if(easterBtn)easterBtn.addEventListener("click",openSnake);
 if(wordmark)wordmark.addEventListener("click",()=>{if(isUnlocked())openSnake()});
 if(isUnlocked())document.body.classList.add("has-snake");
 paintProgress();
+// ocultar el game over al pulsar su botón (REINTENTAR)
+document.addEventListener('click', function(e){
+  const over = document.getElementById('snakeOver');
+  if (!over || over.hidden) return;
+  const btn = e.target.closest('button, a, [role="button"], [class*="btn" i], [id*="again" i], [id*="retry" i], [id*="reset" i]');
+  if (btn && over.contains(btn)) over.hidden = true;
+}, true);
+(function(){
+  function fix(){
+    var over = document.getElementById('snakeOver');
+    if(!over || over.hidden) return;
+    // contenedor: tapona el canvas y centra en columna
+    over.style.setProperty('position','absolute','important');
+    over.style.setProperty('inset','0','important');
+    over.style.setProperty('display','flex','important');
+    over.style.setProperty('flex-direction','column','important');
+    over.style.setProperty('align-items','center','important');
+    over.style.setProperty('justify-content','center','important');
+    over.style.setProperty('gap','14px','important');
+    over.style.setProperty('background','rgba(8,8,8,.88)','important');
+    over.style.setProperty('z-index','30','important');
+    // hijos: que no estiren
+    Array.prototype.forEach.call(over.children,function(c){
+      c.style.setProperty('display','block','important');
+      c.style.setProperty('width','auto','important');
+      c.style.setProperty('flex','0 0 auto','important');
+      c.style.setProperty('max-width','90%','important');
+    });
+    // el botón (sea <button>, <a> o <div>) como botón normal
+    var btn = over.querySelector('button,a,[class*=btn],[id*=again],[id*=retry],[id*=reset],[class*=again],[class*=retry]');
+    if(btn){
+      btn.style.setProperty('display','inline-block','important');
+      btn.style.setProperty('width','auto','important');
+      btn.style.setProperty('height','auto','important');
+      btn.style.setProperty('padding','10px 18px','important');
+      btn.style.setProperty('background','#ff2a2a','important');
+      btn.style.setProperty('color','#fff','important');
+      btn.style.setProperty('border','1px solid #ff2a2a','important');
+    }
+  }
+  fix();
+  var over = document.getElementById('snakeOver');
+  if(over) new MutationObserver(fix).observe(over,{attributes:true,attributeFilter:['hidden'],childList:true});
+})();
+(function(){
+  var over = document.getElementById('snakeOver');
+  if(!over) return;
+  var SHOW = 'display:flex !important;flex-direction:column !important;align-items:center !important;justify-content:center !important;gap:14px !important;background:rgba(8,8,8,.88) !important;';
+  var HIDE = 'display:none !important;';
+  function apply(){ over.setAttribute('style', over.hidden ? HIDE : SHOW); }
+  // el observer viejo dispara antes (microtask); esto lo corrige después (macrotask)
+  new MutationObserver(function(){ setTimeout(apply,0); })
+    .observe(over,{attributes:true,attributeFilter:['hidden'],childList:true});
+  document.addEventListener('click', function(e){
+    if(e.target.closest('#snakeRetry,.snake__retry')){ over.hidden=true; setTimeout(apply,0); }
+  }, true);
+  apply();
+})();
