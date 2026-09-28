@@ -150,19 +150,19 @@ const ALBUMS = [
   { id:"banda", title:"BANDA SONORA", fmt:"LP", yr:"2021–hoy", tag:"MÚSICA",
     cover:"san francisco", track:"Jovenes-cristianos-de-Bolbaie", song:"Jovenes cristianos de Bolbaie - Jose Antonio Boluda Ponce",
     c:["#1f6feb","#00c2ff"],
-    desc:"Desde 2021 toco en la banda del pueblo. Ensayo los jueves, concierto en Navidad y uno grande en verano. Aprendí a leer partitura, a callarme cuando entra otro instrumento y a aguantar dos horas de pasodoble sin moverme. Eso último también es una habilidad.",
+    desc:"Desde 2021 toco en la banda del pueblo. Ensayo los viernes por la noches, conciertos en Navidad y en verano. Aprendí a leer partitura, a callarme cuando entra otro instrumento y a aguantar dos horas de enayo sin moverme. Eso último también es una habilidad aunque parezca que no.",
     tracks:["Pasodoble","Ensayo general","Concierto de Navidad","Entradas","Director invitado","Bis"] },
 
   { id:"batukada", title:"BATUKADA", fmt:"EP", yr:"2022–hoy", tag:"PERCUSIÓN",
      cover:"bitukada", track:"batukada.mp3", song:"Ritmo base",
     c:["#ff7a00","#ffd400"],
-    desc:"Percusión de calle desde 2022. Tambor, bombo y un ritmo que se marca en grupo, no en solitario. Aquí aprendí que el tempo no lo mandas tú: lo manda el que va delante. Buen ejercicio para no creerte el centro de nada.",
+    desc:"Percusión de calle desde 2022. repenique, zurdo y un ritmo que se marca en grupo, no en solitario. Aquí aprendí que el tempo no lo mandas tú: lo manda el que va delante.",
     tracks:["Ritmo base","Llamada","Musicorp","Desfile","Silencio (Outro)"] },
 
   { id:"praga", title:"PRAGA", fmt:"SGL", yr:"2024", tag:"FIN DE CURSO",
     cover:"altibajos", track:"a-mi-lao.mp3", song:"A mi lao' - JM y Tans",
     c:["#7c3aed","#ff2d2d"],
-    desc:"Viaje de fin de curso a Praga, 2024. Puente Carlos, reloj astronómico y una foto de grupo que me quedé mirando más de lo que debería. No es un álbum de turismo: es lo que sale cuando sales del pueblo por primera vez con tu clase.",
+    desc:"Viaje de fin de curso a Praga en 2024. Puente Carlos, reloj astronómico y una foto de grupo que me quedé mirando más de lo que debería. No es un álbum de turismo: es lo que sale cuando sales del pueblo por primera vez con tu clase.",
     tracks:["#Llegadaaccidentada","Puente Carlos","Reloj astronómico","Late night talks","Última noche"] },
 
   { id:"crossfit", title:"CROSSFIT SESSIONS", fmt:"SGL", yr:"2022", tag:"ENTRENAMIENTO",
@@ -174,7 +174,7 @@ const ALBUMS = [
   { id:"pizza", title:"PIZZERIA TOPOGIGIO", fmt:"LP", yr:"3 veranos y sumando", tag:"HOSTELERÍA",
     cover:"mf doom", track:"tu-con-el.mp3", song:"Tú con el - Rauw Alejandro",
     c:["#d61f1f","#ffd400"],
-    desc:"Tres veranos de camarero en la pizzería del pueblo. Comanda, barra, sala y a veces caja. Aprendí a llevar cuatro mesas, a no discutir con el de la propina y a cerrar sin derramar nada. Hostelería: la carrera que no sale en el título pero te forma.",
+    desc:"Tres veranos de camarero en la pizzería del pueblo. Comanda, barra, sala y a veces caja. Aprendí a llevar la calle entera a la vez, a no discutir con los clientes y a cerrar sin derramar nada. Hostelería: la carrera que no sale en el título pero te forma.",
     tracks:["Apertura","cenas (hora punta)","placer de lotus x15","Limpieza","La clasica","Cierre",] },
 
   { id:"dam", title:"DAM (THE DEBUT)", fmt:"LP", yr:"curso actual", tag:"ESTUDIOS",
@@ -186,7 +186,7 @@ const ALBUMS = [
   { id:"player", title:"PLAYER 1", fmt:"EP", yr:"siempre", tag:"VIDEOJUEGOS",
     cover:"de la forman en que yo quiero", track:"marvel-spiderman.mp3", song:"Spiderman - imsoniac",
     c:["#ff2d2d","#00ff66"],
-    desc:"Juego desde que tengo mando. Pokémon es el hilo: la Kanto infinita. Pero también Dios de la guerra y cualquier cosa que te haga pensar dos veces el botón de “seguir”. Los videojuegos me enseñaron a leer pantallas, patrones y a no rendirme en un boss.",
+    desc:"Juego desde que tengo mando. Pokémon es el hilo y apartir de ahi sale todo desde el god of war hasta el outer wilds y cualquier cosa que te haga pensar.",
     tracks:["¡Elige tu inicial!","Dios de la guerra","Cazando Maquinas"," (Boss fight) - outro","Guardando…"] },
 
   { id:"screen", title:"SCREEN TIME", fmt:"LP", yr:"varios", tag:"SERIES & CINE",
