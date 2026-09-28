@@ -386,15 +386,3 @@ if(easterBtn)easterBtn.addEventListener("click",openSnake);
 if(wordmark)wordmark.addEventListener("click",()=>{if(isUnlocked())openSnake()});
 if(isUnlocked())document.body.classList.add("has-snake");
 paintProgress();
-
-/* ===== pantalla de muerte: una sola regla, sin parches sueltos ===== */
-(function(){
-  if (document.getElementById("snake-overlay-fix")) return;
-  var st = document.createElement("style");
-  st.id = "snake-overlay-fix";
-  st.textContent =
-    '#snakeOver[hidden],#snakePause[hidden]{display:none!important}' +
-    '#snakeOver:not([hidden]),#snakePause:not([hidden]){display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:14px;position:absolute;inset:0;z-index:30;background:rgba(8,8,8,.88);color:#fff}' +
-    '#snakeOver .snake__retry,#snakeOver button{display:inline-block!important;width:auto!important;height:auto!important;padding:10px 18px!important;background:#ff2a2a!important;color:#fff!important;border:1px solid #ff2a2a!important}';
-  document.head.appendChild(st);
-})();
