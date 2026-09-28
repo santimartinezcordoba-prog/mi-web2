@@ -40,6 +40,57 @@
       </div>
       <div class="grid" id="grid"></div>
     </section>
+        <section class="section" id="contacto">
+      <div class="section__head">
+        <h2>CONTACTO</h2>
+        <p class="hint">Escríbeme y te contesto. Sin spam, sin cuentas.</p>
+      </div>
+
+      <form class="form" id="contactForm" method="POST" action="https://formspree.io/f/moevyqgl" novalidate>
+        <!-- honeypot anti-spam: invisible para humanos -->
+        <div class="hp" aria-hidden="true"><label>No rellenar<input name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+        <!-- Si usas Web3Forms, descomenta y pon tu access_key (es pública, no es un secreto):
+        <input type="hidden" name="access_key" value="TU_ACCESS_KEY"> -->
+
+        <div class="form__grid">
+          <div class="form__field">
+            <label class="form__label" for="cfName">Nombre *</label>
+            <input class="form__input" id="cfName" name="name" type="text" autocomplete="name" minlength="2" maxlength="60" aria-describedby="cfNameErr">
+            <p class="field__err" id="cfNameErr" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="cfEmail">Email *</label>
+            <input class="form__input" id="cfEmail" name="email" type="email" autocomplete="email" aria-describedby="cfEmailErr">
+            <p class="field__err" id="cfEmailErr" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <div class="form__field">
+          <label class="form__label" for="cfSubject">Asunto</label>
+          <select class="form__input" id="cfSubject" name="subject">
+            <option value="General">General</option>
+            <option value="Colaboración">Colaboración</option>
+            <option value="Concierto / evento">Concierto / evento</option>
+            <option value="Feedback de la web">Feedback de la web</option>
+            <option value="Otros">Otros</option>
+          </select>
+        </div>
+
+        <div class="form__field">
+          <label class="form__label" for="cfMsg">Mensaje *</label>
+          <textarea class="form__input" id="cfMsg" name="message" rows="5" minlength="10" maxlength="600" aria-describedby="cfMsgErr cfCount"></textarea>
+          <p class="field__err" id="cfMsgErr" aria-live="polite"></p>
+          <p class="form__count" id="cfCount">0/600</p>
+        </div>
+
+        <button class="form__submit" id="cfSubmit" type="submit">ENVIAR MENSAJE</button>
+        <p class="form__err" id="cfErr" aria-live="assertive"></p>
+        <div class="form__ok" id="cfOk" hidden>
+          <p>✔ Mensaje enviado. Te contesto pronto.</p>
+          <button class="form__again" id="cfAgain" type="button">ENVIAR OTRO</button>
+        </div>
+      </form>
+    </section>
   </main>
 
   <footer class="foot">

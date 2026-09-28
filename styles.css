@@ -254,3 +254,31 @@ body.has-snake .wordmark{cursor:pointer}
 .snake__hint{text-align:center;font-size:.68rem;color:var(--muted);margin-top:.7rem;letter-spacing:.08em}
 
 @media (max-width:720px){ .snake__pad{display:none} }
+/* ===== FORM CONTACTO ===== */
+.form{max-width:560px}
+.form__grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media (max-width:720px){.form__grid{grid-template-columns:1fr}}
+.form__field{display:flex;flex-direction:column;gap:.3rem;margin-bottom:1rem}
+.form__label{font-size:.68rem;letter-spacing:.2em;color:var(--c2)}
+.form__input{
+  width:100%;background:var(--bg2);color:var(--ink);
+  border:2px solid var(--line);border-radius:calc(var(--radius) - 6px);
+  padding:.6rem .75rem;font:inherit;transition:border-color .15s;
+}
+.form__input:focus{outline:none;border-color:var(--c2)}
+.form__input[aria-invalid="true"]{border-color:var(--c1)}
+textarea.form__input{resize:vertical;min-height:110px}
+.form__count{font-size:.68rem;color:var(--muted);text-align:right;margin-top:.2rem}
+.field__err{min-height:1em;font-size:.72rem;color:var(--c1);margin-top:.2rem}
+.form__submit{
+  padding:.7rem 1.2rem;border:2px solid var(--c1);background:var(--c1);color:#fff;
+  font-size:.74rem;letter-spacing:.16em;font-weight:700;transition:.18s;cursor:pointer;
+}
+.form__submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:4px 4px 0 var(--c3)}
+.form__submit:disabled{opacity:.6;cursor:progress}
+.form__err{font-size:.8rem;color:var(--c1);margin-top:.8rem}
+.form__ok{margin-top:1rem;padding:.9rem 1rem;border:2px solid var(--c3);color:var(--ink);font-size:.9rem}
+.form__ok p{margin-bottom:.7rem}
+.form__again{padding:.5rem 1rem;border:2px solid var(--c2);color:var(--c2);font-size:.72rem;letter-spacing:.14em;font-weight:700}
+.form__again:hover{background:var(--c2);color:#fff}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
