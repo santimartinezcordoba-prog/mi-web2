@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="vinilo">
 <head>
-  <meta name="description" content="Discografía de Santiago Martínez Córdoba: mi vida, álbum a álbum. Web hecha a mano con HTML, CSS y JS.">
-<meta property="og:title" content="SANTI MARTÍNEZ · Discografía">
-<meta property="og:description" content="Mi vida, álbum a álbum.">
-<meta property="og:image" content="https://TU-DOMINIO/covers/la%20espalda%20del%20sol.jpg">
-<meta name="twitter:card" content="summary_large_image">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SANTI MARTÍNEZ · Discografía</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css">
+  <!-- ruta RELATIVA: no empieza por / → se resuelve a /mi-web2/styles.css → OK, NO se toca -->
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Discografía de Santiago Martínez Córdoba: mi vida, álbum a álbum. Web hecha a mano con HTML, CSS y JS.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SANTI MARTÍNEZ · Discografía">
+  <meta property="og:description" content="Mi vida, álbum a álbum.">
+  <!-- og:image es URL absoluta EXTERNA (la lee Google, no tu servidor) → NO se rompe, pon tu dominio al publicar -->
+  <meta property="og:image" content="https://TU-DOMINIO/covers/la%20espalda%20del%20sol.jpg">
+  <meta property="og:url" content="https://TU-DOMINIO/">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- ruta RELATIVA del favicon → OK, NO se toca (si usaste data: URI, tampoco aplica) -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -32,8 +37,8 @@
         <button class="theme" data-set="papel">PAPEL</button>
         <button class="theme" data-set="pixel">PIXEL</button>
         <button class="easter" id="easterBtn" aria-label="Juego oculto" title="SNAKE">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8h10a5 5 0 0 1 5 5v1a3 3 0 0 1-5.3 1.9L15 15H9l-1.7.9A3 3 0 0 1 2 14v-1a5 5 0 0 1 5-5zm-1 4v2H4v-2h2zm2 0h2v2H8v-2zm7 .5h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
-</button>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8h10a5 5 0 0 1 5 5v1a3 3 0 0 1-5.3 1.9L15 15H9l-1.7.9A3 3 0 0 1 2 14v-1a5 5 0 0 1 5-5zm-1 4v2H4v-2h2zm2 0h2v2H8v-2zm7 .5h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
+        </button>
       </div>
     </div>
   </header>
@@ -46,18 +51,14 @@
       </div>
       <div class="grid" id="grid"></div>
     </section>
-        <section class="section" id="contacto">
+
+    <section class="section" id="contacto">
       <div class="section__head">
         <h2>CONTACTO</h2>
         <p class="hint">Escríbeme y te contesto. Sin spam, sin cuentas.</p>
       </div>
-
       <form class="form" id="contactForm" method="POST" action="https://formspree.io/f/moevyqgl" novalidate>
-        <!-- honeypot anti-spam: invisible para humanos -->
         <div class="hp" aria-hidden="true"><label>No rellenar<input name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
-        <!-- Si usas Web3Forms, descomenta y pon tu access_key (es pública, no es un secreto):
-        <input type="hidden" name="access_key" value="TU_ACCESS_KEY"> -->
-
         <div class="form__grid">
           <div class="form__field">
             <label class="form__label" for="cfName">Nombre *</label>
@@ -70,26 +71,21 @@
             <p class="field__err" id="cfEmailErr" aria-live="polite"></p>
           </div>
         </div>
-
         <div class="form__field">
           <label class="form__label" for="cfSubject">Asunto</label>
-                    <select class="form__input" id="cfSubject" name="subject">
+          <select class="form__input" id="cfSubject" name="subject">
             <option value="General">General</option>
             <option value="Sugerencia de serie/pelicula">Sugerencia de serie / película</option>
             <option value="Sugerencia de juego">Sugerencia de juego</option>
-            <option value="feedback de la web">feedback de la web</option>
             <option value="Otros">Otros</option>
-           
           </select>
         </div>
-
         <div class="form__field">
           <label class="form__label" for="cfMsg">Mensaje *</label>
           <textarea class="form__input" id="cfMsg" name="message" rows="5" minlength="10" maxlength="600" aria-describedby="cfMsgErr cfCount"></textarea>
           <p class="field__err" id="cfMsgErr" aria-live="polite"></p>
           <p class="form__count" id="cfCount">0/600</p>
         </div>
-
         <button class="form__submit" id="cfSubmit" type="submit">ENVIAR MENSAJE</button>
         <p class="form__err" id="cfErr" aria-live="assertive"></p>
         <div class="form__ok" id="cfOk" hidden>
@@ -106,7 +102,6 @@
       <p class="foot__mail" id="mail">santimartinezcordoba@gmail.com</p>
       <button class="btn-copy" id="copy">COPIAR CORREO</button>
       <p class="foot__c">© <span id="year"></span> Simarro Rec. · Hecho a mano con HTML, CSS y JS.</p>
-      <p class="foot__k" id="egg" hidden></p>
     </div>
   </footer>
 
@@ -146,7 +141,7 @@
       </div>
     </article>
   </div>
-  
+
   <div class="snake" id="snake" hidden>
     <div class="snake__back" data-close></div>
     <article class="snake__card" role="dialog" aria-modal="true">
@@ -179,6 +174,7 @@
   <div class="toast" id="toast" hidden></div>
 
   <audio id="dj" preload="none"></audio>
+  <!-- ruta RELATIVA: no empieza por / → se resuelve a /mi-web2/script.js → OK, NO se toca -->
   <script src="script.js"></script>
 </body>
 </html>
