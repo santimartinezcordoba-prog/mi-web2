@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio Cordón 97.3 FM — Pasaje Rincón 42, La Aurora</title>
+<meta name="description" content="Radio Cordón 97.3 FM. Aire desde 1989. Escaleta, programas, conductores, archivo de cintas, pauta y dedicatorias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Spline+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ece7db;
+  --ink:#14110f;
+  --mag:#d61f69;
+  --on:#3fb96b;
+  --cue:#f2c14e;
+  --muted:#8a817c;
+  --line:rgba(20,17,15,.16);
+  --f-disp:"Bebas Neue",sans-serif;
+  --f-body:"Spline Sans",sans-serif;
+  --f-mono:"Spline Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--mag);color:#fff}
+a{color:inherit}
+button{font-family:inherit}
+svg{display:block}
+input,select,textarea{font-family:inherit}
+
+html.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+html.js .reveal.in{opacity:1;transform:none}
+html.js-error .reveal{opacity:1;transform:none}
+
+/* ---------- MAST ---------- */
+.mast{position:sticky;top:0;z-index:80;background:var(--ink);color:var(--paper);border-bottom:1px solid rgba(242,193,78,.22)}
+.mast-strip{max-width:1380px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.mast-brand{display:flex;align-items:baseline;gap:9px;font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cue)}
+.mast-brand b{font-family:var(--f-disp);font-size:27px;letter-spacing:.03em;color:var(--paper);font-weight:400}
+.live{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.2em;color:var(--mag)}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--mag);animation:blink 1.5s infinite}
+@keyframes blink{50%{opacity:.2}}
+.mast-clock{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;letter-spacing:.12em;color:var(--paper)}
+.mast-clock em{color:var(--cue);font-style:normal}
+.now{display:flex;align-items:center;gap:12px}
+.now-ico{font-family:var(--f-disp);font-size:17px;color:var(--mag);letter-spacing:.05em}
+.now-txt{display:flex;flex-direction:column;gap:2px}
+.now-txt small{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(236,231,219,.5)}
+.now-txt b{font-family:var(--f-disp);font-size:19px;letter-spacing:.03em;color:var(--paper);font-weight:400}
+.eq{display:flex;align-items:flex-end;gap:2.5px;height:15px}
+.eq i{width:2.5px;background:var(--on);height:22%;transition:height .12s linear}
+.eq.on i{animation:eq .7s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:.1s}
+.eq i:nth-child(3){animation-delay:.2s}
+.eq i:nth-child(4){animation-delay:.05s}
+.eq i:nth-child(5){animation-delay:.15s}
+@keyframes eq{0%,100%{height:18%}50%{height:95%}}
+
+/* ---------- RAIL ---------- */
+.rail{position:fixed;top:0;left:0;bottom:0;width:224px;z-index:70;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;padding:26px 0 20px}
+.rail-top{padding:0 22px 24px;border-bottom:1px solid rgba(236,231,219,.12)}
+.rail-mark{display:block;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--cue);text-decoration:none}
+.rail-name{display:block;font-family:var(--f-disp);font-size:34px;letter-spacing:.05em;color:var(--paper);line-height:.95;margin-top:8px;font-weight:400}
+.rail-freq{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;color:var(--mag);margin-top:9px}
+.rail-live{display:inline-flex;align-items:center;gap:7px;margin-top:13px;font-family:var(--f-mono);font-size:9px;letter-spacing:.22em;color:var(--on)}
+.rail-live i{width:7px;height:7px;border-radius:50%;background:var(--on);box-shadow:0 0 0 0 rgba(63,185,107,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(63,185,107,0)}100%{box-shadow:0 0 0 0 rgba(63,185,107,0)}}
+.rail-nav{display:flex;flex-direction:column;gap:2px;padding:16px 12px;flex:1;overflow-y:auto}
+.rail-nav a{display:flex;align-items:center;gap:11px;padding:10px 10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(236,231,219,.55);text-decoration:none;border-left:2px solid transparent;transition:color .18s,background .18s,border-color .18s}
+.rail-nav a i{font-style:normal;font-size:9px;color:rgba(236,231,219,.35);width:22px}
+.rail-nav a:hover{color:var(--paper);background:rgba(236,231,219,.05)}
+.rail-nav a.on{color:var(--paper);border-left-color:var(--mag);background:rgba(214,31,105,.1)}
+.rail-nav a.on i{color:var(--mag)}
+.rail-foot{padding:16px 22px 0;border-top:1px solid rgba(236,231,219,.12);font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;color:rgba(236,231,219,.45);line-height:1.9}
+.rail-foot b{color:var(--cue);font-weight:400}
+
+/* ---------- MAIN ---------- */
+main{margin-left:224px}
+section{scroll-margin-top:88px}
+
+/* ---------- COVER ---------- */
+.cover{padding:64px 40px 56px;background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(236,231,219,.09) 1px,transparent 0);background-size:30px 30px;pointer-events:none}
+.cover-grid{position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:auto auto;gap:18px}
+.cover-main{grid-row:1/3;background:var(--paper);color:var(--ink);border:1px solid var(--ink);box-shadow:10px 10px 0 var(--mag);padding:34px 36px 30px;display:flex;flex-direction:column;gap:18px}
+.cover-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--mag);display:flex;align-items:center;gap:10px}
+.cover-tag::after{content:"";flex:1;height:1px;background:rgba(20,17,15,.15)}
+.cover h1{font-family:var(--f-disp);font-weight:400;font-size:clamp(56px,8vw,116px);line-height:.86;letter-spacing:.01em;margin:0}
+.cover h1 em{font-style:normal;color:var(--mag)}
+.cover-lede{font-size:16.5px;line-height:1.65;color:#3a3330;max-width:52ch}
+.cover-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:18px;border-top:1px dashed rgba(20,17,15,.22)}
+.cover-cell{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#6b615b;padding:8px 12px;background:rgba(20,17,15,.05);border:1px solid rgba(20,17,15,.1)}
+.cover-cell b{display:block;font-family:var(--f-disp);font-size:21px;letter-spacing:.04em;color:var(--ink);font-weight:400;margin-top:3px}
+.cover-side{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cover-tile{border:1px solid rgba(236,231,219,.22);padding:20px;display:flex;flex-direction:column;gap:12px;background:rgba(236,231,219,.04)}
+.cover-tile .t-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--cue)}
+.cover-tile .t-big{font-family:var(--f-disp);font-size:34px;line-height:1;letter-spacing:.03em}
+.cover-tile .t-big span{color:var(--mag);font-size:22px}
+.cover-tile .t-sub{font-size:12.5px;line-height:1.5;color:rgba(236,231,219,.7)}
+.cover-eq{display:flex;align-items:flex-end;gap:3px;height:44px;margin-top:auto}
+.cover-eq i{flex:1;background:var(--on);height:20%;transition:height .1s}
+.cover-eq i:nth-child(3n){background:var(--mag)}
+.cover-eq i:nth-child(4n){background:var(--cue)}
+.cover-eq.on i{animation:eq .8s ease-in-out infinite}
+.cover-eq i:nth-child(2){animation-delay:.08s}
+.cover-eq i:nth-child(3){animation-delay:.16s}
+.cover-eq i:nth-child(4){animation-delay:.04s}
+.cover-eq i:nth-child(5){animation-delay:.2s}
+.cover-eq i:nth-child(6){animation-delay:.12s}
+.cover-eq i:nth-child(7){animation-delay:.24s}
+.cover-eq i:nth-child(8){animation-delay:.06s}
+.cover-eq i:nth-child(9){animation-delay:.18s}
+.cover-eq i:nth-child(10){animation-delay:.1s}
+.cover-dial{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:auto}
+.cover-dial .dial-num{font-family:var(--f-disp);font-size:26px;color:var(--paper);letter-spacing:.04em}
+.cover-dial .dial-num.hot{color:var(--mag)}
+.cover-play{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:12px;background:var(--mag);color:#fff;border:none;padding:14px 22px;font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.cover-play:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--cue)}
+.cover-play span{font-size:14px}
+.cover-wide{grid-column:1/-1;border:1px solid rgba(236,231,219,.22);padding:22px 26px;display:flex;align-items:center;gap:26px;background:rgba(242,193,78,.07)}
+.cover-wide .cw-num{font-family:var(--f-disp);font-size:56px;color:var(--cue);line-height:1;letter-spacing:.02em}
+.cover-wide .cw-txt{flex:1}
+.cover-wide .cw-txt b{display:block;font-family:var(--f-disp);font-size:20px;letter-spacing:.04em;margin-bottom:4px}
+.cover-wide .cw-txt p{font-size:13px;line-height:1.55;color:rgba(236,231,219,.75);margin:0}
+.cover-wide .cw-btn{flex:none;font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--paper);text-decoration:none;border:1px solid rgba(236,231,219,.4);padding:12px 18px;transition:background .18s,transform .15s}
+.cover-wide .cw-btn:hover{background:var(--paper);color:var(--ink);transform:translateY(-2px)}
+
+/* ---------- SECCIONES ---------- */
+.sec{padding:78px 40px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:180px 1fr;gap:40px;align-items:start}
+.sec-head{display:flex;flex-direction:column;gap:8px}
+.sec-body{display:flex;flex-direction:column;gap:26px}
+.sec-num{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;color:var(--mag)}
+.sec-title{font-family:var(--f-disp);font-weight:400;font-size:34px;line-height:1;letter-spacing:.03em;color:var(--ink)}
+.sec-desc{font-size:12.5px;line-height:1.5;color:var(--muted)}
+
+/* ---------- GRID7 ---------- */
+.grid7{border:1px solid var(--ink);background:var(--paper)}
+.grid7-row{display:grid;grid-template-columns:96px repeat(7,1fr);border-bottom:1px solid var(--line)}
+.grid7-row:last-child{border-bottom:none}
+.grid7-head{display:grid;grid-template-columns:96px repeat(7,1fr);background:var(--ink);color:var(--paper)}
+.grid7-head div{padding:12px 10px;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;text-align:center;border-left:1px solid rgba(236,231,219,.15)}
+.grid7-head div:first-child{border-left:none;text-align:left}
+.grid7-day{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;color:#6b615b;padding:14px 10px;border-right:1px solid var(--line);text-transform:uppercase;background:rgba(20,17,15,.04)}
+.grid7-cell{padding:10px;border-left:1px solid var(--line);min-height:86px;display:flex;flex-direction:column;gap:6px;transition:background .18s}
+.grid7-cell:hover{background:rgba(214,31,105,.04)}
+.grid7-cell .g-time{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;color:#8a817c}
+.grid7-cell .g-name{font-family:var(--f-disp);font-size:17px;letter-spacing:.03em;color:var(--ink);line-height:1.05}
+.grid7-cell .g-host{font-size:11px;color:#6b615b;line-height:1.3}
+.grid7-cell.live{background:var(--ink);color:var(--paper)}
+.grid7-cell.live .g-time{color:var(--cue)}
+.grid7-cell.live .g-name{color:var(--paper)}
+.grid7-cell.live .g-host{color:rgba(236,231,219,.7)}
+.grid7-cell.live::after{content:"AHORA";align-self:flex-start;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.2em;color:var(--mag);border:1px solid var(--mag);padding:2px 6px}
+
+/* ---------- PROGRAMAS ---------- */
+.prog{border:1px solid var(--ink);background:var(--paper)}
+.prog-row{border-bottom:1px solid var(--line)}
+.prog-row:last-child{border-bottom:none}
+.prog-head{width:100%;display:grid;grid-template-columns:52px 130px 1fr auto auto;gap:18px;align-items:center;background:none;border:none;cursor:pointer;padding:20px 24px;text-align:left;transition:background .18s,box-shadow .18s}
+.prog-head:hover{background:rgba(214,31,105,.05);box-shadow:inset 4px 0 0 var(--mag)}
+.prog-idx{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;color:var(--mag)}
+.prog-time{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:#6b615b}
+.prog-title{font-family:var(--f-disp);font-size:24px;letter-spacing:.03em;color:var(--ink);font-weight:400}
+.prog-host{font-size:12px;color:#6b615b}
+.prog-caret{font-size:12px;color:var(--muted);transition:transform .25s}
+.prog-row.open .prog-caret{transform:rotate(180deg)}
+.prog-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.prog-row.open .prog-body{max-height:320px}
+.prog-inner{padding:0 24px 24px 150px;display:flex;flex-direction:column;gap:14px}
+.prog-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#6b615b;border:1px solid var(--line);padding:4px 8px}
+.prog-blurb{font-size:14px;line-height:1.65;color:#3a3330;max-width:70ch}
+.prog-list{display:flex;flex-wrap:wrap;gap:8px}
+.prog-list span{font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--ink);background:rgba(20,17,15,.05);border:1px solid var(--line);padding:6px 10px}
+.prog-note{font-size:12px;color:var(--muted);font-style:italic}
+
+/* ---------- CREW ---------- */
+.crew{display:grid;gap:14px}
+.crew-rack{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.crew-card{border:1px solid var(--ink);background:var(--paper);padding:20px;display:flex;gap:16px;transition:transform .18s,box-shadow .18s}
+.crew-card:hover{transform:translateY(-3px);box-shadow:6px 6px 0 var(--cue)}
+.crew-photo{flex:none;width:88px;height:104px;border:1px solid var(--ink);overflow:hidden;position:relative;background:var(--ink)}
+.crew-photo svg{width:100%;height:100%}
+.crew-info{flex:1;display:flex;flex-direction:column;gap:5px}
+.crew-name{font-family:var(--f-disp);font-size:21px;letter-spacing:.03em;color:var(--ink)}
+.crew-role{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mag)}
+.crew-shows{font-size:12px;color:#6b615b}
+.crew-meta{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.08em;color:var(--muted);margin-top:auto}
+.crew-status{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--line)}
+.crew-dot{width:6px;height:6px;border-radius:50%;background:#c9c2b8}
+.crew-status.on .crew-dot{background:var(--on);box-shadow:0 0 0 0 rgba(63,185,107,.5);animation:pulse 1.8s infinite}
+.crew-status.on{color:var(--on);border-color:rgba(63,185,107,.4)}
+.crew-status.off .crew-dot{background:var(--mag)}
+.crew-status.off{color:var(--mag);border-color:rgba(214,31,105,.35)}
+.crew-now{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
+.crew-now-dot{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.2em;color:var(--on)}
+.crew-next{font-family:var(--f-mono);font-size:9.5px;color:var(--muted)}
+.crew-next b{color:var(--ink);font-weight:400}
+
+/* ---------- ARCHIVO ---------- */
+.archive{display:grid;grid-template-columns:1.05fr 1fr;gap:26px;align-items:stretch}
+.tape{border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:24px;display:flex;flex-direction:column;gap:18px}
+.tape-body{position:relative;border:2px solid var(--paper);padding:18px;display:flex;gap:18px;align-items:center;background:rgba(236,231,219,.06)}
+.tape-reel{width:64px;height:64px;border-radius:50%;border:2px solid var(--paper);position:relative;flex:none}
+.tape-reel::before{content:"";position:absolute;inset:22px;border-radius:50%;background:var(--paper)}
+.tape-reel::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(236,231,219,.5);animation:spin 3s linear infinite;animation-play-state:paused}
+.tape.playing .tape-reel::after{animation-play-state:running}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tape-window{flex:1;height:44px;border:1px solid rgba(236,231,219,.4);background:rgba(20,17,15,.6);position:relative;overflow:hidden}
+.tape-track{position:absolute;top:50%;left:0;right:0;height:2px;background:var(--cue);transform:translateY(-50%)}
+.tape-track span{position:absolute;top:-14px;width:1px;background:rgba(236,231,219,.4)}
+.tape-ctrl{display:flex;align-items:center;gap:14px}
+.tape-play{width:52px;height:52px;border-radius:50%;border:2px solid var(--paper);background:none;color:var(--paper);font-size:16px;cursor:pointer;display:grid;place-items:center;transition:transform .15s,background .18s,color .18s}
+.tape-play:hover{background:var(--mag);border-color:var(--mag);transform:scale(1.06)}
+.tape-scrub{flex:1;height:6px;background:rgba(236,231,219,.2);cursor:pointer;position:relative}
+.tape-scrub-bar{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--mag)}
+.tape-scrub-fill{position:absolute;left:0;top:0;bottom:0;background:var(--on);width:0}
+.tape-time{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:var(--cue);min-width:96px;text-align:right}
+.tape-now{border-top:1px dashed rgba(236,231,219,.3);padding-top:14px}
+.tape-now-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--cue)}
+.tape-now-title{font-family:var(--f-disp);font-size:28px;letter-spacing:.03em;margin-top:4px}
+.tape-now-sub{font-size:12.5px;color:rgba(236,231,219,.7);margin-top:4px}
+.playlist{border:1px solid var(--ink);background:var(--paper)}
+.track{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s}
+.track:last-child{border-bottom:none}
+.track:hover{background:rgba(214,31,105,.05)}
+.track.playing{background:var(--ink);color:var(--paper)}
+.track-idx{font-family:var(--f-mono);font-size:11px;color:var(--mag)}
+.track.playing .track-idx{color:var(--cue)}
+.track-title{font-family:var(--f-disp);font-size:18px;letter-spacing:.03em}
+.track-meta{font-size:11px;color:#6b615b}
+.track.playing .track-meta{color:rgba(236,231,219,.7)}
+.track-dur{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.track.playing .track-dur{color:var(--cue)}
+
+/* ---------- SEÑAL ---------- */
+.signal{position:relative;min-height:540px;background:var(--ink);color:var(--paper);overflow:hidden}
+.signal-wrap{position:relative;min-height:540px;display:grid;grid-template-columns:1fr 1.15fr;gap:0}
+.signal-overlay{padding:56px 40px;display:flex;flex-direction:column;gap:22px;justify-content:center;border-right:1px solid rgba(236,231,219,.15)}
+.signal-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(236,231,219,.15);border:1px solid rgba(236,231,219,.15)}
+.signal-stat{background:var(--ink);padding:16px}
+.signal-stat b{display:block;font-family:var(--f-disp);font-size:30px;letter-spacing:.03em;color:var(--cue)}
+.signal-stat span{font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(236,231,219,.6)}
+.signal-map{position:relative;min-height:440px}
+.signal-map svg{position:absolute;inset:0;width:100%;height:100%}
+.signal-dot{fill:var(--mag)}
+.signal-ping{fill:none;stroke:var(--mag);stroke-width:1.5;transform-origin:center;animation:ping 3s ease-out infinite}
+.signal-ping.p2{animation-delay:1s}
+.signal-ping.p3{animation-delay:2s}
+@keyframes ping{0%{transform:scale(.2);opacity:.9}100%{transform:scale(1);opacity:0}}
+.signal-label{fill:rgba(236,231,219,.55);font-family:'Spline Sans Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.signal-pin{fill:var(--on)}
+.signal-line{stroke:rgba(236,231,219,.25);stroke-width:1}
+.signal-legend{display:flex;gap:18px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(236,231,219,.6);flex-wrap:wrap}
+.signal-legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.signal-legend .l1 i{background:var(--mag)}
+.signal-legend .l2 i{background:var(--on)}
+.signal-legend .l3 i{background:var(--cue)}
+
+/* ---------- SPEC ---------- */
+.spec{border:1px solid var(--ink);background:var(--paper)}
+.spec-row{display:flex;justify-content:space-between;gap:16px;padding:13px 18px;border-bottom:1px solid var(--line);font-size:13.5px}
+.spec-row:last-child{border-bottom:none}
+.spec-k{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#6b615b}
+.spec-v{font-family:var(--f-disp);font-size:17px;letter-spacing:.03em;color:var(--ink)}
+.spec-note{font-size:12.5px;color:var(--muted);margin-top:12px;line-height:1.5}
+
+/* ---------- PAUTA ---------- */
+.rate-card{border:1px solid var(--ink);background:var(--paper);padding:30px 32px;display:flex;flex-direction:column;gap:24px}
+.rate-card-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.rate-card-head h3{font-family:var(--f-disp);font-size:28px;letter-spacing:.03em;color:var(--ink);font-weight:400}
+.rate-card-sub{font-size:13px;color:var(--muted);line-height:1.55;max-width:60ch}
+.rate-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.rate{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.rate-k{font-size:13.5px;color:#3a3330}
+.rate-v{font-family:var(--f-disp);font-size:19px;letter-spacing:.03em;color:var(--mag)}
+.rate-note{font-size:11.5px;color:var(--muted);line-height:1.5}
+.calc{border:2px solid var(--ink);background:var(--paper);padding:26px 28px;display:flex;flex-direction:column;gap:18px}
+.calc-row{display:grid;grid-template-columns:1fr 1fr ;gap:16px}
+.calc-col{display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#6b615b}
+.field input,.field select,.field textarea{font-family:var(--f-body);font-size:14px;color:var(--ink);background:var(--paper);border:1px solid var(--ink);padding:11px 12px;border-radius:0}
+.field textarea{resize:vertical;min-height:84px}
+.field .err{font-size:11px;color:var(--mag)}
+.calc-total{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-top:2px solid var(--ink);padding-top:18px;flex-wrap:wrap}
+.calc-total-label{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.calc-total-num{font-family:var(--f-disp);font-size:46px;letter-spacing:.02em;color:var(--ink);line-height:1}
+.calc-total-sub{font-size:11.5px;color:var(--muted)}
+.calc-out{border:1px solid var(--ink);padding:16px 18px;display:flex;flex-direction:column;gap:8px;background:rgba(20,17,15,.03)}
+.calc-line{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:13.5px;color:#3a3330}
+.calc-line b{font-family:var(--f-disp);font-size:16px;letter-spacing:.03em;color:var(--ink);font-weight:400}
+.calc-line span{font-family:var(--f-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.calc-line small{font-size:11px;color:var(--muted)}
+.calc-btn{align-self:flex-start;background:var(--ink);color:var(--paper);border:none;padding:14px 24px;font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.calc-btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--mag)}
+.calc-btn.ok{background:var(--on);color:#fff}
+
+/* ---------- DEDICATORIAS ---------- */
+.ded{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;align-items:start}
+.ded-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.ded-note{border:1px solid var(--ink);background:var(--paper);padding:16px 18px;display:flex;flex-direction:column;gap:10px;transition:transform .18s,box-shadow .18s}
+.ded-note:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:5px 5px 0 var(--cue)}
+.ded-note p{font-size:14.5px;line-height:1.55;color:#3a3330;margin:0}
+.ded-note footer{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-top:1px dashed var(--line);padding-top:8px}
+.ded-note b{font-family:var(--f-disp);font-size:16px;letter-spacing:.03em;color:var(--mag);font-weight:400}
+.ded-note small{font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ded-form{border:2px solid var(--ink);background:var(--paper);padding:26px 28px;display:flex;flex-direction:column;gap:16px}
+.ded-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ded-privacy{font-size:11px;color:var(--muted);line-height:1.5}
+.ded-ok{font-size:12.5px;color:var(--on);font-weight:600}
+.ded-ok b{color:var(--ink);font-weight:700}
+
+/* ---------- VOCES ---------- */
+.voices{position:relative;border:1px solid var(--ink);background:var(--ink);color:var(--paper);min-height:300px;padding:48px 40px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.voice{position:absolute;inset:48px 40px;display:flex;flex-direction:column;gap:18px;justify-content:center;opacity:0;transition:opacity .5s}
+.voice.active{opacity:1}
+.voice-text{font-family:var(--f-disp);font-size:clamp(26px,3.4vw,44px);line-height:1.1;letter-spacing:.02em;max-width:22ch}
+.voice-text::before{content:"\201C";color:var(--mag)}
+.voice-text::after{content:"\201D";color:var(--mag)}
+.voice-meta{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--cue)}
+.voice-dots{position:absolute;bottom:18px;left:0;right:0;display:flex;justify-content:center;gap:8px}
+.voice-dot{width:26px;height:3px;background:rgba(236,231,219,.3);border:none;cursor:pointer;transition:background .2s}
+.voice-dot.on{background:var(--mag)}
+
+/* ---------- FAQ ---------- */
+.faq{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;border:none;cursor:pointer;padding:20px 4px;text-align:left;font-family:var(--f-disp);font-size:21px;letter-spacing:.03em;color:var(--ink);transition:padding .2s}
+.faq-q:hover{padding-left:12px}
+.faq-q span{color:var(--mag);font-size:24px}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s}
+.faq-item.open .faq-a{max-height:220px}
+.faq-a p{padding:0 4px 20px;margin:0;font-size:14.5px;line-height:1.65;color:#3a3330;max-width:80ch}
+
+/* ---------- FOOT ---------- */
+.foot{background:var(--ink);color:var(--paper);padding:64px 40px 30px}
+.foot-card{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1.4fr;gap:40px;border:1px solid rgba(236,231,219,.2);padding:36px}
+.foot-freq{font-family:var(--f-disp);font-size:clamp(56px,7vw,92px);line-height:.9;letter-spacing:.02em;color:var(--paper)}
+.foot-freq b{color:var(--mag);font-weight:400}
+.foot-freq span{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;color:var(--cue);margin-top:14px}
+.foot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.foot-col h4{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--cue);margin:0 0 12px;font-weight:400}
+.foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.foot-col li{font-size:13px;line-height:1.5;color:rgba(236,231,219,.8)}
+.foot-col a{color:var(--paper);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s}
+.foot-col a:hover{border-bottom-color:var(--mag)}
+.foot-form label{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(236,231,219,.6);display:block;margin-bottom:8px}
+.foot-form-row{display:flex;gap:8px}
+.foot-form input{flex:1;background:transparent;border:1px solid rgba(236,231,219,.3);color:var(--paper);padding:11px 12px;font-family:var(--f-body);font-size:13px;border-radius:0}
+.foot-form input::placeholder{color:rgba(236,231,219,.4)}
+.foot-form button{background:var(--cue);color:var(--ink);border:none;padding:0 18px;font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.foot-form button:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--mag)}
+.foot-bottom{max-width:1240px;margin:26px auto 0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(236,231,219,.5)}
+.foot-bottom b{color:var(--cue);font-weight:400}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1180px){
+  .cover-grid{grid-template-columns:1fr}
+  .cover-main{grid-row:auto}
+  .cover-side{grid-column:1/-1}
+  .archive{grid-template-columns:1fr}
+  .ded{grid-template-columns:1fr}
+  .signal-wrap{grid-template-columns:1fr}
+  .signal-overlay{border-right:none;border-bottom:1px solid rgba(236,231,219,.15)}
+}
+@media (max-width:980px){
+  .rail{position:static;width:auto;flex-direction:row;align-items:center;gap:14px;padding:10px 16px;overflow-x:auto}
+  .rail-top{border:none;padding:0}
+  .rail-nav{flex-direction:row;padding:0;overflow:visible}
+  .rail-nav a i{display:none}
+  .rail-foot{display:none}
+  main{margin-left:0}
+  .sec{grid-template-columns:1fr;padding:56px 22px}
+  .sec-head{position:static}
+  .cover{padding:40px 22px}
+  .prog-head{grid-template-columns:40px 1fr auto auto}
+  .prog-time{display:none}
+  .prog-inner{padding-left:24px}
+  .calc-row{grid-template-columns:1fr}
+  .foot-card{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .mast-strip{padding:10px 16px}
+  .now{display:none}
+  .grid7{overflow-x:auto}
+  .grid7-row,.grid7-head{grid-template-columns:70px repeat(7,minmax(110px,1fr))}
+  .crew-rack{grid-template-columns:1fr}
+  .tape-body{flex-direction:column}
+  .tape-time{width:100%;text-align:left}
+  .ded-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .voices{padding:36px 22px}
+  .voice{inset:36px 22px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .cover-eq.on i,.eq.on i,.signal-ping,.tape-reel::after{animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="mast-strip">
+    <div class="mast-brand"><b>Radio Cordón</b><span>97.3 FM · La Aurora</span></div>
+    <div class="live"><i></i>Al aire</div>
+    <div class="now">
+      <div class="now-ico" id="nowIco">♪</div>
+      <div class="now-txt">
+        <small>Al aire ahora</small>
+        <b id="nowShow">—</b>
+      </div>
+      <div class="eq" id="mastEq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="mast-clock" id="clock">--:--:--</div>
+  </div>
+</header>
+
+<aside class="rail">
+  <div class="rail-top">
+    <a class="rail-mark" href="#portada">RC</a>
+    <b class="rail-name">Radio<br>Cordón</b>
+    <span class="rail-freq">97.3 FM · DAB+ 10B</span>
+    <div class="rail-live"><i></i>Transmisión activa</div>
+  </div>
+  <nav class="rail-nav" aria-label="Secciones">
+    <a href="#portada" class="on"><i>01</i>Portada</a>
+    <a href="#escaleta"><i>02</i>Escaleta</a>
+    <a href="#programas"><i>03</i>Programas</a>
+    <a href="#conductores"><i>04</i>Conductores</a>
+    <a href="#archivo"><i>05</i>Archivo</a>
+    <a href="#senal"><i>06</i>Señal</a>
+    <a href="#pauta"><i>07</i>Pauta</a>
+    <a href="#dedicatorias"><i>08</i>Dedicatorias</a>
+    <a href="#voces"><i>09</i>Voces</a>
+    <a href="#faq"><i>10</i>Preguntas</a>
+  </nav>
+  <div class="rail-foot">
+    Pasaje Rincón 42<br>
+    <b>(011) 4455 9730</b><br>
+    pauta@cordon973.radio
+  </div>
+</aside>
+
+<main>
+
+  <section class="cover" id="portada">
+    <div class="cover-grid">
+      <div class="cover-main">
+        <div class="cover-tag">Est. 1989 · Transmisor Cerro Chipe</div>
+        <h1>Se escucha<br>desde <em>el cordón</em></h1>
+        <p class="cover-lede">Treinta y seis años prendida. Música, noticias del barrio y voces que no se cortan con el clima. Sin publicidad de colchones, sin suerte del lunes.</p>
+        <div class="cover-meta">
+          <div class="cover-cell">Frecuencia<b>97.3 FM</b></div>
+          <div class="cover-cell">Alcance<b>18 km</b></div>
+          <div class="cover-cell">Potencia<b>3 kW</b></div>
+          <div class="cover-cell">En el aire<b>24 hs</b></div>
+        </div>
+      </div>
+      <div class="cover-side">
+        <div class="cover-tile">
+          <span class="t-label">Al aire</span>
+          <div class="t-big" id="coverShow">Madrugada<br>de Cabo</div>
+          <span class="t-sub" id="coverHost">con Beto Ferreyra · hasta 06:00</span>
+          <div class="cover-eq on" id="coverEq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="cover-tile">
+          <span class="t-label">Sintonía</span>
+          <div class="cover-dial" aria-hidden="true">
+            <span class="dial-num">96</span><span class="dial-num">97</span><span class="dial-num hot">.3</span><span class="dial-num">98</span><span class="dial-num">99</span>
+          </div>
+          <svg viewBox="0 0 200 44" preserveAspectRatio="none" style="width:100%;height:40px" aria-hidden="true">
+            <line x1="0" y1="22" x2="200" y2="22" stroke="rgba(236,231,219,.25)" stroke-width="1"/>
+            <g stroke="rgba(236,231,219,.45)" stroke-width="1">
+              <line x1="20" y1="14" x2="20" y2="30"/><line x1="40" y1="14" x2="40" y2="30"/><line x1="60" y1="14" x2="60" y2="30"/><line x1="80" y1="14" x2="80" y2="30"/><line x1="120" y1="14" x2="120" y2="30"/><line x1="140" y1="14" x2="140" y2="30"/><line x1="160" y1="14" x2="160" y2="30"/><line x1="180" y1="14" x2="180" y2="30"/>
+            </g>
+            <line x1="100" y1="6" x2="100" y2="38" stroke="#d61f69" stroke-width="2.5"/>
+            <polygon points="94,4 106,4 100,12" fill="#d61f69"/>
+          </svg>
+          <span class="t-sub">Dial analógico · antena 42 m</span>
+        </div>
+        <div class="cover-tile">
+          <span class="t-label">Próximo</span>
+          <div class="t-big" id="nextShow">La Mañana<br>del Cordón</div>
+          <span class="t-sub" id="nextTime">06:00 · con Narda Quiroga</span>
+          <button class="cover-play" id="playBtn"><span id="playIco">▶</span><span id="playTxt">Escuchar en vivo</span></button>
+        </div>
+      </div>
+      <div class="cover-wide">
+        <div class="cw-num">36</div>
+        <div class="cw-txt">
+          <b>Años prendida</b>
+          <p>Desde el 12 de marzo de 1989. Empezamos con un transmisor de 200 W prestado y un micrófono que zumbaba. Nunca la apagamos.</p>
+        </div>
+        <a class="cw-btn" href="#archivo">Ver el archivo →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="escaleta">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Escaleta</h2>
+      <p class="sec-desc">La semana completa, en bloque. Lo que suena ahora se ilumina solo.</p>
+    </div>
+    <div class="grid7">
+      <div class="grid7-head">
+        <div>Franja</div><div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div>
+      </div>
+      <div class="grid7-row">
+        <div class="grid7-day">00–06</div>
+        <div class="grid7-cell"><span class="g-time">00:00</span><span class="g-name">Nocturno</span><span class="g-host">Cielo Sosa</span></div>
+        <div class="grid7-cell"><span class="g-time">00:00</span><span class="g-name">Nocturno</span><span class="g-host">Cielo Sosa</span></div>
+        <div class="grid7-cell"><span class="g-time">00:00</span><span class="g-name">Nocturno</span><span class="g-host">Cielo Sosa</span></div>
+        <div class="grid7-cell"><span class="g-time">00:00</span><span class="g-name">Nocturno</span><span class="g-host">Cielo Sosa</span></div>
+        <div class="grid7-cell"><span class="g-time">00:00</span><span class="g-name">Nocturno</span><span class="g-host">Cielo Sosa</span></div>
+        <div class="grid7-cell"><span class="g-time">00:00</span><span class="g-name">Vinilos</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">00:00</span><span class="g-name">Vinilos</span><span class="g-host">Beto Ferreyra</span></div>
+      </div>
+      <div class="grid7-row">
+        <div class="grid7-day">06–09</div>
+        <div class="grid7-cell"><span class="g-time">06:00</span><span class="g-name">La Mañana…</span><span class="g-host">Narda Quiroga</span></div>
+        <div class="grid7-cell"><span class="g-time">06:00</span><span class="g-name">La Mañana…</span><span class="g-host">Narda Quiroga</span></div>
+        <div class="grid7-cell"><span class="g-time">06:00</span><span class="g-name">La Mañana…</span><span class="g-host">Narda Quiroga</span></div>
+        <div class="grid7-cell"><span class="g-time">06:00</span><span class="g-name">La Mañana…</span><span class="g-host">Narda Quiroga</span></div>
+        <div class="grid7-cell"><span class="g-time">06:00</span><span class="g-name">La Mañana…</span><span class="g-host">Narda Quiroga</span></div>
+        <div class="grid7-cell"><span class="g-time">06:00</span><span class="g-name">Feria Libre</span><span class="g-host">Narda + Pampa</span></div>
+        <div class="grid7-cell"><span class="g-time">06:00</span><span class="g-name">Misa criolla</span><span class="g-host">Padre Anselmo</span></div>
+      </div>
+      <div class="grid7-row">
+        <div class="grid7-day">09–12</div>
+        <div class="grid7-cell"><span class="g-time">09:00</span><span class="g-name">Curtiembre</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">09:00</span><span class="g-name">Curtiembre</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">09:00</span><span class="g-name">Curtiembre</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">09:00</span><span class="g-name">Curtiembre</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">09:00</span><span class="g-name">Curtiembre</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">09:00</span><span class="g-name">Taller de…</span><span class="g-host">Cielo Sosa</span></div>
+        <div class="grid7-cell"><span class="g-time">09:00</span><span class="g-name">Domigo</span><span class="g-host">Tutti Rojas</span></div>
+      </div>
+      <div class="grid7-row">
+        <div class="grid7-day">12–15</div>
+        <div class="grid7-cell"><span class="g-time">12:00</span><span class="g-name">Punta…</span><span class="g-host">Narda + Beto</span></div>
+        <div class="grid7-cell"><span class="g-time">12:00</span><span class="g-name">Punta…</span><span class="g-host">Narda + Beto</span></div>
+        <div class="grid7-cell"><span class="g-time">12:00</span><span class="g-name">Punta…</span><span class="g-host">Narda + Beto</span></div>
+        <div class="grid7-cell"><span class="g-time">12:00</span><span class="g-name">Punta…</span><span class="g-host">Narda + Beto</span></div>
+        <div class="grid7-cell"><span class="g-time">12:00</span><span class="g-name">Punta…</span><span class="g-host">Narda + Beto</span></div>
+        <div class="grid7-cell"><span class="g-time">12:00</span><span class="g-name">Asado…</span><span class="g-host">Pampa + Tutti</span></div>
+        <div class="grid7-cell"><span class="g-time">12:00</span><span class="g-name">Asado…</span><span class="g-host">Pampa + Tutti</span></div>
+      </div>
+      <div class="grid7-row">
+        <div class="grid7-day">15–18</div>
+        <div class="grid7-cell"><span class="g-time">15:00</span><span class="g-name">La Siesta…</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">15:00</span><span class="g-name">La Siesta…</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">15:00</span><span class="g-name">La Siesta…</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">15:00</span><span class="g-name">La Siesta…</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">15:00</span><span class="g-name">La Siesta…</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">15:00</span><span class="g-name">Bodega</span><span class="g-host">Cielo Sosa</span></div>
+        <div class="grid7-cell"><span class="g-time">15:00</span><span class="g-name">Bodega</span><span class="g-host">Cielo Sosa</span></div>
+      </div>
+      <div class="grid7-row">
+        <div class="grid7-day">18–21</div>
+        <div class="grid7-cell"><span class="g-time">18:00</span><span class="g-name">Curtiembre…</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">18:00</span><span class="g-name">Curtiembre…</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">18:00</span><span class="g-name">Curtiembre…</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">18:00</span><span class="g-name">Curtiembre…</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">18:00</span><span class="g-name">Curtiembre…</span><span class="g-host">Pampa Ledesma</span></div>
+        <div class="grid7-cell"><span class="g-time">18:00</span><span class="g-name">Nocturno</span><span class="g-host">Cielo Sosa</span></div>
+        <div class="grid7-cell"><span class="g-time">18:00</span><span class="g-name">Nocturno</span><span class="g-host">Cielo Sosa</span></div>
+      </div>
+      <div class="grid7-row">
+        <div class="grid7-day">21–00</div>
+        <div class="grid7-cell"><span class="g-time">21:00</span><span class="g-name">Vinilos</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">21:00</span><span class="g-name">Vinilos</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">21:00</span><span class="g-name">Vinilos</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">21:00</span><span class="g-name">Vinilos</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">21:00</span><span class="g-name">Vinilos</span><span class="g-host">Beto Ferreyra</span></div>
+        <div class="grid7-cell"><span class="g-time">21:00</span><span class="g-name">Domigo</span><span class="g-host">Tutti Rojas</span></div>
+        <div class="grid7-cell"><span class="g-time">21:00</span><span class="g-name">Cierre</span><span class="g-host">Narda Quiroga</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="programas">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Programas</h2>
+      <p class="sec-desc">Doce programas, ninguno con nombre de marca de gaseosa. Tocá para desplegar.</p>
+    </div>
+    <div class="prog">
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">01</span><span class="prog-time">06:00–09:00</span><span class="prog-title">La Mañana del Cordón</span><span class="prog-host">Narda Quiroga</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Magazine</span><span class="tag">Noticia barrial</span><span class="tag">En vivo</span></div>
+          <p class="prog-blurb">Arranca con la agenda del día, el clima real (no el de la capital) y las noticias de La Aurora, Villa del Rey y los barrios del cordón. Cada media hora, el tablero de precios de la feria.</p>
+          <div class="prog-list"><span>Lunes: obra pública</span><span>Martes: escuelas</span><span>Miércoles: salud</span><span>Jueves: comercio</span><span>Viernes: deportes</span></div>
+          <p class="prog-note">Micros de 90 segundos. Sin cuñas de más de 20 segundos.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">02</span><span class="prog-time">09:00–12:00</span><span class="prog-title">Curtiembre</span><span class="prog-host">Pampa Ledesma</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Debate</span><span class="tag">Entrevista</span></div>
+          <p class="prog-blurb">Una nota larga por día, sin cortes. Vecinos, concejales, bomberos, cualquiera que tenga algo que decir y paciencia para escuchar.</p>
+          <div class="prog-list"><span>Formato: 1 invitado</span><span>Duración: 35 min</span><span>Sin guion</span></div>
+          <p class="prog-note">Se puede llamar al aire: (011) 4455 9730.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">03</span><span class="prog-time">12:00–15:00</span><span class="prog-title">Punta de Día</span><span class="prog-host">Narda + Beto</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Música</span><span class="tag">Clásicos</span></div>
+          <p class="prog-blurb">Tres horas de disco seguido, con dos cortes informativos. Rock nacional, cuarteto, algo de jazz los viernes.</p>
+          <div class="prog-list"><span>Sin listas automatizadas</span><span>Todo en vinilo o CD</span></div>
+          <p class="prog-note">Pedidos al WhatsApp 15 5597 3000.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">04</span><span class="prog-time">15:00–18:00</span><span class="prog-title">La Siesta Larga</span><span class="prog-host">Beto Ferreyra</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Relajado</span><span class="tag">Instrumental</span></div>
+          <p class="prog-blurb">Bolo bajo, tango, bossa y algo de ambient. Pensado para talleres, cocinas y gente que estudia.</p>
+          <div class="prog-list"><span>Volumen parejo</span><span>Sin locución agresiva</span></div>
+          <p class="prog-note">El programa con menos palabras por hora de la emisora.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">05</span><span class="prog-time">18:00–21:00</span><span class="prog-title">Curtiembre Tarde</span><span class="prog-host">Pampa Ledesma</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Actualidad</span><span class="tag">Deportes</span></div>
+          <p class="prog-blurb">El resumen del día con la voz de los protagonistas. Deportes de los clubes del cordón, que no salen en ningún otro lado.</p>
+          <div class="prog-list"><span>18:30: deportes</span><span>19:30: agenda cultural</span></div>
+          <p class="prog-note">Crónicas desde la cancha los domingos.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">06</span><span class="prog-time">21:00–00:00</span><span class="prog-title">Vinilos de Beto</span><span class="prog-host">Beto Ferreyra</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Caja de discos</span><span class="tag">Temático</span></div>
+          <p class="prog-blurb">Un tema por noche: “días de lluvia”, “discos que se rayaron”, “lados B”. Beto saca los vinilos de la caja y los cuenta.</p>
+          <div class="prog-list"><span>Sin repetidas</span><span>Cada disco se presenta</span></div>
+          <p class="prog-note">Archivo de la noche anterior: escuchalo en la sección Archivo.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">07</span><span class="prog-time">00:00–06:00</span><span class="prog-title">Nocturno</span><span class="prog-host">Cielo Sosa</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Madrugada</span><span class="tag">Voz baja</span></div>
+          <p class="prog-blurb">Para los que trabajan de noche, los que no duermen y los que recién vuelven. Música electrónica suave y textos leídos.</p>
+          <div class="prog-list"><span>02:00: lectura</span><span>04:00: clima</span></div>
+          <p class="prog-note">El programa de mayor permanencia de oyentes por hora.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">08</span><span class="prog-time">Sáb 06:00–09:00</span><span class="prog-title">Feria Libre</span><span class="prog-host">Narda + Pampa</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">En vivo</span><span class="tag">Desde la feria</span></div>
+          <p class="prog-blurb">Transmitimos desde el pasaje con los puestos abiertos. Precios, chismes y entrevistas a los feriantes.</p>
+          <div class="prog-list"><span>Con auricular y micrófono de mano</span></div>
+          <p class="prog-note">Si llueve, se hace igual. Se hace adentro.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">09</span><span class="prog-time">Sáb 09:00–12:00</span><span class="prog-title">Taller de Radio</span><span class="prog-host">Cielo Sosa</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Formación</span><span class="tag">Escuela</span></div>
+          <p class="prog-blurb">Los pibes de la escuela de radio hacen su propio programa. Guion, mesaza, operación: todo de ellos.</p>
+          <div class="prog-list"><span>Alumnos de 14 a 19</span><span>Cada sábado uno nuevo</span></div>
+          <p class="prog-note">Inscripción abierta, es gratis.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">10</span><span class="prog-time">Sáb 15:00–18:00</span><span class="prog-title">Bodega</span><span class="prog-host">Cielo Sosa</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Folclore</span><span class="tag">Raíz</span></div>
+          <p class="prog-blurb">Folclore, chamamé y música de la región. Sin mezclas modernas, sin remix.</p>
+          <div class="prog-list"><span>Difusión de grupos locales</span></div>
+          <p class="prog-note">Si tenés un disco, lo ponemos.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">11</span><span class="prog-time">Dom 12:00–15:00</span><span class="prog-title">Asado con Domigo</span><span class="prog-host">Pampa + Tutti</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Relajado</span><span class="tag">Charla</span></div>
+          <p class="prog-blurb">Un asado que se transmite. Charla suelta, música de fondo y el partido de la tarde.</p>
+          <div class="prog-list"><span>Se hace al aire libre</span><span>Salvo tormenta</span></div>
+          <p class="prog-note">El único programa con olor a carbón.</p>
+        </div></div>
+      </div>
+      <div class="prog-row">
+        <button class="prog-head"><span class="prog-idx">12</span><span class="prog-time">Dom 21:00–00:00</span><span class="prog-title">Cierre de Domingo</span><span class="prog-host">Narda Quiroga</span><span class="prog-caret">▾</span></button>
+        <div class="prog-body"><div class="prog-inner">
+          <div class="prog-tags"><span class="tag">Cierre</span><span class="tag">Resumen</span></div>
+          <p class="prog-blurb">Lo que pasó en la semana, contado en 40 minutos. Después, música hasta la medianoche.</p>
+          <div class="prog-list"><span>Minuto 0: resumen</span><span>Minuto 40: música</span></div>
+          <p class="prog-note">El programa más escuchado del mes.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="conductores">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Conductores</h2>
+      <p class="sec-desc">Ocho canales. El que está al aire se ilumina solo, como las luces del estudio.</p>
+    </div>
+    <div class="crew">
+      <div class="crew-rack">
+        <div class="crew-card"><div class="crew-photo"><svg viewBox="0 0 88 104" aria-hidden="true"><rect width="88" height="104" fill="#1b1714"/><circle cx="44" cy="36" r="18" fill="#3a3330"/><path d="M10 104 Q44 62 78 104 Z" fill="#3a3330"/><path d="M22 26 Q44 2 66 26" fill="none" stroke="#5a514b" stroke-width="9" stroke-linecap="round"/><rect x="14" y="26" width="8" height="16" rx="3" fill="#5a514b"/><rect x="66" y="26" width="8" height="16" rx="3" fill="#5a514b"/></svg></div><div class="crew-info"><div class="crew-now"><span class="crew-status on"><i class="crew-dot"></i>Al aire</span><span class="crew-now-dot">CH 01</span></div><div class="crew-name">Narda Quiroga</div><div class="crew-role">Conductora · Mañana</div><div class="crew-shows">La Mañana del Cordón · Punta de Día</div><div class="crew-next">Siguiente: <b>06:00</b></div><div class="crew-meta">12 años en la casa</div></div></div>
+        <div class="crew-card"><div class="crew-photo"><svg viewBox="0 0 88 104" aria-hidden="true"><rect width="88" height="104" fill="#1b1714"/><circle cx="44" cy="36" r="18" fill="#3a3330"/><path d="M10 104 Q44 62 78 104 Z" fill="#3a3330"/><path d="M22 26 Q44 2 66 26" fill="none" stroke="#5a514b" stroke-width="9" stroke-linecap="round"/><rect x="14" y="26" width="8" height="16" rx="3" fill="#5a514b"/><rect x="66" y="26" width="8" height="16" rx="3" fill="#5a514b"/></svg></div><div class="crew-info"><div class="crew-now"><span class="crew-status off"><i class="crew-dot"></i>Off mic</span><span class="crew-now-dot">CH 02</span></div><div class="crew-name">Beto Ferreyra</div><div class="crew-role">Conductor · Música</div><div class="crew-shows">La Siesta Larga · Vinilos de Beto</div><div class="crew-next">Siguiente: <b>15:00</b></div><div class="crew-meta">Fundador · desde 1989</div></div></div>
+        <div class="crew-card"><div class="crew-photo"><svg viewBox="0 0 88 104" aria-hidden="true"><rect width="88" height="104" fill="#1b1714"/><circle cx="44" cy="36" r="18" fill="#3a3330"/><path d="M10 104 Q44 62 78 104 Z" fill="#3a3330"/><path d="M22 26 Q44 2 66 26" fill="none" stroke="#5a514b" stroke-width="9" stroke-linecap="round"/><rect x="14" y="26" width="8" height="16" rx="3" fill="#5a514b"/><rect x="66" y="26" width="8" height="16" rx="3" fill="#5a514b"/></svg></div><div class="crew-info"><div class="crew-now"><span class="crew-status off"><i class="crew-dot"></i>Off mic</span><span class="crew-now-dot">CH 03</span></div><div class="crew-name">Pampa Ledesma</div><div class="crew-role">Conductor · Debate</div><div class="crew-shows">Curtiembre · Curtiembre Tarde</div><div class="crew-next">Siguiente: <b>09:00</b></div><div class="crew-meta">9 años · ex cronista de diario</div></div></div>
+        <div class="crew-card"><div class="crew-photo"><svg viewBox="0 0 88 104" aria-hidden="true"><rect width="88" height="104" fill="#1b1714"/><circle cx="44" cy="36" r="18" fill="#3a3330"/><path d="M10 104 Q44 62 78 104 Z" fill="#3a3330"/><path d="M22 26 Q44 2 66 26" fill="none" stroke="#5a514b" stroke-width="9" stroke-linecap="round"/><rect x="14" y="26" width="8" height="16" rx="3" fill="#5a514b"/><rect x="66" y="26" width="8" height="16" rx="3" fill="#5a514b"/></svg></div><div class="crew-info"><div class="crew-now"><span class="crew-status off"><i class="crew-dot"></i>Off mic</span><span class="crew-now-dot">CH 04</span></div><div class="crew-name">Cielo Sosa</div><div class="crew-role">Conductora · Noche</div><div class="crew-shows">Nocturno · Bodega · Taller</div><div class="crew-next">Siguiente: <b>00:00</b></div><div class="crew-meta">6 años · voz de madrugada</div></div></div>
+        <div class="crew-card"><div class="crew-photo"><svg viewBox="0 0 88 104" aria-hidden="true"><rect width="88" height="104" fill="#1b1714"/><circle cx="44" cy="36" r="18" fill="#3a3330"/><path d="M10 104 Q44 62 78 104 Z" fill="#3a3330"/><path d="M22 26 Q44 2 66 26" fill="none" stroke="#5a514b" stroke-width="9" stroke-linecap="round"/><rect x="14" y="26" width="8" height="16" rx="3" fill="#5a514b"/><rect x="66" y="26" width="8" height="16" rx="3" fill="#5a514b"/></svg></div><div class="crew-info"><div class="crew-now"><span class="crew-status off"><i class="crew-dot"></i>Off mic</span><span class="crew-now-dot">CH 05</span></div><div class="crew-name">Tutti Rojas</div><div class="crew-role">Operador · Productor</div><div class="crew-shows">Domigo · Asado con Domigo</div><div class="crew-next">Siguiente: <b>12:00</b></div><div class="crew-meta">14 años · mueve la consola</div></div></div>
+        <div class="crew-card"><div class="crew-photo"><svg viewBox="0 0 88 104" aria-hidden="true"><rect width="88" height="104" fill="#1b1714"/><circle cx="44" cy="36" r="18" fill="#3a3330"/><path d="M10 104 Q44 62 78 104 Z" fill="#3a3330"/><path d="M22 26 Q44 2 66 26" fill="none" stroke="#5a514b" stroke-width="9" stroke-linecap="round"/><rect x="14" y="26" width="8" height="16" rx="3" fill="#5a514b"/><rect x="66" y="26" width="8" height="16" rx="3" fill="#5a514b"/></svg></div><div class="crew-info"><div class="crew-now"><span class="crew-status off"><i class="crew-dot"></i>Off mic</span><span class="crew-now-dot">CH 06</span></div><div class="crew-name">Rolo Bazán</div><div class="crew-role">Locutor · Spot</div><div class="crew-shows">Golondrinas · Identificadores</div><div class="crew-next">Graba <b>10:00</b></div><div class="crew-meta">La voz de la promo</div></div></div>
+        <div class="crew-card"><div class="crew-photo"><svg viewBox="0 0 88 104" aria-hidden="true"><rect width="88" height="104" fill="#1b1714"/><circle cx="44" cy="36" r="18" fill="#3a3330"/><path d="M10 104 Q44 62 78 104 Z" fill="#3a3330"/><path d="M22 26 Q44 2 66 26" fill="none" stroke="#5a514b" stroke-width="9" stroke-linecap="round"/><rect x="14" y="26" width="8" height="16" rx="3" fill="#5a514b"/><rect x="66" y="26" width="8" height="16" rx="3" fill="#5a514b"/></svg></div><div class="crew-info"><div class="crew-now"><span class="crew-status off"><i class="crew-dot"></i>Off mic</span><span class="crew-now-dot">CH 07</span></div><div class="crew-name">Doña Vero</div><div class="crew-role">Archivo · Cintas</div><div class="crew-shows">Custodia del archivo</div><div class="crew-next">En sala <b>08:00–14:00</b></div><div class="crew-meta">Desde el 91 · 4.200 cintas</div></div></div>
+        <div class="crew-card"><div class="crew-photo"><svg viewBox="0 0 88 104" aria-hidden="true"><rect width="88" height="104" fill="#1b1714"/><circle cx="44" cy="36" r="18" fill="#3a3330"/><path d="M10 104 Q44 62 78 104 Z" fill="#3a3330"/><path d="M22 26 Q44 2 66 26" fill="none" stroke="#5a514b" stroke-width="9" stroke-linecap="round"/><rect x="14" y="26" width="8" height="16" rx="3" fill="#5a514b"/><rect x="66" y="26" width="8" height="16" rx="3" fill="#5a514b"/></svg></div><div class="crew-info"><div class="crew-now"><span class="crew-status off"><i class="crew-dot"></i>Off mic</span><span class="crew-now-dot">CH 08</span></div><div class="crew-name">Kike Duarte</div><div class="crew-role">Mesa de sonido</div><div class="crew-shows">Operación 24 hs</div><div class="crew-next">Turno <b>22:00</b></div><div class="crew-meta">Releva en la mesa</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="archivo">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">Archivo</h2>
+      <p class="sec-desc">Lo que salió al aire quedó en cinta. Reproducible, con su fecha.</p>
+    </div>
+    <div class="archive">
+      <div class="tape" id="tape">
+        <div class="tape-body">
+          <div class="tape-reel"></div>
+          <div class="tape-window"><div class="tape-track" id="tapeTrack"></div></div>
+          <div class="tape-reel"></div>
+        </div>
+        <div class="tape-ctrl">
+          <button class="tape-play" id="tapePlay" aria-label="Reproducir">▶</button>
+          <div class="tape-scrub" id="tapeScrub"><div class="tape-scrub-fill" id="tapeFill"></div><div class="tape-scrub-bar" id="tapeBar"></div></div>
+          <div class="tape-time"><span id="tapeCur">00:00</span> / <span id="tapeTot">00:00</span></div>
+        </div>
+        <div class="tape-now">
+          <div class="tape-now-label">Cinta en máquina</div>
+          <div class="tape-now-title" id="tapeTitle">—</div>
+          <div class="tape-now-sub" id="tapeSub">Elegí una pista de la lista</div>
+        </div>
+      </div>
+      <div class="playlist" id="playlist">
+        <div class="track"><span class="track-idx">01</span><div class="track-info"><div class="track-title">Vinilos de Beto — Lado B</div><div class="track-meta">Beto Ferreyra · 14 MAR 2025</div></div><span class="track-dur">02:41</span></div>
+        <div class="track"><span class="track-idx">02</span><div class="track-info"><div class="track-title">Nocturno — Bloque 03:00</div><div class="track-meta">Cielo Sosa · 09 MAR 2025</div></div><span class="track-dur">03:18</span></div>
+        <div class="track"><span class="track-idx">03</span><div class="track-info"><div class="track-title">Curtiembre — El club</div><div class="track-meta">Pampa Ledesma · 07 MAR 2025</div></div><span class="track-dur">01:54</span></div>
+        <div class="track"><span class="track-idx">04</span><div class="track-info"><div class="track-title">Feria Libre — Día de lluvia</div><div class="track-meta">Narda + Pampa · 01 MAR 2025</div></div><span class="track-dur">02:12</span></div>
+        <div class="track"><span class="track-idx">05</span><div class="track-info"><div class="track-title">Taller de Radio — Episodio 4</div><div class="track-meta">Cielo Sosa · 22 FEB 2025</div></div><span class="track-dur">02:57</span></div>
+        <div class="track"><span class="track-idx">06</span><div class="track-info"><div class="track-title">Cierre de Domingo — Resumen</div><div class="track-meta">Narda Quiroga · 16 FEB 2025</div></div><span class="track-dur">03:33</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="senal">
+    <div class="signal">
+      <div class="signal-wrap">
+        <div class="signal-overlay">
+          <div class="sec-head">
+            <span class="sec-num">06</span>
+            <h2 class="sec-title">Señal</h2>
+            <p class="sec-desc">Dónde pega y dónde no. Los puntos rojos son las antenas, los verdes los repetidores.</p>
+          </div>
+          <div class="signal-stats">
+            <div class="signal-stat"><b>3 kW</b><span>Potencia nominal</span></div>
+            <div class="signal-stat"><b>42 m</b><span>Altura de antena</span></div>
+            <div class="signal-stat"><b>18 km</b><span>Radio de cobertura</span></div>
+            <div class="signal-stat"><b>2</b><span>Repetidoras 400 W</span></div>
+          </div>
+          <div class="signal-legend">
+            <span class="l1"><i></i>Casa central</span>
+            <span class="l2"><i></i>Repetidora</span>
+            <span class="l3"><i></i>Radio de 6 km</span>
+          </div>
+        </div>
+        <div class="signal-map">
+          <svg viewBox="0 0 760 560" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M40 0 L0 0 0 40" fill="none" stroke="rgba(236,231,219,.07)" stroke-width="1"/>
+              </pattern>
+            </defs>
+            <rect width="760" height="560" fill="url(#grid)"/>
+            <circle cx="380" cy="280" r="250" fill="none" stroke="rgba(242,193,78,.22)" stroke-width="1" stroke-dasharray="4 6"/>
+            <circle cx="380" cy="280" r="180" fill="none" stroke="rgba(242,193,78,.3)" stroke-width="1" stroke-dasharray="4 6"/>
+            <circle cx="380" cy="280" r="110" fill="none" stroke="rgba(242,193,78,.4)" stroke-width="1" stroke-dasharray="4 6"/>
+            <path d="M60 200 Q180 160 260 240 T520 320" fill="none" stroke="rgba(236,231,219,.18)" stroke-width="2"/>
+            <path d="M120 420 Q240 380 360 430 T700 420" fill="none" stroke="rgba(236,231,219,.14)" stroke-width="2"/>
+            <line x1="380" y1="280" x2="180" y2="150" stroke="rgba(236,231,219,.25)" stroke-width="1"/>
+            <line x1="380" y1="280" x2="600" y2="430" stroke="rgba(236,231,219,.25)" stroke-width="1"/>
+            <circle class="signal-ping" cx="380" cy="280" r="90"/>
+            <circle class="signal-ping p2" cx="380" cy="280" r="90"/>
+            <circle class="signal-ping p3" cx="380" cy="280" r="90"/>
+            <circle class="signal-dot" cx="380" cy="280" r="7"/>
+            <text class="signal-label" x="392" y="276">Casa central · 97.3</text>
+            <circle class="signal-pin" cx="180" cy="150" r="5"/>
+            <text class="signal-label" x="192" y="148">Repetidora Cerro Chipe</text>
+            <circle class="signal-pin" cx="600" cy="430" r="5"/>
+            <text class="signal-label" x="612" y="428">Repetidora Sur</text>
+            <text class="signal-label" x="40" y="540">Cobertura estimada · medición de campo 03/2025</text>
+          </svg>
+        </div>
+      </div>
+      <div style="max-width:1240px;margin:0 auto;padding:24px 40px 48px;border-top:1px solid rgba(236,231,219,.15)">
+        <div class="spec">
+          <div class="spec-row"><span class="spec-k">Frecuencia</span><span class="spec-v">97.3 MHz FM</span></div>
+          <div class="spec-row"><span class="spec-k">Digital</span><span class="spec-v">DAB+ bloque 10B</span></div>
+          <div class="spec-row"><span class="spec-k">Stream</span><span class="spec-v">cordon973.radio/stream</span></div>
+          <div class="spec-row"><span class="spec-k">Transmisor</span><span class="spec-v">3 kW · antena 42 m</span></div>
+          <div class="spec-row"><span class="spec-k">Repetidoras</span><span class="spec-v">2 × 400 W</span></div>
+          <div class="spec-row"><span class="spec-k">Estudio</span><span class="spec-v">Pasaje Rincón 42</span></div>
+        </div>
+        <p class="spec-note">Si se corta la luz, seguimos con planta propia 20 kVA. Nos escuchan igual.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="pauta">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title">Pauta</h2>
+      <p class="sec-desc">Cuánto sale decir algo en la radio. Calculadora honesta, sin letra chica.</p>
+    </div>
+    <div class="sec-body">
+      <div class="rate-card">
+        <div class="rate-card-head">
+          <h3>Tarifas 2025</h3>
+          <span class="rate-card-sub">Precios por spot de 30 segundos, según la franja. Descuentos por frecuencia semanal.</span>
+        </div>
+        <div class="rate-row">
+          <div class="rate"><span class="rate-k">Prime (06–09 · 18–21)</span><span class="rate-v">$ 18.000</span></div>
+          <div class="rate"><span class="rate-k">Media (09–18)</span><span class="rate-v">$ 11.000</span></div>
+          <div class="rate"><span class="rate-k">Tarde-noche (18–24)</span><span class="rate-v">$ 9.500</span></div>
+          <div class="rate"><span class="rate-k">Madrugada (00–06)</span><span class="rate-v">$ 4.800</span></div>
+          <div class="rate"><span class="rate-k">Mención en vivo</span><span class="rate-v">$ 6.200</span></div>
+          <div class="rate"><span class="rate-k">Nota de 3 min</span><span class="rate-v">$ 24.000</span></div>
+        </div>
+        <p class="rate-note">Incluye producción y locución. No incluye música con derechos de autor (pagás SADAIC aparte, como todos).</p>
+      </div>
+      <div class="calc">
+        <div class="calc-row">
+          <div class="calc-col">
+            <div class="field"><label for="cFranja">Franja</label>
+              <select id="cFranja">
+                <option value="prime">Prime · $18.000 el spot</option>
+                <option value="media">Media · $11.000 el spot</option>
+                <option value="noche">Tarde-noche · $9.500 el spot</option>
+                <option value="madrugada">Madrugada · $4.800 el spot</option>
+              </select>
+            </div>
+            <div class="field"><label for="cSpots">Spots por día</label><input id="cSpots" type="number" min="1" max="20" value="3"></div>
+            <div class="field"><label for="cDias">Días de campaña</label><input id="cDias" type="number" min="1" max="31" value="15"></div>
+          </div>
+          <div class="calc-col">
+            <div class="field"><label for="cExtra">Extras</label>
+              <select id="cExtra">
+                <option value="0">Ninguno</option>
+                <option value="6200">Mención en vivo</option>
+                <option value="24000">Nota de 3 min</option>
+              </select>
+            </div>
+            <div class="field"><label for="cDesc">Descuento por frecuencia</label>
+              <select id="cDesc">
+                <option value="0">Sin descuento</option>
+                <option value="0.1">10% (semanal)</option>
+                <option value="0.15">15% (quincenal)</option>
+                <option value="0.2">20% (mensual)</option>
+              </select>
+            </div>
+            <div class="field"><label for="cNeg">Negocio</label><input id="cNeg" type="text" placeholder="Ej: Carnicería El Tío"></div>
+          </div>
+        </div>
+        <div class="calc-out">
+          <div class="calc-line"><span>Spots totales</span><b id="oSpots">—</b></div>
+          <div class="calc-line"><span>Subtotal</span><b id="oSub">—</b></div>
+          <div class="calc-line"><span>Descuento</span><b id="oDesc">—</b></div>
+          <div class="calc-line"><span>Extras</span><b id="oExtra">—</b></div>
+        </div>
+        <div class="calc-total">
+          <div>
+            <div class="calc-total-label">Total campaña</div>
+            <div class="calc-total-sub" id="oProm">Sin promoción</div>
+          </div>
+          <div class="calc-total-num" id="oTotal">$0</div>
+        </div>
+        <button class="calc-btn" id="calcBtn">Calcular campaña</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="dedicatorias">
+    <div class="sec-head">
+      <span class="sec-num">08</span>
+      <h2 class="sec-title">Dedicatorias</h2>
+      <p class="sec-desc">Saludos al aire. Se leen en La Mañana del Cordón, a las 07:30 y 08:30.</p>
+    </div>
+    <div class="ded">
+      <div class="ded-wall" id="dedWall">
+        <div class="ded-note"><p>Para mamá, que escucha la radio mientras barre. Te quiero, vieja.</p><footer><b>Chino, Villa del Rey</b><small>hace 2 hs</small></footer></div>
+        <div class="ded-note"><p>Saludos a todo el grupo de running del amanecer. Hoy sí llegamos todos.</p><footer><b>Las Flacas</b><small>hace 5 hs</small></footer></div>
+        <div class="ded-note"><p>Feliz cumple, Rosita. Pedime la canción que quieras, hoy es tu día.</p><footer><b>El Tío</b><small>hace 9 hs</small></footer></div>
+        <div class="ded-note"><p>A los chicos del taller de radio: qué bueno escucharlos. Sigamos.</p><footer><b>Directora Escuela 12</b><small>hace 1 día</small></footer></div>
+        <div class="ded-note"><p>Para mi viejo, que escucha la radio en el taller. Un abrazo, pa.</p><footer><b>Meli, Barrio Norte</b><small>hace 1 día</small></footer></div>
+        <div class="ded-note"><p>Gracias por la publicidad gratis del campeonato. El club los necesita.</p><footer><b>Dir. Atlético Cordón</b><small>hace 2 días</small></footer></div>
+      </div>
+      <form class="ded-form" id="dedForm" novalidate>
+        <div class="ded-grid">
+          <div class="field"><label for="dNombre">Tu nombre</label><input id="dNombre" type="text" placeholder="Como lo lee la radio"><span class="err" id="eNombre"></span></div>
+          <div class="field"><label for="dBarrio">Barrio</label><input id="dBarrio" type="text" placeholder="Ej: La Aurora"></div>
+        </div>
+        <div class="field"><label for="dTexto">Dedicatoria</label><textarea id="dTexto" maxlength="140" placeholder="Hasta 140 caracteres"></textarea><span class="err" id="eTexto"></span></div>
+        <p class="ded-privacy">No pedimos teléfono ni email. Se envía por WhatsApp al aire, sin registro.</p>
+        <button class="calc-btn" id="dedBtn" type="submit">Enviar al aire</button>
+        <div class="ded-ok" id="dedOk" hidden>✓ <b>En cola.</b> Sale al aire en la próxima tanda de La Mañana del Cordón.</div>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec" id="voces">
+    <div class="sec-head">
+      <span class="sec-num">09</span>
+      <h2 class="sec-title">Voces</h2>
+      <p class="sec-desc">Lo que dicen los oyentes. Rotador, sin filtro.</p>
+    </div>
+    <div class="voices">
+      <div class="voice active"><div class="voice-text">Escucho la radio desde que abrí el taller. Nunca se corta.</div><div class="voice-meta">Doña Vero · 34 años oyendo</div></div>
+      <div class="voice"><div class="voice-text">La única radio que dice el precio de la papa.</div><div class="voice-meta">Don Beto · feriante</div></div>
+      <div class="voice"><div class="voice-text">Mi viejo la prendía a las 6 y se quedó prendida.</div><div class="voice-meta">Meli · Barrio Norte</div></div>
+      <div class="voice"><div class="voice-text">Piden música y la ponen. No es poca cosa.</div><div class="voice-meta">Tati · Villa del Rey</div></div>
+      <div class="voice"><div class="voice-text">Lo del club lo contaron acá primero.</div><div class="voice-meta">Hinchas de Atlético Cordón</div></div>
+      <div class="voice"><div class="voice-text">Si se va la luz, la radio sigue. Yo sigo laburando.</div><div class="voice-meta">Rubén · electricista</div></div>
+      <div class="voice"><div class="voice-text">El Nocturno me acompaña en el turno noche.</div><div class="voice-meta">Enfermera · hospital</div></div>
+      <div class="voice"><div class="voice-text">Mi hijo hace el Taller de Radio. Lo escucho y no lo puedo creer.</div><div class="voice-meta">Papá del taller</div></div>
+      <div class="voice-dots" id="voiceDots"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="sec-head">
+      <span class="sec-num">10</span>
+      <h2 class="sec-title">Preguntas</h2>
+      <p class="sec-desc">Lo que más nos preguntan por WhatsApp.</p>
+    </div>
+    <div class="faq">
+      <div class="faq-item"><button class="faq-q">¿Cómo escucho el stream? <span>+</span></button><div class="faq-a"><p>Entrá a cordon973.radio/stream con cualquier navegador. También en DAB+ bloque 10B si tenés un sintonizador digital.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Se puede pedir música? <span>+</span></button><div class="faq-a"><p>Sí, por WhatsApp al 15 5597 3000. En La Mañana y Punta de Día se leen todos los pedidos. En Vinilos y Nocturno el conductor decide.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Puedo hacer un programa? <span>+</span></button><div class="faq-a"><p>El Taller de Radio abre cada año, es gratis. Si ya tenés formato, mandá una demo a archivo@cordon973.radio. Escuchamos todo.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Cómo publicito mi negocio? <span>+</span></button><div class="faq-a"><p>Por la calculadora de la sección Pauta o a pauta@cordon973.radio. Respondemos en 24 horas hábiles.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Por qué se corta a veces? <span>+</span></button><div class="faq-a"><p>Con tormentas fuertes, la línea del Cerro Chipe a veces falla. Tenemos planta propia y dos repetidoras, pero no somos mágicos. Volvemos rápido.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Tienen app? <span>+</span></button><div class="faq-a"><p>No. El stream funciona en cualquier navegador y en cualquier radio digital. No hace falta una app más en el celu.</p></div></div>
+      <div class="faq-item"><button class="faq-q">¿Puedo pasar a saludar? <span>+</span></button><div class="faq-a"><p>El estudio abre de 06:00 a 21:00. Pasá por Pasaje Rincón 42, preguntá por la cabina 1 y te recebem con mate.</p></div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-card">
+    <div>
+      <div class="foot-freq">97<b>.</b>3<span>FM · DAB+ 10B · La Aurora</span></div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h4>Casa central</h4>
+        <ul>
+          <li>Pasaje Rincón 42</li>
+          <li>La Aurora</li>
+          <li><a href="tel:+541144559730">(011) 4455 9730</a></li>
+          <li><a href="https://wa.me/5491155973000">WhatsApp 15 5597 3000</a></li>
+          <li><a href="mailto:pauta@cordon973.radio">pauta@cordon973.radio</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Al aire</h4>
+        <ul>
+          <li>Escaleta semanal</li>
+          <li>Programas y conductores</li>
+          <li>Archivo de cintas</li>
+          <li>Dedicatorias</li>
+          <li>Pauta publicitaria</li>
+        </ul>
+      </div>
+      <div class="foot-col foot-form">
+        <label for="fMail">Boletín del cordón</label>
+        <div class="foot-form-row">
+          <input id="fMail" type="email" placeholder="tu@correo.com">
+          <button id="fBtn" type="button">Sumar</button>
+        </div>
+        <p class="ded-privacy" id="fMsg">Un correo por semana con la grilla. Sin spam.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p>© <span id="year">2025</span> Radio Cordón 97.3 FM · Pasaje Rincón 42, La Aurora</p>
+    <p>Estudio y transmisor: <b>Cerro Chipe</b> · Antena 42 m · 3 kW</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  document.documentElement.classList.add('js');
+  window.addEventListener('error', function(){ document.documentElement.classList.add('js','js-error'); });
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var clock = document.getElementById('clock');
+  function tick(){
+    var d = new Date();
+    var h = String(d.getHours()).padStart(2,'0');
+    var m = String(d.getMinutes()).padStart(2,'0');
+    var s = String(d.getSeconds()).padStart(2,'0');
+    if(clock) clock.innerHTML = h+':'+m+':<em>'+s+'</em>';
+  }
+  tick(); setInterval(tick, 1000);
+
+  var shows = [
+    {ini:0, fin:6, nombre:'Nocturno', host:'Cielo Sosa', ico:'♪'},
+    {ini:6, fin:9, nombre:'La Mañana del Cordón', host:'Narda Quiroga', ico:'☀'},
+    {ini:9, fin:12, nombre:'Curtiembre', host:'Pampa Ledesma', ico:'≡'},
+    {ini:12, fin:15, nombre:'Punta de Día', host:'Narda + Beto', ico:'☀'},
+    {ini:15, fin:18, nombre:'La Siesta Larga', host:'Beto Ferreyra', ico:'☾'},
+    {ini:18, fin:21, nombre:'Curtiembre Tarde', host:'Pampa Ledesma', ico:'≡'},
+    {ini:21, fin:24, nombre:'Vinilos de Beto', host:'Beto Ferreyra', ico:'◉'}
+  ];
+  function currentShow(){
+    var h = new Date().getHours();
+    for(var i=0;i<shows.length;i++){ if(h>=shows[i].ini && h<shows[i].fin) return shows[i]; }
+    return shows[0];
+  }
+  function nextShow(){
+    var h = new Date().getHours();
+    var idx = 0;
+    for(var i=0;i<shows.length;i++){ if(h>=shows[i].ini && h<shows[i].fin) idx = i; }
+    return shows[(idx+1)%shows.length];
+  }
+  function paintNow(){
+    var c = currentShow(), n = nextShow();
+    var nowShow = document.getElementById('nowShow');
+    var coverShow = document.getElementById('coverShow');
+    var coverHost = document.getElementById('coverHost');
+    var nextShowEl = document.getElementById('nextShow');
+    var nextTime = document.getElementById('nextTime');
+    var nowIco = document.getElementById('nowIco');
+    if(nowShow) nowShow.textContent = c.nombre;
+    if(coverShow) coverShow.innerHTML = c.nombre.replace(' de ', '<br>de ').replace(' del ', '<br>del ');
+    if(coverHost) coverHost.textContent = 'con ' + c.host + ' · hasta ' + String(c.fin).padStart(2,'0') + ':00';
+    if(nextShowEl) nextShowEl.innerHTML = n.nombre.replace(' de ', '<br>de ').replace(' del ', '<br>del ');
+    if(nextTime) nextTime.textContent = String(n.ini).padStart(2,'0') + ':00 · con ' + n.host;
+    if(nowIco) nowIco.textContent = c.ico;
+  }
+  paintNow(); setInterval(paintNow, 60000);
+
+  var links = [].slice.call(document.querySelectorAll('.rail-nav a'));
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){ a.classList.remove('on'); });
+        if(map[e.target.id]) map[e.target.id].classList.add('on');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  [].slice.call(document.querySelectorAll('main section[id]')).forEach(function(s){ spy.observe(s); });
+
+  function eqBars(el){
+    if(!el) return;
+    [].slice.call(el.querySelectorAll('i')).forEach(function(b){
+      b.style.height = (12 + Math.random()*86) + '%';
+    });
+  }
+  if(!reduce){
+    setInterval(function(){ eqBars(document.getElementById('coverEq')); eqBars(document.getElementById('mastEq')); }, 220);
+  }
+
+  var playing = false;
+  var playBtn = document.getElementById('playBtn');
+  var playIco = document.getElementById('playIco');
+  var playTxt = document.getElementById('playTxt');
+  var coverEq = document.getElementById('coverEq');
+  var mastEq = document.getElementById('mastEq');
+  if(playBtn){
+    playBtn.addEventListener('click', function(){
+      playing = !playing;
+      playIco.textContent = playing ? '❚❚' : '▶';
+      playTxt.textContent = playing ? 'En pausa' : 'Escuchar en vivo';
+      if(coverEq) coverEq.classList.toggle('on', playing);
+      if(mastEq) mastEq.classList.toggle('on', playing);
+    });
+  }
+
+  var nowDay = (new Date().getDay() + 6) % 7;
+  var nowH = new Date().getHours();
+  var franja = -1;
+  if(nowH < 6) franja = 0; else if(nowH < 9) franja = 1; else if(nowH < 12) franja = 2;
+  else if(nowH < 15) franja = 3; else if(nowH < 18) franja = 4; else if(nowH < 21) franja = 5; else franja = 6;
+  var rows = [].slice.call(document.querySelectorAll('.grid7-row'));
+  if(rows[franja]){
+    var cell = rows[franja].children[1 + nowDay];
+    if(cell) cell.classList.add('live');
+  }
+
+  [].slice.call(document.querySelectorAll('.prog-head')).forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var row = btn.closest('.prog-row');
+      var open = row.classList.contains('open');
+      [].slice.call(document.querySelectorAll('.prog-row.open')).forEach(function(r){ r.classList.remove('open'); });
+      if(!open) row.classList.add('open');
+    });
+  });
+
+  var c = currentShow();
+  [].slice.call(document.querySelectorAll('.crew-card')).forEach(function(card){
+    var nameEl = card.querySelector('.crew-name');
+    if(!nameEl) return;
+    var name = nameEl.textContent.trim();
+    var host = c.host;
+    var isOn = name === host || host.indexOf(name.split(' ')[0]) !== -1;
+    var st = card.querySelector('.crew-status');
+    if(st){
+      if(isOn){ st.className = 'crew-status on'; st.innerHTML = '<i class="crew-dot"></i>Al aire'; }
+      else { st.className = 'crew-status off'; st.innerHTML = '<i class="crew-dot"></i>Off mic'; }
+    }
+  });
+
+  var tape = document.getElementById('tape');
+  var tapePlay = document.getElementById('tapePlay');
+  var tapeFill = document.getElementById('tapeFill');
+  var tapeBar = document.getElementById('tapeBar');
+  var tapeScrub = document.getElementById('tapeScrub');
+  var tapeCur = document.getElementById('tapeCur');
+  var tapeTot = document.getElementById('tapeTot');
+  var tapeTitle = document.getElementById('tapeTitle');
+  var tapeSub = document.getElementById('tapeSub');
+  var tapeTrack = document.getElementById('tapeTrack');
+  var tracks = [].slice.call(document.querySelectorAll('.track'));
+  var cur = -1, playingTape = false, pos = 0, dur = 0, timer = null;
+
+  if(tapeTrack){
+    for(var i=0;i<70;i++){
+      var sp = document.createElement('span');
+      sp.style.left = (i*14) + 'px';
+      sp.style.height = (4 + Math.random()*28) + 'px';
+      tapeTrack.appendChild(sp);
+    }
+  }
+  function fmt(s){ var m = Math.floor(s/60); var r = Math.floor(s%60); return String(m).padStart(2,'0') + ':' + String(r).padStart(2,'0'); }
+  function stopTape(){
+    playingTape = false;
+    if(tape) tape.classList.remove('playing');
+    if(tapePlay) tapePlay.textContent = '▶';
+    clearInterval(timer);
+  }
+  function playTape(){
+    if(cur < 0) return;
+    playingTape = true;
+    if(tape) tape.classList.add('playing');
+    if(tapePlay) tapePlay.textContent = '❚❚';
+    clearInterval(timer);
+    timer = setInterval(function(){
+      pos += 0.25;
+      if(pos >= dur){ pos = dur; stopTape(); }
+      var p = dur ? pos/dur : 0;
+      if(tapeFill) tapeFill.style.width = (p*100) + '%';
+      if(tapeBar) tapeBar.style.left = (p*100) + '%';
+      if(tapeCur) tapeCur.textContent = fmt(pos);
+    }, 250);
+  }
+  tracks.forEach(function(t, i){
+    t.addEventListener('click', function(){
+      if(cur === i && playingTape){ stopTape(); return; }
+      tracks.forEach(function(x){ x.classList.remove('playing'); });
+      cur = i; t.classList.add('playing');
+      var durTxt = t.querySelector('.track-dur').textContent;
+      var parts = durTxt.split(':');
+      dur = parseInt(parts[0],10)*60 + parseInt(parts[1],10);
+      pos = 0;
+      tapeTitle.textContent = t.querySelector('.track-title').textContent;
+      tapeSub.textContent = t.querySelector('.track-meta').textContent;
+      tapeTot.textContent = fmt(dur);
+      tapeCur.textContent = '00:00';
+      playTape();
+    });
+  });
+  if(tapePlay){
+    tapePlay.addEventListener('click', function(){
+      if(cur < 0 && tracks[0]){ tracks[0].click(); return; }
+      if(playingTape) stopTape(); else playTape();
+    });
+  }
+  if(tapeScrub){
+    tapeScrub.addEventListener('click', function(e){
+      if(dur <= 0) return;
+      var r = tapeScrub.getBoundingClientRect();
+      pos = Math.max(0, Math.min(dur, ((e.clientX - r.left)/r.width)*dur));
+      var p = pos/dur;
+      if(tapeFill) tapeFill.style.width = (p*100) + '%';
+      if(tapeBar) tapeBar.style.left = (p*100) + '%';
+      if(tapeCur) tapeCur.textContent = fmt(pos);
+    });
+  }
+
+  var PRECIOS = { prime:18000, media:11000, noche:9500, madrugada:4800 };
+  var calcBtn = document.getElementById('calcBtn');
+  function money(n){ return '$' + n.toLocaleString('es-AR'); }
+  function calc(){
+    var franjaV = document.getElementById('cFranja').value;
+    var spots = parseInt(document.getElementById('cSpots').value,10) || 0;
+    var dias = parseInt(document.getElementById('cDias').value,10) || 0;
+    var extra = parseInt(document.getElementById('cExtra').value,10) || 0;
+    var desc = parseFloat(document.getElementById('cDesc').value) || 0;
+    var neg = document.getElementById('cNeg').value.trim();
+    var totalSpots = spots * dias;
+    var sub = totalSpots * PRECIOS[franjaV];
+    var descAmt = Math.round(sub * desc);
+    var total = sub - descAmt + extra;
+    document.getElementById('oSpots').textContent = totalSpots;
+    document.getElementById('oSub').textContent = money(sub);
+    document.getElementById('oDesc').textContent = descAmt ? ('− ' + money(descAmt)) : '—';
+    document.getElementById('oExtra').textContent = extra ? money(extra) : '—';
+    document.getElementById('oTotal').textContent = money(total);
+    document.getElementById('oProm').textContent = neg ? ('Campaña: ' + neg) : 'Sin promoción';
+  }
+  if(calcBtn){
+    calcBtn.addEventListener('click', function(){
+      calc();
+      calcBtn.classList.add('ok');
+      calcBtn.textContent = 'Calculado ✓';
+      setTimeout(function(){ calcBtn.classList.remove('ok'); calcBtn.textContent = 'Calcular campaña'; }, 1600);
+    });
+  }
+  calc();
+
+  var KEY = 'cordon_ded_v2';
+  var wall = document.getElementById('dedWall');
+  var form = document.getElementById('dedForm');
+  function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || []; }catch(e){ return []; } }
+  function save(l){ try{ localStorage.setItem(KEY, JSON.stringify(l)); }catch(e){} }
+  function noteHTML(n){
+    return '<div class="ded-note"><p>' + n.texto + '</p><footer><b>' + n.nombre + (n.barrio ? ' · ' + n.barrio : '') + '</b><small>recién</small></footer></div>';
+  }
+  function render(){
+    var l = load();
+    l.forEach(function(n){
+      var d = document.createElement('div');
+      d.innerHTML = noteHTML(n);
+      wall.insertBefore(d.firstElementChild, wall.firstChild);
+    });
+  }
+  render();
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var ok = true;
+      var nombre = document.getElementById('dNombre');
+      var texto = document.getElementById('dTexto');
+      document.getElementById('eNombre').textContent = '';
+      document.getElementById('eTexto').textContent = '';
+      if(!nombre.value.trim()){ document.getElementById('eNombre').textContent = 'Poné tu nombre'; ok = false; }
+      if(texto.value.trim().length < 8){ document.getElementById('eTexto').textContent = 'Al menos 8 caracteres'; ok = false; }
+      if(!ok) return;
+      var l = load();
+      var n = { nombre: nombre.value.trim(), barrio: document.getElementById('dBarrio').value.trim(), texto: texto.value.trim() };
+      l.unshift(n); save(l);
+      var d = document.createElement('div');
+      d.innerHTML = noteHTML(n);
+      wall.insertBefore(d.firstElementChild, wall.firstChild);
+      form.reset();
+      document.getElementById('dedOk').hidden = false;
+      setTimeout(function(){ document.getElementById('dedOk').hidden = true; }, 5000);
+    });
+  }
+
+  var voices = [].slice.call(document.querySelectorAll('.voice'));
+  var dotsWrap = document.getElementById('voiceDots');
+  var vi = 0;
+  voices.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.className = 'voice-dot' + (i === 0 ? ' on' : '');
+    b.setAttribute('aria-label', 'Voz ' + (i+1));
+    b.addEventListener('click', function(){ vi = i; showVoice(); });
+    if(dotsWrap) dotsWrap.appendChild(b);
+  });
+  function showVoice(){
+    voices.forEach(function(v, i){ v.classList.toggle('active', i === vi); });
+    if(dotsWrap) [].slice.call(dotsWrap.children).forEach(function(d, i){ d.classList.toggle('on', i === vi); });
+  }
+  setInterval(function(){ vi = (vi + 1) % voices.length; showVoice(); }, 5200);
+
+  [].slice.call(document.querySelectorAll('.faq-q')).forEach(function(q){
+    q.addEventListener('click', function(){
+      var item = q.closest('.faq-item');
+      var open = item.classList.contains('open');
+      [].slice.call(document.querySelectorAll('.faq-item.open')).forEach(function(x){ x.classList.remove('open'); });
+      if(!open) item.classList.add('open');
+    });
+  });
+
+  var fBtn = document.getElementById('fBtn');
+  var fMsg = document.getElementById('fMsg');
+  if(fBtn){
+    fBtn.addEventListener('click', function(){
+      var v = document.getElementById('fMail').value.trim();
+      if(!v || v.indexOf('@') === -1){ fMsg.textContent = 'Poné un correo válido.'; fMsg.style.color = '#d61f69'; return; }
+      fMsg.textContent = '✓ Listo. Te sumamos a la grilla semanal.'; fMsg.style.color = '#3fb96b';
+      document.getElementById('fMail').value = '';
+    });
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var rev = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  [].slice.call(document.querySelectorAll('.sec, .cover, .foot')).forEach(function(el){ el.classList.add('reveal'); rev.observe(el); });
+})();
+</script>
+</body>
+</html>
