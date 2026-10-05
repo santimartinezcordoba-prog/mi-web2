@@ -58,29 +58,33 @@
         <p class="hint">Cosas que he hecho. Pulsa una para abrirla.</p>
       </div>
       <div class="projects">
-        <!-- Cada href es ./CARPETA/ → debe existir mi-web2/CARPETA/index.html -->
+        <!-- TERMINADO: abre directo. Cambia ./proyecto-1/ por tu carpeta real. -->
         <a class="proj" href="./proyecto-1/" target="_blank" rel="noopener">
           <span class="proj__n">01</span>
           <span class="proj__body">
-            <span class="proj__title">NOMBRE PROYECTO 1</span>
-            <span class="proj__desc">Una línea de qué hace.</span>
+            <span class="proj__title">PROYECTO 1</span>
+            <span class="proj__desc">Ya funcionando.</span>
           </span>
           <span class="proj__go" aria-hidden="true">↗</span>
         </a>
-        <a class="proj" href="./proyecto-2/" target="_blank" rel="noopener">
+        <!-- EN OBRA: href="#" + data-wip = salta aviso, NO da 404. -->
+        <a class="proj proj--wip" href="#" data-wip>
           <span class="proj__n">02</span>
           <span class="proj__body">
-            <span class="proj__title">NOMBRE PROYECTO 2</span>
-            <span class="proj__desc">Una línea de qué hace.</span>
+            <span class="proj__title">PROYECTO 2</span>
+            <span class="proj__desc">En desarrollo.</span>
           </span>
+          <span class="proj__badge">EN OBRA</span>
           <span class="proj__go" aria-hidden="true">↗</span>
         </a>
-        <a class="proj" href="./proyecto-3/" target="_blank" rel="noopener">
+        <!-- EN OBRA -->
+        <a class="proj proj--wip" href="#" data-wip>
           <span class="proj__n">03</span>
           <span class="proj__body">
-            <span class="proj__title">NOMBRE PROYECTO 3</span>
-            <span class="proj__desc">Una línea de qué hace.</span>
+            <span class="proj__title">PROYECTO 3</span>
+            <span class="proj__desc">En desarrollo.</span>
           </span>
+          <span class="proj__badge">EN OBRA</span>
           <span class="proj__go" aria-hidden="true">↗</span>
         </a>
       </div>
@@ -199,9 +203,21 @@
           <button data-dir="left" aria-label="Izquierda">◀</button>
           <button data-dir="right" aria-label="Derecha">▶</button>
         </div>
-          <button data-dir="down" aria-label="Abajo">▼</button>
+        <button data-dir="down" aria-label="Abajo">▼</button>
       </div>
       <p class="snake__hint">Flechas / WASD · Espacio = pausa · Esc = cerrar</p>
+    </article>
+  </div>
+
+  <!-- AVISO PROYECTO EN OBRA -->
+  <div class="wip" id="wip" hidden>
+    <div class="wip__back" data-close></div>
+    <article class="wip__card" role="dialog" aria-modal="true" aria-labelledby="wipTitle">
+      <button class="wip__x" data-close aria-label="Cerrar">✕</button>
+      <p class="wip__k">/// EN OBRA ///</p>
+      <h3 class="wip__title" id="wipTitle">SE ESTÁ TRABAJANDO EN ESTO</h3>
+      <p class="wip__msg">Este proyecto todavía no está terminado. Vuelve pronto, que va a salir algo chulo.</p>
+      <button class="wip__btn" data-close>ENTENDIDO</button>
     </article>
   </div>
 
