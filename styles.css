@@ -299,3 +299,17 @@ textarea.form__input{resize:vertical;min-height:110px}
   .section__head{flex-direction:column;gap:.4rem}
 }
 :where(button,a,input,select,textarea):focus-visible{outline:3px solid var(--c2);outline-offset:3px}
+/* ===== MIS PROYECTOS ===== */
+.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:6px}
+.proj{position:relative;display:flex;flex-direction:column;gap:10px;padding:18px 18px 22px;text-decoration:none;color:inherit;background:color-mix(in srgb,currentColor 6%,transparent);border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-radius:12px;overflow:hidden;transition:transform .18s ease,border-color .18s,background .18s}
+.proj::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:currentColor;opacity:.85;transition:width .3s ease}
+.proj:hover,.proj:focus-visible{transform:translateY(-4px);background:color-mix(in srgb,currentColor 10%,transparent);border-color:color-mix(in srgb,currentColor 45%,transparent);outline:none}
+.proj:hover::before,.proj:focus-visible::before{width:100%}
+.proj__n{font-size:2rem;font-weight:800;line-height:1;letter-spacing:-.02em;opacity:.25}
+.proj__body{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+.proj__title{font-weight:700;letter-spacing:.02em;font-size:1.05rem}
+.proj__desc{font-size:.85rem;opacity:.7;line-height:1.4}
+.proj__go{position:absolute;right:16px;bottom:14px;font-size:1.3rem;opacity:.45;transition:transform .18s,opacity .18s}
+.proj:hover .proj__go,.proj:focus-visible .proj__go{transform:translate(3px,-3px);opacity:.9}
+[data-theme="pixel"] .proj{border-radius:0}
+[data-theme="pixel"] .proj::before{height:4px}
