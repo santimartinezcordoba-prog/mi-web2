@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferretería Aurora · Desde 1974</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#f2ece1; --ink:#1b1a17; --green:#17453a; --deep:#0d2620;
+    --ochre:#e0932c; --brick:#b3472f; --line:#cfc4b0;
+    --display:"Anton",Impact,sans-serif;
+    --body:"IBM Plex Sans",system-ui,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bone); color:var(--ink); font-family:var(--body);
+    font-size:17px; line-height:1.65; overflow-x:hidden;
+  }
+  /* grano de papel sobre todo */
+  body::after{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:99; opacity:.28;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  h2,h3,.big{font-family:var(--display); font-weight:400; letter-spacing:.01em; line-height:.95; text-transform:uppercase}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:var(--green)}
+
+  /* ---------- CINTA SUPERIOR ---------- */
+  .ticker{background:var(--deep); color:var(--bone); border-bottom:3px solid var(--ochre); overflow:hidden; white-space:nowrap}
+  .ticker-track{display:inline-block; padding:9px 0; animation:slide 38s linear infinite}
+  .ticker span{font-family:var(--mono); font-size:12px; letter-spacing:.18em; padding:0 26px; text-transform:uppercase}
+  .ticker b{color:var(--ochre)}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- CABECERA ---------- */
+  header{position:sticky; top:0; z-index:50; background:var(--bone); border-bottom:1px solid var(--line)}
+  .bar{display:flex; align-items:center; justify-content:space-between; gap:20px; padding:14px 28px; max-width:1180px; margin:0 auto}
+  .mark{display:flex; align-items:baseline; gap:10px}
+  .mark .n{font-family:var(--display); font-size:24px; letter-spacing:.04em}
+  .mark .e{font-family:var(--mono); font-size:10px; letter-spacing:.2em; color:var(--brick)}
+  nav{display:flex; gap:6px; flex-wrap:wrap}
+  nav a{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.13em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink); padding:7px 12px; border:1px solid transparent; transition:.25s
+  }
+  nav a:hover{border-color:var(--green); background:var(--green); color:var(--bone); transform:translateY(-2px)}
+
+  /* ---------- TABLÓN (APERTURA) ---------- */
+  .board{display:grid; grid-template-columns:1.15fr .85fr; gap:0; border-bottom:3px solid var(--deep)}
+  .board-l{padding:52px 28px 44px; max-width:640px; margin-left:auto}
+  .status{display:inline-flex; align-items:center; gap:9px; font-family:var(--mono); font-size:11px; letter-spacing:.2em;
+    text-transform:uppercase; border:1px solid var(--green); padding:6px 12px; color:var(--green)}
+  .dot{width:8px; height:8px; border-radius:50%; background:#3fae7a; animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1; box-shadow:0 0 0 0 rgba(63,174,122,.6)}50%{opacity:.55; box-shadow:0 0 0 7px rgba(63,174,122,0)}}
+  .board h1{font-family:var(--display); font-size:clamp(58px,10.5vw,132px); line-height:.82; margin:22px 0 6px; color:var(--deep)}
+  .board h1 em{font-style:normal; color:var(--ochre); display:block}
+  .board p{max-width:44ch; color:#4a463d; margin:18px 0 26px}
+  .facts{display:flex; flex-wrap:wrap; gap:0; border-top:1px solid var(--line)}
+  .facts div{flex:1 1 130px; padding:14px 16px 12px; border-right:1px solid var(--line)}
+  .facts div:last-child{border-right:0}
+  .facts b{display:block; font-family:var(--display); font-size:30px; color:var(--green)}
+  .facts small{font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:#7b7364}
+  .board-r{position:relative; overflow:hidden; min-height:460px; background:var(--deep)}
+  .board-r img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(.35) contrast(1.1);
+    animation:kb 22s ease-in-out infinite alternate}
+  @keyframes kb{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.19) translate(-2.5%,-2%)}}
+  .board-r::after{content:""; position:absolute; inset:0; background:linear-gradient(200deg,rgba(13,38,32,.15),rgba(13,38,32,.75))}
+  .tag-r{position:absolute; z-index:2; bottom:22px; left:22px; right:22px; color:var(--bone); font-family:var(--mono); font-size:11.5px; letter-spacing:.13em; text-transform:uppercase}
+  .tag-r b{color:var(--ochre)}
+
+  /* ---------- SECCIONES ---------- */
+  section{padding:78px 0}
+  .head{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; border-bottom:3px solid var(--deep); padding-bottom:14px; margin-bottom:38px; flex-wrap:wrap}
+  .head h2{font-size:clamp(34px,5.4vw,60px); color:var(--deep)}
+  .head .num{font-family:var(--mono); font-size:11px; letter-spacing:.2em; color:var(--brick)}
+
+  /* revelado por máscara de línea */
+  .mask{overflow:hidden; display:block}
+  .mask>span{display:block; transform:translateY(105%); animation:up .9s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes up{to{transform:translateY(0)}}
+
+  /* ---------- SERVICIOS (FILAS APILADAS) ---------- */
+  .rows{border-top:1px solid var(--line)}
+  .row{display:grid; grid-template-columns:52px 1.4fr 2fr 96px; gap:18px; align-items:center;
+    padding:20px 8px; border-bottom:1px solid var(--line); position:relative; transition:.32s cubic-bezier(.2,.7,.2,1)}
+  .row::before{content:""; position:absolute; left:0; top:0; bottom:0; width:0; background:var(--green); transition:.32s}
+  .row:hover{padding-left:26px; color:var(--bone)}
+  .row:hover::before{width:6px}
+  .row:hover .idx,.row:hover .desc{color:#c9d6cf}
+  .idx{font-family:var(--mono); font-size:12px; color:var(--brick)}
+  .row h3{font-size:23px; color:inherit}
+  .desc{font-size:14.5px; color:#6a6357}
+  .price{font-family:var(--mono); font-weight:600; text-align:right; font-size:14px}
+  .price.free{color:var(--brick)}
+
+  /* ---------- CATÁLOGO MOSAICO ---------- */
+  .cat{background:var(--deep); color:var(--bone)}
+  .cat .head{border-color:var(--ochre)}
+  .cat .head h2{color:var(--bone)}
+  .cat .num{color:var(--ochre)}
+  .mos{display:grid; grid-template-columns:repeat(6,1fr); gap:14px}
+  .tile{position:relative; overflow:hidden; background:#123128; border:1px solid rgba(224,147,44,.22); min-height:190px;
+    display:flex; align-items:flex-end; transition:.4s}
+  .tile img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.55; transition:transform .9s ease, opacity .4s}
+  .tile:hover img{transform:scale(1.09); opacity:.78}
+  .tile .in{position:relative; z-index:2; padding:16px 18px; width:100%; background:linear-gradient(transparent,rgba(9,26,21,.9) 60%)}
+  .tile h3{font-size:22px; color:var(--bone)}
+  .tile p{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ochre)}
+  .w3{grid-column:span 3} .w2{grid-column:span 2} .w4{grid-column:span 4} .w6{grid-column:span 6; min-height:240px}
+
+  /* ---------- DOS COLUMNAS PEGAJOSAS ---------- */
+  .two{display:grid; grid-template-columns:.85fr 1.15fr; gap:52px; align-items:start}
+  .sticky{position:sticky; top:96px}
+  .sched{width:100%; border-collapse:collapse; margin-top:18px; font-family:var(--mono); font-size:13px}
+  .sched th,.sched td{text-align:left; padding:9px 6px; border-bottom:1px solid var(--line)}
+  .sched th{font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:#7b7364}
+  .sched td.hoy{color:var(--brick); font-weight:600}
+  .sched tr:hover td{background:#e9e1d3}
+  .story p{margin-bottom:16px; color:#4a463d}
+  .story h3{font-size:26px; color:var(--green); margin:34px 0 10px}
+  .tl{list-style:none; border-left:2px solid var(--line); padding-left:22px; margin-top:8px}
+  .tl li{position:relative; padding-bottom:20px}
+  .tl li::before{content:""; position:absolute; left:-29px; top:8px; width:12px; height:12px; background:var(--ochre); border:2px solid var(--deep); border-radius:50%}
+  .tl b{font-family:var(--mono); color:var(--brick); font-size:13px; letter-spacing:.1em}
+  .tl span{display:block; font-size:15px; color:#4a463d}
+  figure{margin:26px 0}
+  figure img{width:100%; display:block; filter:grayscale(.2) contrast(1.05)}
+  figcaption{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:#7b7364; padding-top:8px; border-top:1px solid var(--line)}
+
+  /* ---------- REGLAS ---------- */
+  .rules{background:var(--ochre); color:var(--deep); border-top:3px solid var(--deep); border-bottom:3px solid var(--deep)}
+  .rules .head{border-color:var(--deep)}
+  .ol{list-style:none; counter-reset:r; display:grid; grid-template-columns:1fr 1fr; gap:0 46px}
+  .ol li{counter-increment:r; padding:16px 0 16px 52px; border-bottom:1px dashed rgba(13,38,32,.35); position:relative}
+  .ol li::before{content:counter(r,decimal-leading-zero); position:absolute; left:0; top:14px; font-family:var(--mono); font-weight:600; font-size:13px; opacity:.7}
+  .ol b{font-family:var(--display); font-weight:400; font-size:19px; text-transform:uppercase; display:block}
+  .ol small{font-size:14.5px; opacity:.82}
+
+  /* ---------- VOCES ---------- */
+  .voices{display:grid; grid-template-columns:repeat(12,1fr); gap:18px}
+  blockquote{background:#fff9ef; border:1px solid var(--line); padding:24px; transition:.3s; position:relative}
+  blockquote:hover{transform:translateY(-5px); box-shadow:9px 9px 0 var(--green)}
+  blockquote:nth-child(1){grid-column:span 7} blockquote:nth-child(2){grid-column:span 5; margin-top:26px}
+  blockquote:nth-child(3){grid-column:span 5} blockquote:nth-child(4){grid-column:span 7; margin-top:-14px}
+  blockquote p{font-size:16.5px; color:#3a3630}
+  blockquote p::before{content:"«"; color:var(--brick)} blockquote p::after{content:"»"; color:var(--brick)}
+  cite{display:block; margin-top:12px; font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-style:normal; color:var(--green)}
+
+  /* ---------- FAQ ---------- */
+  details{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer; padding:18px 4px; font-family:var(--display); font-size:20px; text-transform:uppercase; color:var(--deep); list-style:none; display:flex; justify-content:space-between; gap:16px; transition:.25s}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+"; font-family:var(--mono); color:var(--brick); font-size:22px; transition:.3s}
+  details[open] summary::after{transform:rotate(135deg)}
+  details[open] summary{color:var(--brick)}
+  summary:hover{padding-left:12px}
+  details div{padding:0 4px 20px; color:#4a463d; max-width:70ch}
+
+  /* ---------- CIERRE ---------- */
+  footer{background:var(--deep); color:#c9d6cf; padding:64px 0 28px; font-size:14.5px}
+  .fgrid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:38px}
+  footer h3{color:var(--bone); font-size:15px; letter-spacing:.1em; margin-bottom:12px}
+  footer .big{font-size:clamp(46px,9vw,104px); color:var(--ochre); line-height:.85; margin-bottom:16px}
+  footer a{color:#c9d6cf; text-decoration:none; border-bottom:1px solid rgba(224,147,44,.4)}
+  footer a:hover{color:var(--ochre)}
+  .fbot{margin-top:44px; padding-top:16px; border-top:1px solid rgba(201,214,207,.2); font-family:var(--mono); font-size:11px; letter-spacing:.12em; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px}
+
+  /* ---------- REVELADO AL HACER SCROLL (mejora progresiva) ---------- */
+  @supports (animation-timeline:view()){
+    .reveal{opacity:0; transform:translateY(26px); animation:rv linear both; animation-timeline:view(); animation-range:entry 4% cover 26%}
+    @keyframes rv{to{opacity:1; transform:none}}
+  }
+
+  @media (max-width:900px){
+    .board,.two,.fgrid{grid-template-columns:1fr} .board-r{min-height:300px}
+    .sticky{position:static} .mos{grid-template-columns:repeat(2,1fr)}
+    .w3,.w2,.w4,.w6{grid-column:span 2} .ol{grid-template-columns:1fr}
+    .row{grid-template-columns:36px 1fr; gap:6px} .desc{grid-column:2} .price{text-align:left; grid-column:2}
+    .voices{grid-template-columns:1fr} blockquote{grid-column:span 1 !important; margin:0 !important}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important; transition:none !important}
+    .mask>span{transform:none} html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Tornillería <b>◆</b></span><span>Corte a medida <b>◆</b></span><span>Silicona neutra <b>◆</b></span><span>Bombillos LED <b>◆</b></span><span>Cinta de carrocero <b>◆</b></span><span>Llaves en blanco <b>◆</b></span><span>Vaso de ¼ <b>◆</b></span><span>Reparación de cerraduras <b>◆</b></span>
+    <span>Tornillería <b>◆</b></span><span>Corte a medida <b>◆</b></span><span>Silicona neutra <b>◆</b></span><span>Bombillos LED <b>◆</b></span><span>Cinta de carrocero <b>◆</b></span><span>Llaves en blanco <b>◆</b></span><span>Vaso de ¼ <b>◆</b></span><span>Reparación de cerraduras <b>◆</b></span>
+  </div>
+</div>
+
+<header>
+  <div class="bar">
+    <div class="mark"><span class="n">AURORA</span><span class="e">EST. 1974</span></div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#local">El local</a>
+      <a href="#reglas">Reglas</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+  </div>
+</header>
+
+<!-- APERTURA: el tablón, no un hero centrado -->
+<div class="board">
+  <div class="board-l">
+    <span class="status"><span class="dot"></span> Abierto · cierra 19:30</span>
+    <h1><span class="mask"><span>Ferretería</span></span><em class="mask"><span>Aurora</span></em></h1>
+    <p>Cincuenta y un años en la misma esquina de Salvia y Nevado. Tenemos <strong>9.400 referencias</strong>, dos máquinas de cortar y una cafetera que nunca falla. Si no lo hay, se pide hoy y llega mañana por la mañana.</p>
+    <div class="facts">
+      <div><b>9.400</b><small>referencias</small></div>
+      <div><b>51</b><small>años abiertos</small></div>
+      <div><b>48 h</b><small>entrega encargo</small></div>
+      <div><b>0</b><small>compras mínimas</small></div>
+    </div>
+  </div>
+  <div class="board-r">
+    <img src="https://picsum.photos/seed/hardware-store-painted-sign/900/1100" alt="Rótulo esmaltado de la ferretería Aurora">
+    <div class="tag-r">Salvia 214, Barrio La Aurora · <b>esquina con Nevado</b> · portón de hierro verde</div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>El mostrador</h2>
+      <span class="num">01 / SERVICIOS DE TALLER</span>
+    </div>
+    <div class="rows">
+      <div class="row reveal"><span class="idx">01</span><h3>Corte de madera a medida</h3><p class="desc">Tablero de 18 mm, melamina y contrachapado. Cantos rectos, tolerancia ±0,5 mm.</p><span class="price">$1.800</span></div>
+      <div class="row reveal"><span class="idx">02</span><h3>Duplicado de llaves</h3><p class="desc">Plana, de puntos, de seguridad y de armario. En blanco tenemos 60 modelos.</p><span class="price">$900</span></div>
+      <div class="row reveal"><span class="idx">03</span><h3>Afilado de herramientas</h3><p class="desc">Cinceles, formones, hachas y cuchillas de cepillo. Dos piedras y paciencia.</p><span class="price">$1.500</span></div>
+      <div class="row reveal"><span class="idx">04</span><h3>Enchapado de cantos</h3><p class="desc">PVC de 0,4 a 2 mm en 14 colores. Se hace a la vista, en la máquina de al lado.</p><span class="price">$700 /m</span></div>
+      <div class="row reveal"><span class="idx">05</span><h3>Corte de vidrio</h3><p class="desc">Hasta 6 mm. Cristales biselados y espejos con cantos pulidos.</p><span class="price">$3.200</span></div>
+      <div class="row reveal"><span class="idx">06</span><h3>Carga de extintores</h3><p class="desc">Polvo químico ABC 4 y 6 kg. Sello de recarga y revisión de manómetro.</p><span class="price">$6.500</span></div>
+      <div class="row reveal"><span class="idx">07</span><h3>Soldadura por punto</h3><p class="desc">Reparación de bisagras, carritos y estructuras finas. Trae la pieza, no la idea.</p><span class="price">$2.400</span></div>
+      <div class="row reveal"><span class="idx">08</span><h3>Asesoría de obra</h3><p class="desc">Nos cuentas qué vas a hacer y te decimos qué comprar y qué no hace falta.</p><span class="price free">SIN COSTO</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATÁLOGO -->
+<section class="cat" id="catalogo">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>Nave y estanterías</h2>
+      <span class="num">02 / OCHO SECCIONES</span>
+    </div>
+    <div class="mos">
+      <a class="tile w3 reveal" href="#"><img src="https://picsum.photos/seed/brass-screws-bolts-jar/900/500" alt="Tornillería"><span class="in"><h3>Tornillería</h3><p>2.318 referencias · desde $40</p></span></a>
+      <a class="tile w3 reveal" href="#"><img src="https://picsum.photos/seed/copper-pipes-plumbing/900/500" alt="Fontanería"><span class="in"><h3>Fontanería</h3><p>1.104 referencias · cobre, ppr, pvc</p></span></a>
+      <a class="tile w2 reveal" href="#"><img src="https://picsum.photos/seed/copper-wire-coils-electric/600/500" alt="Electricidad"><span class="in"><h3>Electricidad</h3><p>980 refs.</p></span></a>
+      <a class="tile w2 reveal" href="#"><img src="https://picsum.photos/seed/oil-paint-cans-brushes/600/500" alt="Pintura"><span class="in"><h3>Pintura</h3><p>Tintometría</p></span></a>
+      <a class="tile w2 reveal" href="#"><img src="https://picsum.photos/seed/wrench-pegboard-tools/600/500" alt="Herramienta"><span class="in"><h3>Herramienta</h3><p>Manual y电</p></span></a>
+      <a class="tile w6 reveal" href="#"><img src="https://picsum.photos/seed/garden-hose-watering-can/1400/500" alt="Jardín"><span class="in"><h3>Jardín y riego</h3><p>Mangueras, goteros, tijeras de podar, sacapuntas de césped · temporada alta de septiembre a abril</p></span></a>
+      <a class="tile w3 reveal" href="#"><img src="https://picsum.photos/seed/padlock-keys-security/900/500" alt="Seguridad"><span class="in"><h3>Cerrajería y seguridad</h3><p>Candados, bisagras, mirillas, aldabas</p></span></a>
+      <a class="tile w3 reveal" href="#"><img src="https://picsum.photos/seed/adhesive-tape-glue-tubes/900/500" alt="Adhesivos"><span class="in"><h3>Adhesivos y sellados</h3><p>Contacto, poliuretano, ciano, cinta</p></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- EL LOCAL: dos columnas pegajosas -->
+<section id="local">
+  <div class="wrap two">
+    <div class="sticky">
+      <span class="eyebrow">03 / DÓNDE Y CUÁNDO</span>
+      <h2 style="font-size:clamp(32px,4.6vw,52px); margin:10px 0 14px; color:var(--deep)">El portón<br>verde</h2>
+      <p style="color:#4a463d">Salvia 214, esquina Nevado. Buscá el toldo de faja ocre: si está bajado, estamos dentro igual, tocá el timbre.</p>
+      <table class="sched">
+        <tr><th>Día</th><th>Horario</th></tr>
+        <tr><td>Lunes a viernes</td><td>8:30 – 13:30 · 16:00 – 19:30</td></tr>
+        <tr><td class="hoy">Sábado</td><td class="hoy">9:00 – 14:00 (corte: hasta 13:15)</td></tr>
+        <tr><td>Domingo</td><td>Cerrado</td></tr>
+        <tr><td>Feriados</td><td>10:00 – 13:00</td></tr>
+      </table>
+      <p style="font-family:var(--mono); font-size:12px; margin-top:16px; color:var(--brick)">☎ (011) 4488 21 74 · WhatsApp 15 5522 0174</p>
+    </div>
+    <div class="story">
+      <p class="reveal">Doña Ruth abrió en 1974 con tres estanterías y una máquina de cortar llaves prestada. Hoy la manejan sus dos hijos y sigue estando ella los sábados a la mañana, detrás del mostrador, corrigiendo pedidos.</p>
+      <figure class="reveal">
+        <img src="https://picsum.photos/seed/old-shop-counter-ledger-book/1200/700" alt="Mostrador de madera y libro de cuentas">
+        <figcaption>El mostrador original, 1974. Le cambiaron sólo el tablero, en 1998.</figcaption>
+      </figure>
+      <h3>Cincuenta y un años, cuatro cambios</h3>
+      <ul class="tl">
+        <li class="reveal"><b>1974</b><span>Apertura con 3 estanterías y una máquina de llaves prestada.</span></li>
+        <li class="reveal"><b>1991</b><span>Se compra la nave de al lado. La superficie pasa de 42 a 180 m².</span></li>
+        <li class="reveal"><b>2008</b><span>Llega la primera seccionadora de tableros. Se deja de cortar a sierra.</span></li>
+        <li class="reveal"><b>2019</b><span>Ruth se jubila. Vuelve los sábados a las 9 a tomar café y discutir precios.</span></li>
+        <li class="reveal"><b>Hoy</b><span>9.400 referencias, reparto en el barrio los martes y jueves.</span></li>
+      </ul>
+      <h3>Reparto en el barrio</h3>
+      <p class="reveal">Martes y jueves sale la camioneta. Dentro de un radio de 12 cuadras el envío es sin cargo a partir de $18.000. Fuera de ese radio, se cotiza según bulto: si entra en la caja chica, entra en la tarifa chica.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REGLAS -->
+<section class="rules" id="reglas">
+  <div class="wrap">
+    <div class="head reveal"><h2>Las reglas de la casa</h2><span class="num">04 / SE CUMPLEN</span></div>
+    <ol class="ol">
+      <li class="reveal"><b>Preguntá aunque sea obvio</b><small>Nadie nace sabiendo qué tarugo va en hormigón hueco.</small></li>
+      <li class="reveal"><b>Llevá la pieza rota</b><small>Una foto ayuda, la pieza sobre el mostrador resuelve.</small></li>
+      <li class="reveal"><b>Lo que no hay, se anota</b><small>Encargo hoy, retiro en 48 h. Sin seña.</small></li>
+      <li class="reveal"><b>Podés devolver sin drama</b><small>30 días, con el envoltorio arrugado, da igual.</small></li>
+      <li class="reveal"><b>No se corta madera después de las 19</b><small>La seccionadora hace un ruido que el barrio no perdona.</small></li>
+      <li class="reveal"><b>El café es gratis</b><small>Cafetera a la izquierda del mostrador. Sirvase usted.</small></li>
+      <li class="reveal"><b>Un tornillo se vende de a uno</b><small>Aunque a veces sea más caro que la caja. Es el trato.</small></li>
+    </ol>
+  </div>
+</section>
+
+<!-- VOCES -->
+<section>
+  <div class="wrap">
+    <div class="head reveal"><h2>Lo que dice el barrio</h2><span class="num">05 / CUATRO NOTAS</span></div>
+    <div class="voices">
+      <blockquote class="reveal"><p>Vine a comprar un flotante y me explicaron cómo cambiar todo el mecanismo. Salí con la caja cerrada y el inodoro funcionando hace seis años.</p><cite>Marta L. · Balcones de Nevado</cite></blockquote>
+      <blockquote class="reveal"><p>Cortan melamina recto como un láser. Llevo los módulos de mi taller acá desde 2011.</p><cite>Nacho V. · ebanista</cite></blockquote>
+      <blockquote class="reveal"><p>Me sacaron una llave de seguridad que tres casas dijeron "no se puede". Costó $900 y doce minutos.</p><cite>Diego R. · cuadra 9</cite></blockquote>
+      <blockquote class="reveal"><p>Es de esos lugares donde entrás por una pila y terminás hablando veinte minutos con alguien que sabe más que vos del tema. Y no te apuran.</p><cite>Lucía M. · profesora</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- PREGUNTAS -->
+<section id="preguntas" style="padding-top:0">
+  <div class="wrap" style="max-width:860px">
+    <div class="head reveal"><h2>Preguntas frecuentes</h2><span class="num">06 / BREVES</span></div>
+    <details class="reveal"><summary>¿Venden sueltas las piezas pequeñas?</summary><div>Sí. Tornillos, arandelas, clavos, puntas de broca y bujes se venden de a una unidad. Sólo algunos artículos de jardín y pintura tienen presentación mínima.</div></details>
+    <details class="reveal"><summary>¿Hacen facturas A para obras?</summary><div>Sí, con CUIT y domicilio de obra. Los cortes se detallan por medida en la misma línea de factura, que es lo que después sirve para rendir.</div></details>
+    <details class="reveal"><summary>¿Puedo encargar algo que no está en el catálogo?</summary><div>Anotalo en el cuaderno del mostrador o mandalo por WhatsApp. Si está en el distribuidor, llega en 48 h; si hay que pedirlo a fábrica, entre 5 y 10 días hábiles. Sin seña ni compromiso.</div></details>
+    <details class="reveal"><summary>¿El corte de madera tiene límite de tamaño?</summary><div>La seccionadora admite tableros de hasta 2,80 × 1,30 m. Para vidrio, la medida máxima es 1,20 × 0,90 m en espesores de 3 a 6 mm.</div></details>
+    <details class="reveal"><summary>¿Aceptan tarjetas y transferencias?</summary><div>Efectivo, débito, crédito y transferencia inmediata. No se manejan cuentas corriente salvo clientes de obra con convenio firmado.</div></details>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <span class="big">AURORA</span>
+      <p>Ferretería y taller de barrio. Salvia 214, La Aurora.<br>Atención personal los siete días de la semana, uno cerrado.</p>
+    </div>
+    <div>
+      <h3>Contacto</h3>
+      <p><a href="tel:+541144882174">(011) 4488 2174</a><br><a href="#">WhatsApp</a><br><a href="#">mostrador@aurora.ferreteria</a></p>
+    </div>
+    <div>
+      <h3>Secciones</h3>
+      <p><a href="#servicios">El mostrador</a><br><a href="#catalogo">Catálogo</a><br><a href="#local">El local</a><br><a href="#reglas">Reglas</a><br><a href="#preguntas">Preguntas</a></p>
+    </div>
+  </div>
+  <div class="wrap fbot"><span>© 1974–2025 Ferretería Aurora</span><span>Un solo archivo HTML, sin dependencias</span></div>
+</footer>
+
+</body>
+</html>
