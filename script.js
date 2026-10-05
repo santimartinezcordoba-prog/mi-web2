@@ -186,4 +186,22 @@ paintProgress();
   });
   if (f.again) f.again.addEventListener("click", () => { f.ok.hidden = true; f.name.focus(); });
 })();
-// <<<
+// <<</* ===== MODAL EN OBRA ===== */
+(function(){
+  const wip = document.getElementById("wip");
+  if(!wip) return;
+  let lastFocus = null;
+  const open = (e)=>{
+    e.preventDefault();
+    lastFocus = e.currentTarget;
+    wip.hidden = false;
+    wip.querySelector(".wip__btn").focus();
+  };
+  const close = ()=>{
+    wip.hidden = true;
+    if(lastFocus) lastFocus.focus();
+  };
+  document.querySelectorAll("[data-wip]").forEach(a=>a.addEventListener("click", open));
+  wip.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click", close));
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape" && !wip.hidden) close(); });
+})();
