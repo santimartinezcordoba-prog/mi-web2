@@ -105,7 +105,7 @@ function saveHeard(s){try{localStorage.setItem(HEARD_KEY,JSON.stringify([...s]))
 function isUnlocked(){return getHeard().size>=ALBUMS.length}
 // <<<
 function paintProgress(){if(!egg)return;const n=getHeard().size,t=ALBUMS.length;if(n===0){egg.hidden=true;return}egg.hidden=false;egg.innerHTML=isUnlocked()?`★ Sesión completa <b>${t}/${t}</b> · pulsa el logo o el mando`:`★ Álbumes escuchados <b>${n}/${t}</b>`}
-function markHeard(id){const s=getHeard();if(s.has(id)){paintProgress();return}s.add(id);saveHeard(s);if(s.size===ALBUMS.length&&!isUnlocked()){try{localStorage.setItem(UNLOCK_KEY,"1")}catch(e){}document.body.classList.add("has-snake");paintProgress();showToast(`★ <b>EASTER EGG desbloqueado</b> · pulsa el logo`)}else paintProgress()}
+function markHeard(id){const s=getHeard();if(s.has(id)){paintProgress();return}s.add(id);saveHeard(s);if(s.size===ALBUMS.length&&!document.body.classList.contains("has-snake")){try{localStorage.setItem(UNLOCK_KEY,"1")}catch(e){}document.body.classList.add("has-snake");paintProgress();showToast(`★ <b>EASTER EGG desbloqueado</b> · pulsa el logo`)}else paintProgress()}
 function showToast(html){if(!toast)return;toast.innerHTML=html;toast.hidden=false;clearTimeout(showToast._t);showToast._t=setTimeout(()=>toast.hidden=true,4500)}
 
 let actx=null;
