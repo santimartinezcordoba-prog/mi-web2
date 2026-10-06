@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="vinilo">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SANTI MARTÍNEZ · Discografía</title>
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Discografía de Santiago Martínez Córdoba: mi vida, álbum a álbum. Web hecha a mano con HTML, CSS y JS.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SANTI MARTÍNEZ · Discografía">
+  <meta property="og:description" content="Mi vida, álbum a álbum.">
+  <meta property="og:image" content="https://santimartinezcordoba-prog.github.io/mi-web2/covers/la%20espalda%20del%20sol.jpg">
+  <meta property="og:url" content="https://santimartinezcordoba-prog.github.io/mi-web2/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="./favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./icons/favicon-192.png">
+</head>
+<body>
+
+  <header class="top">
+    <div class="top__left">
+      <p class="eyebrow">SANTI MARTÍNEZ CÓRDOBA · 1º DAM</p>
+      <h1 class="wordmark" id="wordmark">DISCOGRAFÍA</h1>
+      <p class="tagline">Mi vida, álbum a álbum.</p>
+    </div>
+
+    <div class="top__right">
+      <div class="stats">
+        <div class="stat"><span class="stat__k">EDAD</span><span class="stat__v" id="age">--</span></div>
+        <div class="stat"><span class="stat__k">LANZAMIENTO</span><span class="stat__v" id="bday">--</span></div>
+        <div class="stat"><span class="stat__k">SELO</span><span class="stat__v">SIMARRO REC.</span></div>
+      </div>
+      <div class="themes" role="group" aria-label="Tema">
+        <button class="theme" data-set="vinilo">VINILO</button>
+        <button class="theme" data-set="papel">PAPEL</button>
+        <button class="theme" data-set="pixel">PIXEL</button>
+        <button class="easter" id="easterBtn" aria-label="Juego oculto" title="SNAKE">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8h10a5 5 0 0 1 5 5v1a3 3 0 0 1-5.3 1.9L15 15H9l-1.7.9A3 3 0 0 1 2 14v-1a5 5 0 0 1 5-5zm-1 4v2H4v-2h2zm2 0h2v2H8v-2zm7 .5h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="section__head">
+        <h2>DISCOGRAFÍA</h2>
+        <p class="hint">Pulsa cualquier álbum para ver su ficha completa.</p>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="section" id="proyectos" aria-labelledby="proyectos-h">
+      <div class="section__head">
+        <h2 id="proyectos-h">MIS PROYECTOS</h2>
+        <p class="hint">Cosas que he hecho. Pulsa una para abrirla.</p>
+      </div>
+      <div class="projects">
+        <!-- 01 TERMINADO: cambia ./proyecto-1/ por tu carpeta real -->
+        <a class="proj" href="./proyecto-1/" target="_blank" rel="noopener">
+          <span class="proj__n">01</span>
+          <span class="proj__body">
+            <span class="proj__title">FERRETERIA DE AURORA</span>
+            <span class="proj__desc">Ya funcionando.</span>
+          </span>
+          <span class="proj__go" aria-hidden="true">↗</span>
+        </a>
+        <!-- 02 TERMINADO: cambia ./proyecto-2/ por tu carpeta real -->
+        <a class="proj" href="./proyecto-2/" target="_blank" rel="noopener">
+          <span class="proj__n">02</span>
+          <span class="proj__body">
+            <span class="proj__title">RADIO CORDON</span>
+            <span class="proj__desc">Ya funcionando.</span>
+          </span>
+          <span class="proj__go" aria-hidden="true">↗</span>
+        </a>
+                <!-- 03 TERMINADO -->
+        <a class="proj" href="./proyecto-3/" target="_blank" rel="noopener">
+          <span class="proj__n">03</span>
+          <span class="proj__body">
+            <span class="proj__title">REFUGIO PIEDRA DEL ÁGUILA</span>
+            <span class="proj__desc">Ya funcionando.</span>
+          </span>
+          <span class="proj__go" aria-hidden="true">↗</span>
+        </a>
+        <!-- 04 EN OBRA -->
+        <a class="proj proj--wip" href="#" data-wip>
+          <span class="proj__n">04</span>
+          <span class="proj__body">
+            <span class="proj__title">PROYECTO 4</span>
+            <span class="proj__desc">En desarrollo.</span>
+          </span>
+          <span class="proj__badge">EN OBRA</span>
+          <span class="proj__go" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="section__head">
+        <h2>CONTACTO</h2>
+        <p class="hint">Escríbeme y te contesto. Sin spam, sin cuentas.</p>
+      </div>
+      <form class="form" id="contactForm" method="POST" action="https://formspree.io/f/moevyqgl" novalidate>
+        <div class="hp" aria-hidden="true"><label>No rellenar<input name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+        <div class="form__grid">
+          <div class="form__field">
+            <label class="form__label" for="cfName">Nombre *</label>
+            <input class="form__input" id="cfName" name="name" type="text" autocomplete="name" minlength="2" maxlength="60" aria-describedby="cfNameErr">
+            <p class="field__err" id="cfNameErr" aria-live="polite"></p>
+          </div>
+          <div class="form__field">
+            <label class="form__label" for="cfEmail">Email *</label>
+            <input class="form__input" id="cfEmail" name="email" type="email" autocomplete="email" aria-describedby="cfEmailErr">
+            <p class="field__err" id="cfEmailErr" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="cfSubject">Asunto</label>
+          <select class="form__input" id="cfSubject" name="subject">
+            <option value="General">General</option>
+            <option value="Sugerencia de serie/pelicula">Sugerencia de serie / película</option>
+            <option value="Sugerencia de juego">Sugerencia de juego</option>
+            <option value="Otros">Otros</option>
+          </select>
+        </div>
+        <div class="form__field">
+          <label class="form__label" for="cfMsg">Mensaje *</label>
+          <textarea class="form__input" id="cfMsg" name="message" rows="5" minlength="10" maxlength="600" aria-describedby="cfMsgErr cfCount"></textarea>
+          <p class="field__err" id="cfMsgErr" aria-live="polite"></p>
+          <p class="form__count" id="cfCount">0/600</p>
+        </div>
+        <button class="form__submit" id="cfSubmit" type="submit">ENVIAR MENSAJE</button>
+        <p class="form__err" id="cfErr" aria-live="assertive"></p>
+        <div class="form__ok" id="cfOk" hidden>
+          <p>✔ Mensaje enviado. Te contesto pronto.</p>
+          <button class="form__again" id="cfAgain" type="button">ENVIAR OTRO</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot__box">
+      <p class="foot__k">CONTACTO</p>
+      <p class="foot__mail" id="mail">santimartinezcordoba@gmail.com</p>
+      <button class="btn-copy" id="copy">COPIAR CORREO</button>
+      <p class="foot__c">© <span id="year"></span> Simarro Rec. · Hecho a mano con HTML, CSS y JS.</p>
+    </div>
+  </footer>
+
+  <div class="now" id="now" aria-hidden="true">
+    <button class="now__btn" id="playBtn" aria-label="Play / Pausa">
+      <svg class="ic ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ic ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+    </button>
+    <div class="now__bars"><i></i><i></i><i></i><i></i></div>
+    <div class="now__txt"><span class="now__k">Reproduciendo:</span> <span class="now__v" id="nowTitle">—</span></div>
+    <div class="now__prog" id="nowProg"><i id="nowBar"></i></div>
+    <span class="now__time" id="nowTime">--:-- / --:--</span>
+    <div class="now__vol">
+      <button class="now__mute" id="muteBtn" aria-label="Silenciar">
+        <svg class="spk" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="body" d="M3 10v4h4l5 5V5L7 10H3z"/>
+          <path class="wave" d="M16 8a5 5 0 0 1 0 8"/>
+          <path class="slash" d="M4 4l16 16"/>
+        </svg>
+      </button>
+      <input class="now__range" id="vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volumen">
+    </div>
+  </div>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal__back" data-close></div>
+    <article class="modal__card" role="dialog" aria-modal="true">
+      <button class="modal__x" data-close aria-label="Cerrar">✕</button>
+      <div class="modal__cover" id="mCover"></div>
+      <div class="modal__info">
+        <p class="modal__fmt" id="mFmt"></p>
+        <h3 class="modal__title" id="mTitle"></h3>
+        <p class="modal__meta" id="mMeta"></p>
+        <p class="modal__desc" id="mDesc"></p>
+        <p class="modal__tracks-k">TRACKLIST</p>
+        <ol class="modal__tracks" id="mTracks"></ol>
+      </div>
+    </article>
+  </div>
+
+  <div class="snake" id="snake" hidden>
+    <div class="snake__back" data-close></div>
+    <article class="snake__card" role="dialog" aria-modal="true">
+      <header class="snake__head">
+        <p class="snake__brand">SNAKE <span>// SESIÓN</span></p>
+        <p class="snake__score">PISTAS <b id="snakeScore">0</b> · RÉCORD <b id="snakeBest">0</b></p>
+        <button class="snake__x" data-close aria-label="Cerrar">✕</button>
+      </header>
+      <div class="snake__stage">
+        <canvas id="snakeCanvas"></canvas>
+        <div class="snake__over" id="snakeOver" hidden>
+          <p class="snake__over-t">FIN DE SESIÓN</p>
+          <p class="snake__over-m" id="snakeOverMsg"></p>
+          <button class="snake__retry" id="snakeRetry">REINTENTAR</button>
+        </div>
+        <div class="snake__pause" id="snakePause" hidden>PAUSA · pulsa espacio</div>
+      </div>
+      <div class="snake__pad">
+        <button data-dir="up" aria-label="Arriba">▲</button>
+        <div>
+          <button data-dir="left" aria-label="Izquierda">◀</button>
+          <button data-dir="right" aria-label="Derecha">▶</button>
+        </div>
+        <button data-dir="down" aria-label="Abajo">▼</button>
+      </div>
+      <p class="snake__hint">Flechas / WASD · Espacio = pausa · Esc = cerrar</p>
+    </article>
+  </div>
+
+  <!-- AVISO PROYECTO EN OBRA -->
+  <div class="wip" id="wip" hidden>
+    <div class="wip__back" data-close></div>
+    <article class="wip__card" role="dialog" aria-modal="true" aria-labelledby="wipTitle">
+      <button class="wip__x" data-close aria-label="Cerrar">✕</button>
+      <p class="wip__k">/// EN OBRA ///</p>
+      <h3 class="wip__title" id="wipTitle">SE ESTÁ TRABAJANDO EN ESTO</h3>
+      <p class="wip__msg">Este proyecto todavía no está terminado. Vuelve pronto, que va a salir algo chulo.</p>
+      <button class="wip__btn" data-close>ENTENDIDO</button>
+    </article>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <audio id="dj" preload="none"></audio>
+  <script src="script.js"></script>
+</body>
+</html>

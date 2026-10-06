@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refugio Piedra del Águila · 2.140 msnm · Cordillera</title>
+<meta name="description" content="Refugio de montaña Piedra del Águila, 2.140 msnm. Parte de montaña, vías, calculadora de ascenso, reservas, cursos y libro de cumbres.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,600&family=Public+Sans:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --piedra:#e7e5dd;
+  --piedra2:#dbd8ce;
+  --tinta:#121a1a;
+  --tinta2:#1c2626;
+  --musgo:#2f5d3a;
+  --glaciar:#2b8ea1;
+  --rescate:#e0670f;
+  --humo:#69716f;
+  --linea:rgba(18,26,26,.16);
+  --f-disp:"Fraunces",Georgia,serif;
+  --f-body:"Public Sans",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--piedra);color:var(--tinta);
+  font-family:var(--f-body);font-size:16.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:var(--rescate);color:#fff}
+a{color:inherit}
+button,input,select,textarea{font-family:inherit;font-size:inherit}
+svg{display:block}
+h1,h2,h3,h4{margin:0;font-family:var(--f-disp);font-weight:900;line-height:.95}
+p{margin:0 0 .9em}
+.grano{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.045;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+#topo{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.5}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 26px}
+
+html.js .rev{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+html.js .rev.in{opacity:1;transform:none}
+html.js-error .rev{opacity:1;transform:none}
+
+/* ---------- CABECERA / PARTE ---------- */
+.cab{border-bottom:2px solid var(--tinta);background:var(--tinta);color:var(--piedra);position:relative;z-index:2}
+.cab-top{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:22px 0 14px}
+.cab-marca{display:flex;align-items:flex-end;gap:16px}
+.cab-logo{width:54px;height:54px;flex:none}
+.cab-nom{font-family:var(--f-disp);font-weight:900;font-size:clamp(26px,4vw,42px);letter-spacing:-.015em;line-height:.9}
+.cab-sub{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--rescate);margin-top:6px}
+.cab-idx{display:flex;gap:4px;flex-wrap:wrap}
+.cab-idx a{font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+  padding:8px 10px;border:1px solid rgba(231,229,221,.28);transition:transform .16s,box-shadow .16s,border-color .16s}
+.cab-idx a:hover{transform:translateY(-2px);box-shadow:0 4px 0 rgba(224,103,15,.9);border-color:var(--rescate)}
+.cab-idx a i{font-style:normal;color:var(--rescate);margin-right:6px}
+
+.par{display:grid;grid-template-columns:auto 1fr auto;gap:0;border-top:1px solid rgba(231,229,221,.2)}
+.par-sem{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:20px 26px;border-right:1px solid rgba(231,229,221,.2);min-width:210px}
+.par-led{display:flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.par-led i{width:12px;height:12px;border-radius:50%;background:var(--rescate);box-shadow:0 0 0 0 rgba(224,103,15,.6);animation:lat 2.4s infinite}
+@keyframes lat{70%{box-shadow:0 0 0 12px rgba(224,103,15,0)}100%{box-shadow:0 0 0 0 rgba(224,103,15,0)}}
+.par-estado{font-family:var(--f-disp);font-weight:900;font-size:26px;letter-spacing:.02em}
+.par-estado.verde{color:#5fbf7d}.par-estado.amar{color:#f0c04a}.par-estado.rojo{color:#ff7a5c}
+.par-nota{font-size:12px;color:rgba(231,229,221,.65);line-height:1.45;max-width:26ch}
+.par-lect{display:grid;grid-template-columns:repeat(5,1fr);border-right:1px solid rgba(231,229,221,.2)}
+.par-cell{padding:16px 18px;border-right:1px solid rgba(231,229,221,.12)}
+.par-cell:last-child{border-right:none}
+.par-k{font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(231,229,221,.5)}
+.par-v{font-family:var(--f-disp);font-weight:700;font-size:27px;margin-top:4px;letter-spacing:-.01em}
+.par-v small{font-size:13px;font-weight:500;color:rgba(231,229,221,.6);font-family:var(--f-mono);letter-spacing:.05em}
+.par-acc{display:flex;flex-direction:column;justify-content:center;gap:8px;padding:16px 20px}
+.par-act{background:var(--rescate);color:#fff;border:none;padding:12px 16px;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:transform .16s,box-shadow .16s}
+.par-act:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(231,229,221,.9)}
+.par-act.girando{transform:rotateX(90deg)}
+.par-hora{font-family:var(--f-mono);font-size:9px;letter-spacing:.14em;color:rgba(231,229,221,.45);text-align:center}
+
+/* ---------- PERFIL HERO ---------- */
+.hero{border-bottom:1px solid var(--linea);position:relative;z-index:1;background:linear-gradient(180deg,var(--piedra2),var(--piedra))}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;padding:46px 0 30px;align-items:end}
+.hero-kick{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--musgo);display:flex;align-items:center;gap:12px}
+.hero-kick::after{content:"";flex:1;height:1px;background:var(--linea)}
+.hero h1{font-size:clamp(42px,7.4vw,86px);letter-spacing:-.03em;margin:14px 0 0}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--musgo)}
+.hero-txt{font-size:16px;color:#2a3432;max-width:52ch;margin-top:16px}
+.hero-datos{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--tinta);margin-top:22px;background:var(--piedra)}
+.hero-datos div{padding:12px 16px;border-right:1px dashed var(--linea);flex:1;min-width:120px}
+.hero-datos div:last-child{border-right:none}
+.hero-datos b{display:block;font-family:var(--f-disp);font-weight:900;font-size:24px;line-height:1}
+.hero-datos span{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--humo)}
+.hero-perfil{border:1px solid var(--tinta);background:var(--tinta);position:relative;min-height:250px}
+.hero-perfil svg{width:100%;height:100%;display:block}
+.hero-perfil-cap{position:absolute;top:12px;left:14px;font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(231,229,221,.55)}
+.hero-perfil-cota{position:absolute;right:14px;bottom:12px;font-family:var(--f-disp);font-weight:900;font-size:34px;color:var(--rescate);line-height:1}
+.hero-perfil-cota small{display:block;font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;color:rgba(231,229,221,.5);font-weight:400}
+.trazo{fill:none;stroke:var(--rescate);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- SECCIONES ---------- */
+section{scroll-margin-top:20px;border-bottom:1px solid var(--linea);position:relative;z-index:1}
+.sec{padding:64px 0}
+.sec-oscura{background:var(--tinta);color:var(--piedra);border-bottom:none}
+.sec-oscura h2{color:var(--piedra)}
+.tit{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.tit-nom{display:flex;align-items:baseline;gap:14px}
+.tit-num{font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;color:var(--rescate)}
+.tit h2{font-size:clamp(30px,4.4vw,48px);letter-spacing:-.02em}
+.tit p{font-size:13.5px;color:var(--humo);max-width:44ch;margin:0}
+.sec-oscura .tit p{color:rgba(231,229,221,.6)}
+
+/* ---------- VIAS ---------- */
+.vias{border:1px solid var(--tinta);background:var(--piedra)}
+.via{border-bottom:1px solid var(--linea)}
+.via:last-child{border-bottom:none}
+.via-head{width:100%;background:none;border:none;cursor:pointer;text-align:left;display:grid;
+  grid-template-columns:1fr 130px 150px 96px 34px;gap:18px;align-items:center;padding:18px 20px;
+  transition:background .2s,box-shadow .2s}
+.via-head:hover{background:rgba(47,93,58,.07);box-shadow:inset 5px 0 0 var(--musgo)}
+.via-nom{font-family:var(--f-disp);font-weight:700;font-size:22px;letter-spacing:-.01em}
+.via-tipo{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--humo);display:block;margin-top:3px}
+.via-grado{font-family:var(--f-mono);font-weight:600;font-size:14px;color:var(--rescate)}
+.via-bar{display:flex;gap:3px;align-items:center}
+.via-bar i{width:16px;height:8px;background:var(--piedra2);border:1px solid rgba(18,26,26,.25)}
+.via-bar i.f{background:var(--tinta)}
+.via-bar i.f.h{background:var(--rescate)}
+.via-meta{font-family:var(--f-mono);font-size:11px;color:#39423f;line-height:1.35}
+.via-caret{font-family:var(--f-mono);font-size:18px;color:var(--musgo);transition:transform .3s}
+.via.open .via-caret{transform:rotate(45deg)}
+.via-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.2,.7,.2,1)}
+.via.open .via-body{max-height:460px}
+.via-inner{padding:6px 20px 24px;display:grid;grid-template-columns:1.15fr 1fr;gap:24px}
+.via-perfil{border:1px solid var(--linea);background:var(--piedra2);position:relative;min-height:150px}
+.via-perfil svg{width:100%;height:150px}
+.via-desc{font-size:14px;color:#2a3432}
+.via-lista{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.via-lista span{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;border:1px solid var(--linea);padding:5px 8px;background:var(--piedra)}
+.via-usar{background:var(--tinta);color:var(--piedra);border:none;padding:11px 15px;font-family:var(--f-mono);font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:transform .16s,box-shadow .16s}
+.via-usar:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--rescate)}
+
+/* ---------- CALCULADORA ---------- */
+.calc-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:26px;align-items:start}
+.calc-frm{border:1px solid rgba(231,229,221,.3);padding:24px;display:flex;flex-direction:column;gap:14px;background:rgba(231,229,221,.04)}
+.campo{display:flex;flex-direction:column;gap:5px}
+.campo label{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(231,229,221,.55)}
+.campo input,.campo select{background:transparent;border:1px solid rgba(231,229,221,.35);color:var(--piedra);padding:11px 12px;border-radius:0}
+.campo input::placeholder{color:rgba(231,229,221,.35)}
+.campo .unidad{font-family:var(--f-mono);font-size:10px;color:var(--rescate);letter-spacing:.1em}
+.campo .pila{display:flex;gap:4px}
+.campo .pila button{flex:1;background:transparent;border:1px solid rgba(231,229,221,.3);color:rgba(231,229,221,.7);
+  padding:10px 6px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;cursor:pointer;transition:background .18s,transform .14s}
+.campo .pila button:hover{transform:translateY(-2px)}
+.campo .pila button.on{background:var(--rescate);border-color:var(--rescate);color:#fff}
+.calc-res{display:flex;flex-direction:column;gap:16px}
+.calc-tit{border:1px solid rgba(231,229,221,.3);padding:20px 22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.calc-tit .big{font-family:var(--f-disp);font-weight:900;font-size:52px;line-height:.9;color:var(--rescate);letter-spacing:-.02em}
+.calc-tit .big small{font-size:18px;color:rgba(231,229,221,.6);font-family:var(--f-mono);letter-spacing:.06em}
+.calc-lineas{display:flex;flex-direction:column;gap:7px}
+.calc-linea{display:flex;justify-content:space-between;gap:12px;font-size:13px;border-bottom:1px dashed rgba(231,229,221,.2);padding-bottom:6px}
+.calc-linea span{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(231,229,221,.5)}
+.calc-linea b{font-family:var(--f-mono);font-weight:500;font-size:13px}
+.calc-aviso{border-left:4px solid var(--rescate);padding:14px 16px;background:rgba(224,103,15,.1);font-size:13px;line-height:1.5}
+.calc-aviso b{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:4px;color:#f0a463}
+.calc-curva{border:1px solid rgba(231,229,221,.3);position:relative;min-height:170px;background:rgba(0,0,0,.2)}
+.calc-curva svg{width:100%;height:170px}
+.calc-curva-cap{position:absolute;top:10px;left:12px;font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(231,229,221,.45)}
+.calc-btn{align-self:flex-start;background:var(--rescate);color:#fff;border:none;padding:14px 22px;font-family:var(--f-mono);
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:transform .16s,box-shadow .16s}
+.calc-btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--piedra)}
+
+/* ---------- REFUGIO / MENU ---------- */
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--tinta);background:var(--piedra)}
+.ref-serv{padding:26px 28px;border-right:1px solid var(--linea)}
+.ref-serv h3{font-size:22px;margin-bottom:12px}
+.ref-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.ref-lista li{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px dashed var(--linea);font-size:14px;transition:padding-left .18s}
+.ref-lista li:hover{padding-left:8px}
+.ref-lista li:last-child{border-bottom:none}
+.ref-lista b{font-family:var(--f-mono);font-size:11.5px;color:var(--musgo);white-space:nowrap}
+.ref-menu{padding:26px 28px;background:var(--tinta);color:var(--piedra)}
+.ref-menu h3{font-size:22px;color:var(--piedra)}
+.ref-piz{font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--rescate);margin-bottom:14px}
+.ref-plato{border-left:2px solid var(--musgo);padding:0 0 0 14px;margin-bottom:16px}
+.ref-plato b{font-family:var(--f-disp);font-weight:700;font-size:19px;display:block}
+.ref-plato span{font-size:12.5px;color:rgba(231,229,221,.65)}
+.ref-nota{font-size:11.5px;color:rgba(231,229,221,.5);border-top:1px dashed rgba(231,229,221,.25);padding-top:12px;margin-top:4px}
+
+/* ---------- RESERVA ---------- */
+.res-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+.cal{border:1px solid var(--tinta);background:var(--piedra);padding:22px 24px}
+.cal-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+.cal-top h3{font-size:20px}
+.cal-top span{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;color:var(--humo)}
+.cal-ley{display:flex;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--humo);margin-bottom:14px}
+.cal-ley i{display:inline-block;width:9px;height:9px;margin-right:5px;background:var(--piedra2);border:1px solid var(--linea)}
+.cal-ley .l2 i{background:var(--musgo);border-color:var(--musgo)}
+.cal-ley .l3 i{background:var(--rescate);border-color:var-rescate}
+.cal-dias{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-dia{border:1px solid var(--linea);background:var(--piedra);padding:8px 6px 7px;text-align:center;cursor:pointer;position:relative;
+  transition:transform .16s,box-shadow .16s,border-color .16s}
+.cal-dia:hover{transform:translateY(-3px);box-shadow:0 4px 0 var(--musgo);border-color:var(--musgo)}
+.cal-dia em{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.1em;font-style:normal;color:var(--humo);text-transform:uppercase}
+.cal-dia b{display:block;font-family:var(--f-disp);font-weight:900;font-size:22px;line-height:1.1}
+.cal-dia small{display:block;font-family:var(--f-mono);font-size:8.5px;color:var(--musgo)}
+.cal-dia.lleno{cursor:not-allowed;background:repeating-linear-gradient(45deg,var(--piedra2),var(--piedra2) 4px,var(--piedra) 4px,var(--piedra) 8px)}
+.cal-dia.lleno:hover{transform:none;box-shadow:none;border-color:var(--linea)}
+.cal-dia.lleno small{color:#a3a099}
+.cal-dia.sel{background:var(--rescate);border-color:var-rescate}
+.cal-dia.sel em,.cal-dia.sel small{color:rgba(255,255,255,.8)}
+.cal-dia.rango{background:var(--musgo);border-color:var(--musgo)}
+.cal-dia.rango em,.cal-dia.rango small{color:rgba(255,255,255,.75)}
+.cal-err{font-family:var(--f-mono);font-size:11px;color:var(--rescate);min-height:16px;margin-top:10px;letter-spacing:.06em}
+.res-frm{border:1px solid var(--tinta);background:var(--piedra2);padding:22px 24px;display:flex;flex-direction:column;gap:13px}
+.res-frm .campo label{color:var(--humo)}
+.res-frm .campo input,.res-frm .campo select{background:var(--piedra);border:1px solid var(--linea);color:var(--tinta)}
+.res-extras{display:flex;flex-direction:column;gap:7px}
+.res-extra{display:flex;align-items:center;gap:10px;font-size:13.5px;padding:8px 10px;border:1px solid var(--linea);background:var(--piedra);cursor:pointer;
+  transition:transform .14s,box-shadow .14s}
+.res-extra:hover{transform:translateX(3px);box-shadow:-3px 0 0 var(--musgo)}
+.res-extra input{width:16px;height:16px;accent-color:var(--musgo)}
+.res-extra span{margin-left:auto;font-family:var(--f-mono);font-size:11px;color:var(--musgo)}
+.res-total{border-top:2px solid var(--tinta);padding-top:12px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.res-total span{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--humo)}
+.res-total b{font-family:var(--f-disp);font-weight:900;font-size:38px;line-height:.9;letter-spacing:-.02em}
+.res-ticket{border:2px dashed var(--musgo);padding:16px;background:var(--piedra);display:none}
+.res-ticket.on{display:block;animation:sella .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes sella{from{transform:scale(.9) rotate(-2deg);opacity:0}to{transform:none;opacity:1}}
+.res-ticket .cod{font-family:var(--f-mono);font-weight:600;font-size:20px;letter-spacing:.1em;color:var(--musgo)}
+.res-hist{margin-top:14px;font-family:var(--f-mono);font-size:11px;color:var(--humo);display:flex;flex-direction:column;gap:5px}
+.res-hist div{border-bottom:1px dotted var(--linea);padding-bottom:4px}
+
+/* ---------- CURSOS ---------- */
+.cur{display:grid;gap:0;border-top:1px solid var(--linea)}
+.cur-fila{display:grid;grid-template-columns:96px 1fr 200px 130px;gap:20px;align-items:center;padding:18px 10px;
+  border-bottom:1px solid var(--linea);transition:padding-left .2s,background .2s}
+.cur-fila:hover{padding-left:22px;background:rgba(43,142,161,.07)}
+.cur-fecha{font-family:var(--f-disp);font-weight:900;font-size:15px;color:var(--tinta);border:2px solid var(--tinta);
+  padding:6px 4px;text-align:center;line-height:1.05;background:var(--piedra)}
+.cur-fecha small{display:block;font-family:var(--f-mono);font-size:8.5px;letter-spacing:.14em;font-weight:400;color:var(--humo)}
+.cur-nom{font-family:var(--f-disp);font-weight:700;font-size:21px}
+.cur-desc{font-size:13px;color:#39423f;margin-top:2px}
+.cur-lug{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;color:var(--humo);text-transform:uppercase}
+.cur-cupo{font-family:var(--f-mono);font-size:11px;text-align:right}
+.cur-cupo b{display:block;font-size:15px;color:var(--musgo)}
+
+/* ---------- LIBRO DE CUMBRES ---------- */
+.lib-filt{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.lib-filt button{background:none;border:1px solid rgba(231,229,221,.3);color:rgba(231,229,221,.75);padding:9px 14px;
+  font-family:var(--f-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:transform .14s,border-color .14s}
+.lib-filt button:hover{transform:translateY(-2px);border-color:var(--rescate)}
+.lib-filt button.on{background:var(--rescate);border-color:var(--rescate);color:#fff}
+.lib-tab{width:100%;border-collapse:collapse;font-size:13.5px}
+.lib-tab th{font-family:var(--f-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(231,229,221,.45);
+  text-align:left;padding:10px 12px;border-bottom:1px solid rgba(231,229,221,.25);font-weight:400}
+.lib-tab td{padding:12px;border-bottom:1px dashed rgba(231,229,221,.16);vertical-align:top}
+.lib-tab tr{transition:background .18s,transform .18s}
+.lib-tab tbody tr:hover{background:rgba(231,229,221,.06)}
+.lib-tab .f{font-family:var(--f-mono);font-size:11.5px;color:var(--rescate);white-space:nowrap}
+.lib-tab .n{font-family:var(--f-disp);font-weight:700;font-size:17px}
+.lib-tab .m{font-family:var(--f-mono);font-size:11px;color:rgba(231,229,221,.6)}
+.lib-vacio{padding:26px;text-align:center;font-family:var(--f-mono);font-size:11px;color:rgba(231,229,221,.5)}
+
+/* ---------- NORMAS APILADAS ---------- */
+.pila{display:flex;flex-direction:column;gap:14px}
+.pila-item{position:sticky;border:1px solid var(--tinta);background:var(--piedra);padding:26px 28px;
+  display:grid;grid-template-columns:64px 1fr;gap:20px;box-shadow:0 -12px 24px rgba(18,26,26,.06)}
+.pila-item h3{font-size:24px;margin-bottom:8px}
+.pila-item p{font-size:14px;color:#2a3432;margin:0}
+.pila-n{font-family:var(--f-disp);font-weight:900;font-size:44px;color:var(--rescate);line-height:.8}
+.pila-item:nth-child(even){background:var(--piedra2)}
+
+/* ---------- MAPA ---------- */
+.mapa{border:1px solid var(--tinta);background:var(--tinta);position:relative}
+.mapa svg{width:100%;height:auto;display:block}
+.mapa-cap{position:absolute;top:14px;left:16px;font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(231,229,221,.5)}
+.mapa-ley{display:flex;gap:18px;flex-wrap:wrap;padding:14px 18px;border-top:1px solid rgba(231,229,221,.2);
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(231,229,221,.6)}
+.mapa-ley i{display:inline-block;width:10px;height:10px;margin-right:6px}
+.acc{fill:none;stroke:var(--rescate);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:6 7}
+
+/* ---------- FOOTER ---------- */
+.pie{background:var(--tinta);color:var(--piedra);padding:52px 0 26px}
+.pie-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:28px}
+.pie h4{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--rescate);margin-bottom:12px;font-weight:400}
+.pie ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;font-size:13.5px;color:rgba(231,229,221,.8)}
+.pie a{text-decoration:none;border-bottom:1px solid transparent;transition:border-color .18s,transform .18s;display:inline-block}
+.pie a:hover{border-bottom-color:var(--rescate);transform:translateY(-1px)}
+.pie-coord{font-family:var(--f-disp);font-weight:900;font-size:clamp(34px,5vw,56px);line-height:.95;letter-spacing:-.02em}
+.pie-coord span{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;color:rgba(231,229,221,.5);display:block;margin-top:10px;font-weight:400}
+.pie-bot{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:34px;padding-top:16px;
+  border-top:1px solid rgba(231,229,221,.18);font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(231,229,221,.45)}
+
+/* ---------- CHIP FLOTANTE ---------- */
+.chip{position:fixed;left:18px;bottom:18px;z-index:60;background:var(--tinta);color:var(--piedra);
+  border:1px solid rgba(231,229,221,.3);padding:9px 13px;display:flex;align-items:center;gap:11px;
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  box-shadow:0 8px 22px rgba(18,26,26,.28);transition:transform .2s,box-shadow .2s}
+.chip:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(18,26,26,.34)}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--rescate)}
+.chip.verde i{background:#5fbf7d}.chip.amar i{background:#f0c04a}.chip.rojo i{background:#ff7a5c}
+.chip b{color:var(--rescate);font-weight:500}
+
+@media (max-width:960px){
+  .hero-grid,.calc-grid,.res-grid,.ref-grid,.via-inner{grid-template-columns:1fr}
+  .par{grid-template-columns:1fr}
+  .par-sem,.par-lect{border-right:none;border-bottom:1px solid rgba(231,229,221,.2)}
+  .par-lect{grid-template-columns:repeat(3,1fr)}
+  .via-head{grid-template-columns:1fr 90px 30px}
+  .via-bar,.via-meta{display:none}
+  .cur-fila{grid-template-columns:74px 1fr}
+  .cur-lug,.cur-cupo{grid-column:2}
+  .pie-grid{grid-template-columns:1fr 1fr}
+  .ref-serv{border-right:none;border-bottom:1px solid var(--linea)}
+}
+@media (max-width:620px){
+  .cal-dias{grid-template-columns:repeat(4,1fr)}
+  .par-lect{grid-template-columns:repeat(2,1fr)}
+  .lib-tab .m{display:none}
+  .chip{font-size:8.5px;padding:7px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .pila-item{position:static}
+}
+</style>
+</head>
+<body>
+<div class="grano"></div>
+<svg id="topo" preserveAspectRatio="none" aria-hidden="true"></svg>
+
+<header class="cab">
+  <div class="wrap">
+    <div class="cab-top">
+      <div class="cab-marca">
+        <svg class="cab-logo" viewBox="0 0 60 60" aria-hidden="true">
+          <path d="M4 52 L22 18 L31 34 L38 22 L56 52 Z" fill="none" stroke="#e7e5dd" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M22 18 L28 29 L22 33 L17 27 Z" fill="#e0670f"/>
+          <circle cx="46" cy="12" r="5" fill="none" stroke="#e0670f" stroke-width="2"/>
+        </svg>
+        <div>
+          <div class="cab-nom">Refugio Piedra<br>del Águila</div>
+          <div class="cab-sub">2.140 msnm · 41°12′S 71°38′O · desde 1963</div>
+        </div>
+      </div>
+      <nav class="cab-idx" aria-label="Índice">
+        <a href="#vias"><i>01</i>Vías</a>
+        <a href="#ascenso"><i>02</i>Ascenso</a>
+        <a href="#refugio"><i>03</i>Refugio</a>
+        <a href="#reserva"><i>04</i>Reserva</a>
+        <a href="#cursos"><i>05</i>Cursos</a>
+        <a href="#libro"><i>06</i>Libro</a>
+        <a href="#normas"><i>07</i>Normas</a>
+        <a href="#acceso"><i>08</i>Acceso</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="par">
+      <div class="par-sem">
+        <div class="par-led"><i></i>Parte de montaña</div>
+        <div class="par-estado amar" id="parEstado">PRECAUCIÓN</div>
+        <div class="par-nota" id="parNota">Viento fuerte en cumbre. Ventana corta entre las 05:00 y 10:00.</div>
+      </div>
+      <div class="par-lect">
+        <div class="par-cell"><div class="par-k">Temp. cumbre</div><div class="par-v" id="pT">−4<small>°C</small></div></div>
+        <div class="par-cell"><div class="par-k">Viento</div><div class="par-v" id="pV">34<small> km/h O</small></div></div>
+        <div class="par-cell"><div class="par-k">Visibilidad</div><div class="par-v" id="pVis">8<small> km</small></div></div>
+        <div class="par-cell"><div class="par-k">Nieve prevista</div><div class="par-v" id="pN">20<small> %</small></div></div>
+        <div class="par-cell"><div class="par-k">Plazas libres</div><div class="par-v" id="pP">17<small> / 46</small></div></div>
+      </div>
+      <div class="par-acc">
+        <button class="par-act" id="parAct">Actualizar lectura</button>
+        <div class="par-hora" id="parHora">—</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="rev">
+        <div class="hero-kick">Guardaparque Marta Iriarte · turno diurno</div>
+        <h1>Aquí arriba<br>el clima <em>manda</em>,<br>y punto.</h1>
+        <p class="hero-txt">Cincuenta y dos años de refugio de piedra y chapa sobre el portezuelo. Se llega a pie, se registra uno en el libro, y se baja antes del mediodía si el viento dice que sí. Acá no hay señal de celular: hay radio VHF, estufa a leña y una libreta donde todos firman.</p>
+        <div class="hero-datos">
+          <div><b>46</b><span>Plazas</span></div>
+          <div><b>2.140</b><span>metros</span></div>
+          <div><b>6</b><span>Vías abiertas</span></div>
+          <div><b>1963</b><span>Fundado</span></div>
+        </div>
+      </div>
+      <div class="hero-perfil rev" id="heroPerfil">
+        <div class="hero-perfil-cap">Perfil Sendero del Carancho · 0 → cumbre</div>
+        <svg viewBox="0 0 480 250" preserveAspectRatio="none" aria-hidden="true">
+          <g stroke="rgba(231,229,221,.1)" stroke-width="1">
+            <line x1="0" y1="60" x2="480" y2="60"/><line x1="0" y1="110" x2="480" y2="110"/>
+            <line x1="0" y1="160" x2="480" y2="160"/><line x1="0" y1="210" x2="480" y2="210"/>
+          </g>
+          <path d="M0 232 L70 214 L128 196 L186 160 L246 138 L300 96 L356 74 L420 34 L480 22 L480 250 L0 250 Z" fill="rgba(47,93,58,.35)"/>
+          <path class="trazo" id="heroTrazo" d="M0 232 L70 214 L128 196 L186 160 L246 138 L300 96 L356 74 L420 34 L480 22"/>
+          <circle cx="480" cy="22" r="4" fill="#e0670f"/>
+        </svg>
+        <div class="hero-perfil-cota">2.140<small>msnm</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vias">
+  <div class="wrap sec">
+    <div class="tit rev">
+      <div class="tit-nom"><span class="tit-num">01</span><h2>Vías del macizo</h2></div>
+      <p>Seis itinerarios del portezuelo a la pared. El grado es nuestro, no del topo: lo calibra el guardaparque cada primavera.</p>
+    </div>
+    <div class="vias rev" id="vias">
+      <div class="via" data-des="620" data-dis="4.2" data-grado="2A" data-tipo="Sendero de aproximación"
+        data-desc="El camino viejo de los arrieros. Sube por el bosque de ñires, cruza dos vados y sale al portezuelo por una loma de ripio. Sombra hasta el km 2, después nada. Es también la vía de bajada de todas las demás."
+        data-eq="Botín de caña media,bastón,2 L agua,abrigo viento" data-tiempo="2h45">
+        <button class="via-head"><span><span class="via-nom">Sendero del Carancho</span><span class="via-tipo">Sendero de aproximación</span></span>
+          <span class="via-grado">2A</span>
+          <span class="via-bar"><i class="f"></i><i class="f"></i><i></i><i></i><i></i><i></i></span>
+          <span class="via-meta">620 m<br>4,2 km</span><span class="via-caret">+</span></button>
+        <div class="via-body"><div class="via-inner">
+          <div class="via-perfil"><svg viewBox="0 0 300 150" preserveAspectRatio="none"></svg></div>
+          <div><p class="via-desc"></p><div class="via-lista"></div>
+          <button class="via-usar">Usar en calculadora →</button></div>
+        </div></div>
+      </div>
+      <div class="via" data-des="940" data-dis="1.8" data-grado="III+ 5c" data-tipo="Arista de roca sana"
+        data-desc="Arista aérea con dos pasos de III+ y un diedro de 5c que se puede evitar por la vertiente este. Reuniones fijas cada 12 m. El tramo final se descompone: cascotes sueltos, cuidado con el que viene abajo."
+        data-eq="Cinta x6,casco,empotradores,90 m soga,dos mosquetones extra" data-tiempo="6h">
+        <button class="via-head"><span><span class="via-nom">Arista Norte</span><span class="via-tipo">Arista de roca sana</span></span>
+          <span class="via-grado">III+</span>
+          <span class="via-bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></span>
+          <span class="via-meta">940 m<br>1,8 km</span><span class="via-caret">+</span></button>
+        <div class="via-body"><div class="via-inner">
+          <div class="via-perfil"><svg viewBox="0 0 300 150" preserveAspectRatio="none"></svg></div>
+          <div><p class="via-desc"></p><div class="via-lista"></div>
+          <button class="via-usar">Usar en calculadora →</button></div>
+        </div></div>
+      </div>
+      <div class="via" data-des="320" data-dis="0.4" data-grado="V+ multilargo" data-tipo="Pared vertical"
+        data-desc="Cuatro largos sobre granito compacto, el tercero es el duro (V+ de placa sin agarras). Chapetas fijas, reuniones en árbol. La sombra llega a las 13:30: si no salís temprano, escalás con frío."
+        data-eq="Juego de friends 0.4–3,casco,saco de magnesia,90 m soga doble" data-tiempo="5h">
+        <button class="via-head"><span><span class="via-nom">Pared del Cóndor</span><span class="via-tipo">Pared vertical · multilargo</span></span>
+          <span class="via-grado">V+</span>
+          <span class="via-bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f h"></i><i></i></span>
+          <span class="via-meta">320 m<br>0,4 km</span><span class="via-caret">+</span></button>
+        <div class="via-body"><div class="via-inner">
+          <div class="via-perfil"><svg viewBox="0 0 300 150" preserveAspectRatio="none"></svg></div>
+          <div><p class="via-desc"></p><div class="via-lista"></div>
+          <button class="via-usar">Usar en calculadora →</button></div>
+        </div></div>
+      </div>
+      <div class="via" data-des="1100" data-dis="3.6" data-grado="HI 4" data-tipo="Corredor de hielo"
+        data-desc="Dos largos de hielo a 55° y una rimaya para entrar. Condicional: sólo con frío sostenido bajo −5 °C, lo anuncia el parte. En primavera se vuelve cascada y queda cerrada por seguridad."
+        data-eq="Crampones técnicos,pioleta x2,casco,arnés,10 tornillos,kit de grieta" data-tiempo="7h">
+        <button class="via-head"><span><span class="via-nom">Corredor de Hielo Sur</span><span class="via-tipo">Corredor de hielo · condicional</span></span>
+          <span class="via-grado">HI 4</span>
+          <span class="via-bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f h"></i><i class="f h"></i></span>
+          <span class="via-meta">1.100 m<br>3,6 km</span><span class="via-caret">+</span></button>
+        <div class="via-body"><div class="via-inner">
+          <div class="via-perfil"><svg viewBox="0 0 300 150" preserveAspectRatio="none"></svg></div>
+          <div><p class="via-desc"></p><div class="via-lista"></div>
+          <button class="via-usar">Usar en calculadora →</button></div>
+        </div></div>
+      </div>
+      <div class="via" data-des="1450" data-dis="14.5" data-grado="Glaciar · 2 días" data-tipo="Travesada"
+        data-desc="Se cruza el glaciar Colgado y se duerme en la cueva del Portezuelo Negro. Requiere arnés y soga aunque no haya grietas visibles: el puente natural de la zona media no aparece en ninguna foto."
+        data-eq="Arnés,soga 60 m,packraft o pala,pioleta,brújula,estufa propia" data-tiempo="11h + vivac">
+        <button class="via-head"><span><span class="via-nom">Traversada de los Glaciares</span><span class="via-tipo">Travesada · pernocte fuera</span></span>
+          <span class="via-grado">GLACIAR</span>
+          <span class="via-bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f h"></i></span>
+          <span class="via-meta">1.450 m<br>14,5 km</span><span class="via-caret">+</span></button>
+        <div class="via-body"><div class="via-inner">
+          <div class="via-perfil"><svg viewBox="0 0 300 150" preserveAspectRatio="none"></svg></div>
+          <div><p class="via-desc"></p><div class="via-lista"></div>
+          <button class="via-usar">Usar en calculadora →</button></div>
+        </div></div>
+      </div>
+      <div class="via" data-des="180" data-dis="2.1" data-grado="Fácil" data-tipo="Mirador familiar"
+        data-desc="Media hora de caminata por la loma, con banco de piedra y vista a los cuatro mil del fondo. Se hace con zapatilla si está seco. Es el único itinerario que el guardaparque habilita con viento de hasta 50 km/h."
+        data-eq="Zapatilla con suela,agua,gorra" data-tiempo="1h">
+        <button class="via-head"><span><span class="via-nom">Mirador de los Juncos</span><span class="via-tipo">Mirador familiar</span></span>
+          <span class="via-grado">FÁCIL</span>
+          <span class="via-bar"><i class="f"></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="via-meta">180 m<br>2,1 km</span><span class="via-caret">+</span></button>
+        <div class="via-body"><div class="via-inner">
+          <div class="via-perfil"><svg viewBox="0 0 300 150" preserveAspectRatio="none"></svg></div>
+          <div><p class="via-desc"></p><div class="via-lista"></div>
+          <button class="via-usar">Usar en calculadora →</button></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ascenso" class="sec-oscura">
+  <div class="wrap sec">
+    <div class="tit rev">
+      <div class="tit-nom"><span class="tit-num">02</span><h2>Calculadora de ascenso</h2></div>
+      <p>Fórmula de Naismith corregida por mochila, terreno y pausas. El resultado es una estimación, no una promesa.</p>
+    </div>
+    <div class="calc-grid">
+      <form class="calc-frm rev" id="calcFrm" novalidate>
+        <div class="campo"><label for="cDes">Desnivel positivo</label>
+          <div style="display:flex;gap:8px;align-items:center"><input id="cDes" type="number" min="50" max="2000" step="10" value="620"><span class="unidad">metros</span></div></div>
+        <div class="campo"><label for="cDis">Distancia total</label>
+          <div style="display:flex;gap:8px;align-items:center"><input id="cDis" type="number" min="0.3" max="40" step="0.1" value="4.2"><span class="unidad">km</span></div></div>
+        <div class="campo"><label>Mochila</label>
+          <div class="pila" id="pilaMoch"><button type="button" data-f="1" class="on">Liviana · &lt;8 kg</button><button type="button" data-f="1.18">Media · 8–16 kg</button><button type="button" data-f="1.4">Pesada · &gt;16 kg</button></div></div>
+        <div class="campo"><label>Terreno</label>
+          <div class="pila" id="pilaTerr"><button type="button" data-f="1" class="on">Sendero</button><button type="button" data-f="1.25">Ripio / nieve blanda</button><button type="button" data-f="1.55">Trepada / glaciar</button></div></div>
+        <div class="campo"><label for="cPausa">Pausa por hora de marcha</label>
+          <div style="display:flex;gap:8px;align-items:center"><input id="cPausa" type="number" min="0" max="20" step="1" value="8"><span class="unidad">min</span></div></div>
+        <div class="campo"><label for="cSalida">Hora de salida prevista</label><input id="cSalida" type="time" value="05:30"></div>
+        <div class="campo"><label for="cAtardecer">Atardecer del día</label><input id="cAtardecer" type="time" value="20:41"></div>
+        <button class="calc-btn" type="submit">Calcular ascenso</button>
+      </form>
+      <div class="calc-res rev">
+        <div class="calc-tit">
+          <div>
+            <div class="par-k">Tiempo total (ida y vuelta)</div>
+            <div class="big" id="oTotal">—<small> h</small></div>
+          </div>
+          <div class="calc-lineas">
+            <div class="calc-linea"><span>Subida</span><b id="oSub">—</b></div>
+            <div class="calc-linea"><span>Bajada</span><b id="oBaj">—</b></div>
+            <div class="calc-linea"><span>Pausas</span><b id="oPaus">—</b></div>
+            <div class="calc-linea"><span>Retorno al refugio</span><b id="oRet">—</b></div>
+            <div class="calc-linea"><span>Salida más tarde posible</span><b id="oMax">—</b></div>
+            <div class="calc-linea" style="border-bottom:none"><span>Desnivel por hora</span><b id="oVel">—</b></div>
+          </div>
+        </div>
+        <div class="calc-curva">
+          <div class="calc-curva-cap">Curva de altitud estimada</div>
+          <svg viewBox="0 0 400 170" preserveAspectRatio="none"><g id="oCurva"></g></svg>
+        </div>
+        <div class="calc-aviso" id="oAviso"><b>Resultado</b>Cargá los datos y tocá calcular.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="refugio">
+  <div class="wrap sec">
+    <div class="tit rev">
+      <div class="tit-nom"><span class="tit-num">03</span><h2>Adentro del refugio</h2></div>
+      <p>Piedra, chapa y una estufa que aguanta todo el invierno. Lo que hay, hay; lo que no hay, no se puede conseguir.</p>
+    </div>
+    <div class="ref-grid rev">
+      <div class="ref-serv">
+        <h3>Servicios y límites</h3>
+        <ul class="ref-lista">
+          <li>Camas en camarote de 6 <b>46 plazas</b></li>
+          <li>Mantas de lana <b>una por cama</b></li>
+          <li>Agua de vertiente, sin cloro <b>potable filtrada</b></li>
+          <li>Estufa a leña encendida <b>17:00 – 22:30</b></li>
+          <li>Sala de secado con tendedero <b>uso libre</b></li>
+          <li>Botiquín de trauma <b>en guardiola</b></li>
+          <li>Radio VHF canal 12 <b>146.520 MHz</b></li>
+          <li>Teléfono satelital <b>sólo emergencia</b></li>
+          <li>Cobertura de celular <b>nula</b></li>
+          <li>Electricidad <b>placa solar, 22:30 se apaga</b></li>
+          <li>Baño <b>seco, afuera, 12 pasos</b></li>
+          <li>Guardaparque de turno <b>06:00 – 21:00</b></li>
+        </ul>
+      </div>
+      <div class="ref-menu">
+        <h3>Pizarra de hoy</h3>
+        <div class="ref-piz" id="pizFecha">—</div>
+        <div class="ref-plato"><b>Sopa de morcilla y papa</b><span>Con cebolla de la huerta de abajo y pan del día anterior.</span></div>
+        <div class="ref-plato"><b>Guiso de lentejas con costilla</b><span>Cocina lenta desde las 14. Se sirve hasta que se acaba, no hay segunda tanda.</span></div>
+        <div class="ref-plato"><b>Tortas fritas con mate cocido</b><span>Sin costo, después de la cena. Traé tu propio mate.</span></div>
+        <div class="ref-plato"><b>Desayuno 06:30</b><span>Pan, dulce de membrillo, queso, café con leche, té de piquillín.</span></div>
+        <p class="ref-nota">No hay menú vegetariano fijo, pero si avisás al reservar se hace sopa de verduras aparte. No hay heladera para cosas propias: la nieve no siempre alcanza.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reserva" class="sec-oscura">
+  <div class="wrap sec">
+    <div class="tit rev">
+      <div class="tit-nom"><span class="tit-num">04</span><h2>Reservar plaza</h2></div>
+      <p>La disponibilidad se actualiza cuando el guardaparque tiene señal, los martes y viernes. Lo que ves acá es lo que hay.</p>
+    </div>
+    <div class="res-grid">
+      <div class="cal rev">
+        <div class="cal-top"><h3 id="calMes">—</h3><span>Tarifa por persona y noche: $26.000</span></div>
+        <div class="cal-ley">
+          <span><i></i>Con cupo</span><span class="l2"><i></i>Quedan pocas</span><span class="l3"><i></i>Sin plazas</span>
+        </div>
+        <div class="cal-dias" id="calDias"></div>
+        <div class="cal-err" id="calErr"></div>
+        <div style="font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:rgba(231,229,221,.45);margin-top:10px">
+          Elegí el día de llegada y después el de salida. Máximo 6 noches, máximo 6 personas.
+        </div>
+      </div>
+      <form class="res-frm rev" id="resFrm" novalidate>
+        <div class="campo"><label for="rNom">Nombre y apellido de quien llega</label><input id="rNom" type="text" placeholder="Como figura en el libro de cumbres"><span class="err" style="font-family:var(--f-mono);font-size:10.5px;color:#ff9a7a" id="eNom"></span></div>
+        <div class="campo"><label for="rPer">Personas</label>
+          <select id="rPer"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></div>
+        <div class="campo"><label>Extras</label>
+          <div class="res-extras">
+            <label class="res-extra"><input type="checkbox" data-p="9500" data-x="persona/noche"> Cena en el refugio <span>$9.500</span></label>
+            <label class="res-extra"><input type="checkbox" data-p="6000" data-x="persona"> Préstamo de crampones y piolet <span>$6.000</span></label>
+            <label class="res-extra"><input type="checkbox" data-p="38000" data-x="grupo"> Medio día con guía de montaña <span>$38.000</span></label>
+            <label class="res-extra"><input type="checkbox" data-p="4000" data-x="grupo"> Leña extra para la noche <span>$4.000</span></label>
+          </div>
+        </div>
+        <div style="font-family:var(--f-mono);font-size:11px;color:rgba(231,229,221,.6);border:1px dashed rgba(231,229,221,.3);padding:10px">
+          <span id="rResumen">Sin fechas elegidas.</span>
+        </div>
+        <div class="res-total"><span>Total estimativo</span><b id="rTotal">$0</b></div>
+        <button class="calc-btn" type="submit" style="background:var(--musgo)">Confirmar reserva</button>
+        <div class="res-ticket" id="rTicket">
+          <div style="font-family:var(--f-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(231,229,221,.5)">Reserva confirmada · se anota en el libro</div>
+          <div class="cod" id="rCod">—</div>
+          <div style="font-size:13px" id="rDetalle">—</div>
+        </div>
+        <div class="res-hist" id="rHist"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section id="cursos">
+  <div class="wrap sec">
+    <div class="tit rev">
+      <div class="tit-nom"><span class="tit-num">05</span><h2>Cursos y salidas guiadas</h2></div>
+      <p>Los dictan los guías del club que sostiene el refugio. Los cupos se anotan a mano, acá va el duplicado digital.</p>
+    </div>
+    <div class="cur rev">
+      <div class="cur-fila"><div class="cur-fecha">12<small>ABR</small></div>
+        <div><div class="cur-nom">Nociones de nieve dura</div><div class="cur-desc">Pioleta mano de arriba, autotripulación, cómo leer un manto nevado antes de meterse en un corredor.</div></div>
+        <div class="cur-lug">Portezuelo · 07:00 · guía L. Arriagada</div><div class="cur-cupo"><b>4 / 10</b>cupos libres</div></div>
+      <div class="cur-fila"><div class="cur-fecha">19<small>ABR</small></div>
+        <div><div class="cur-nom">Autosocorro en grieta</div><div class="cur-desc">Nudo prusik, polea simple, extracción de una persona en 20 minutos. Se practica con la soga atada al refugio.</div></div>
+        <div class="cur-lug">Glaciar Colgado · 06:30 · guía M. Iriarte</div><div class="cur-cupo"><b>1 / 8</b>cupos libres</div></div>
+      <div class="cur-fila"><div class="cur-fecha">26<small>ABR</small></div>
+        <div><div class="cur-nom">Multilargo en Pared del Cóndor</div><div class="cur-desc">Reuniones, aseguramiento al arnés, descenso en rápel por la vertiente este. Requisito: escalar 5c con seguridad.</div></div>
+        <div class="cur-lug">Pared · 08:00 · guía D. Cifuentes</div><div class="cur-cupo"><b>6 / 6</b>cupos libres</div></div>
+      <div class="cur-fila"><div class="cur-fecha">03<small>MAY</small></div>
+        <div><div class="cur-nom">Primeros auxilios de montaña</div><div class="cur-desc">Cuatro horas de sala con una enfermera del puesto de abajo: hipotermia, fracturas, inmovilización y evacuación.</div></div>
+        <div class="cur-lug">Comedor refugio · 15:00 · enf. P. Sandoval</div><div class="cur-cupo"><b>12 / 24</b>cupos libres</div></div>
+      <div class="cur-fila"><div class="cur-fecha">10<small>MAY</small></div>
+        <div><div class="cur-nom">Orientación y lectura de carta</div><div class="cur-desc">Brújula sin GPS, curvas de nivel, azimut y error magnético. Se sale al Mirador de los Juncos y se vuelve por otro lado.</div></div>
+        <div class="cur-lug">Sendero · 09:00 · guardap. M. Iriarte</div><div class="cur-cupo"><b>9 / 12</b>cupos libres</div></div>
+      <div class="cur-fila"><div class="cur-fecha">24<small>MAY</small></div>
+        <div><div class="cur-nom">Vivac de invierno</div><div class="cur-desc">Una noche afuera con lo mínimo, a −8 °C. Para gente que ya hizo el curso de nieve. El refugio avisa a las 07:00 y espera el parte.</div></div>
+        <div class="cur-lug">Portezuelo Negro · 16:00 · club completo</div><div class="cur-cupo"><b>0 / 6</b>sin cupos</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="libro" class="sec-oscura">
+  <div class="wrap sec">
+    <div class="tit rev">
+      <div class="tit-nom"><span class="tit-num">06</span><h2>Libro de cumbres</h2></div>
+      <p>Copia digital de lo que se anota en el cuaderno de la guardiola. Filtrá por tipo de salida.</p>
+    </div>
+    <div class="lib-filt rev" id="libFilt">
+      <button class="on" data-f="todas">Todas</button><button data-f="seco">Roca seca</button>
+      <button data-f="nieve">Nieve</button><button data-f="glaciar">Glaciar</button><button data-f="aprox">Aproximación</button>
+    </div>
+    <div class="rev" style="overflow-x:auto">
+      <table class="lib-tab">
+        <thead><tr><th>Fecha</th><th>Cumbre / destino</th><th>Vía</th><th>Condiciones</th><th>Duración</th></tr></thead>
+        <tbody id="libBody"></tbody>
+      </table>
+      <div class="lib-vacio" id="libVacio" hidden>Ninguna entrada con ese filtro.</div>
+    </div>
+  </div>
+</section>
+
+<section id="normas">
+  <div class="wrap sec">
+    <div class="tit rev">
+      <div class="tit-nom"><span class="tit-num">07</span><h2>Normas de la casa</h2></div>
+      <p>No son sugerencias. Son las cosas que pasaron y por eso están escritas.</p>
+    </div>
+    <div class="pila">
+      <article class="pila-item rev" style="top:16px"><div class="pila-n">01</div><div>
+        <h3>Avisá la salida, firmá la vuelta</h3>
+        <p>En la guardiola hay una planilla: itinerario, personas, hora de salida y hora límite de retorno. Si a las 20:00 de la planilla no firmaste, se llama al puesto de abajo y empieza el protocolo. No es desconfianza: es que el 2019 faltó un tipo ocho horas y todavía se acuerda todo el valle.</p></div></article>
+      <article class="pila-item rev" style="top:32px"><div class="pila-n">02</div><div>
+        <h3>El parte se respeta, aunque te cueste el viaje</h3>
+        <p>Cuando el estado dice ROJO, las vías de roca y hielo quedan cerradas. No se discute con el guardaparque ni se va "igual pero por el otro lado". El parte se actualiza a las 05:00, 11:00 y 17:00, y se escucha por VHF canal 12.</p></div></article>
+      <article class="pila-item rev" style="top:48px"><div class="pila-n">03</div><div>
+        <h3>Toda tu basura baja con vos</h3>
+        <p>No hay camión de residuos arriba, nunca lo hubo. Los cartuchos de gas vacíos, las cáscaras de banana y los cabos de nylon se guardan en la bolsa roja del comedor y se bajan el martes. Las heces van al pozo seco, con cal, y el papel higiénico también.</p></div></article>
+      <article class="pila-item rev" style="top:64px"><div class="pila-n">04</div><div>
+        <h3>Leña sólo del sector marcado</h3>
+        <p>Se corta ñire caído del sector este, nunca vivo, nunca del bosque joven. Si no hay leña, se prenden las dos hornallas de la estufa y se abriga uno más. El año pasado se acabó y se bajó a buscar al lomo: se puede, pero no se hace porque hay un cartel que lo dice.</p></div></article>
+      <article class="pila-item rev" style="top:80px"><div class="pila-n">05</div><div>
+        <h3>Silencio de 22:30 a 06:00</h3>
+        <p>Duermen 46 personas en camarotes, muchas de ellas levantadas a las 04:00 para aprovechar la ventana. Las charlas se terminan afuera, con el cuello del abrigo arriba. Los frontales se usan rojos en el dormitorio. No se alimentan los cóndores ni los zorros: se los mira y ya.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="acceso">
+  <div class="wrap sec">
+    <div class="tit rev">
+      <div class="tit-nom"><span class="tit-num">08</span><h2>Cómo se llega</h2></div>
+      <p>28 km de ripio desde el pueblo, después 4,2 km a pie. El último tramo no tiene alternativa: si no caminás, no subís.</p>
+    </div>
+    <div class="mapa rev">
+      <div class="mapa-cap">Carta 1:50.000 · hoja Piedra del Águila</div>
+      <svg viewBox="0 0 900 430" aria-hidden="true">
+        <rect width="900" height="430" fill="#121a1a"/>
+        <g fill="none" stroke="rgba(231,229,221,.13)" stroke-width="1">
+          <path d="M-20 380 Q120 330 220 350 T420 300 T640 330 T920 260"/>
+          <path d="M-20 340 Q110 290 230 306 T430 256 T650 288 T920 214"/>
+          <path d="M-20 300 Q100 250 240 262 T440 212 T660 246 T920 168"/>
+          <path d="M-20 258 Q96 210 250 218 T450 168 T672 204 T920 122"/>
+          <path d="M-20 214 Q92 168 262 174 T462 124 T686 162 T920 76"/>
+          <path d="M-20 168 Q88 124 276 130 T476 80 T702 118 T920 30"/>
+        </g>
+        <path d="M560 130 L610 96 L660 118 L700 84 L748 112 L700 160 L620 168 Z" fill="rgba(43,142,161,.35)" stroke="rgba(231,229,221,.3)"/>
+        <text x="612" y="106" fill="rgba(231,229,221,.5)" font-family="IBM Plex Mono,monospace" font-size="10">Glaciar Colgado</text>
+        <path class="acc" id="ruta" d="M70 388 L150 366 L214 372 L268 336 L330 322 L382 286 L436 268 L482 232 L520 214 L556 176 L588 152"/>
+        <path d="M70 388 L150 366 L214 372 L268 336 L330 322 L382 286 L436 268 L482 232 L520 214 L556 176 L588 152" fill="none" stroke="rgba(231,229,221,.16)" stroke-width="7" stroke-linecap="round"/>
+        <g><rect x="52" y="376" width="34" height="22" fill="#e0670f"/><text x="70" y="416" text-anchor="middle" fill="rgba(231,229,221,.75)" font-family="IBM Plex Mono,monospace" font-size="10">PUESTO 3 · RIPIO</text></g>
+        <g><circle cx="588" cy="152" r="7" fill="#e7e5dd"/><circle cx="588" cy="152" r="13" fill="none" stroke="#e7e5dd" stroke-width="1.5"/>
+          <text x="588" y="132" text-anchor="middle" fill="#e7e5dd" font-family="Fraunces,serif" font-size="17" font-weight="700">REFUGIO 2.140</text></g>
+        <g><path d="M330 322 l-9 14 h18 z" fill="none" stroke="#5fbf7d" stroke-width="2"/><text x="300" y="356" fill="rgba(231,229,221,.6)" font-family="IBM Plex Mono,monospace" font-size="10">VADO DEL CARANCHO</text></g>
+        <g><rect x="470" y="216" width="10" height="10" fill="none" stroke="#f0c04a" stroke-width="2"/><text x="488" y="226" fill="rgba(231,229,221,.6)" font-family="IBM Plex Mono,monospace" font-size="10">CUEVA PORT. NEGRO 2.480</text></g>
+        <g><path d="M700 84 l0 -16" stroke="#e7e5dd" stroke-width="2"/><text x="712" y="72" fill="rgba(231,229,221,.75)" font-family="Fraunces,serif" font-size="14" font-weight="700">AGUJA 2.736</text></g>
+      </svg>
+      <div class="mapa-ley">
+        <span><i style="background:#e0670f"></i>Acceso rodado</span><span><i style="background:#e7e5dd"></i>Refugio</span>
+        <span><i style="background:#5fbf7d"></i>Agua</span><span><i style="background:#f0c04a"></i>Vivac habilitado</span>
+        <span><i style="background:rgba(43,142,161,.6)"></i>Glaciar</span>
+      </div>
+    </div>
+    <div class="ref-grid rev" style="margin-top:22px">
+      <div class="ref-serv">
+        <h3>Acceso y logística</h3>
+        <ul class="ref-lista">
+          <li>Ruta de ripio desde el pueblo <b>28 km · 4×4</b></li>
+          <li>Transfer del club (sáb 06:00) <b>$14.000 por persona</b></li>
+          <li>Estacionamiento en Puesto 3 <b>libre, sin custodia</b></li>
+          <li>Sendero final al refugio <b>4,2 km · 620 m</b></li>
+          <li>Bicicleta hasta el vado <b>posible, después no</b></li>
+          <li>Caballerías del club <b>sólo carga, no personas</b></li>
+          <li>Helicóptero <b>únicamente evacuación</b></li>
+          <li>Cierre invernal del ripio <b>julio y agosto</b></li>
+        </ul>
+      </div>
+      <div class="ref-serv" style="border-right:none">
+        <h3>Contacto (cuando hay señal)</h3>
+        <ul class="ref-lista">
+          <li>Guardiaparque Marta Iriarte <b>martes y viernes 11:00</b></li>
+          <li>Teléfono del puesto de abajo <b>(02944) 481 2140</b></li>
+          <li>WhatsApp del club <b>+54 9 2944 81 2140</b></li>
+          <li>Reservas <b>refugio@piedradelaguila.org.ar</b></li>
+          <li>Radio VHF <b>canal 12 · 146.520 MHz</b></li>
+          <li>Emergencia 24 hs <b>108 / teléfono satelital</b></li>
+        </ul>
+        <p style="font-size:13px;color:#39423f;margin-top:14px">Si no contesta nadie, no insistas: están arriba, sin señal, con la estufa encendida. Mandá un mensaje y esperá al martes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="wrap">
+    <div class="pie-grid">
+      <div>
+        <div class="pie-coord">41°12′18″S<br>71°38′04″O<span>Refugio Piedra del Águila · 2.140 msnm</span></div>
+      </div>
+      <div><h4>El refugio</h4><ul>
+        <li>Fundado en 1963 por el Club Andino del valle</li>
+        <li>Reconstruido en 1998 tras el incendio de la cocina</li>
+        <li>Administrado por comisión de socios</li>
+        <li>Guardaparque de turno: Marta Iriarte</li></ul></div>
+      <div><h4>Secciones</h4><ul>
+        <li><a href="#vias">Vías del macizo</a></li>
+        <li><a href="#ascenso">Calculadora de ascenso</a></li>
+        <li><a href="#refugio">Servicios y pizarra</a></li>
+        <li><a href="#reserva">Reservar plaza</a></li>
+        <li><a href="#cursos">Cursos</a></li>
+        <li><a href="#libro">Libro de cumbres</a></li>
+        <li><a href="#normas">Normas</a></li></ul></div>
+      <div><h4>Antes de subir</h4><ul>
+        <li>Planilla de salida firmada</li>
+        <li>Frontal con baterías de repuesto</li>
+        <li>Abrigo extra aunque esté soleado</li>
+        <li>2 litros de agua y comida de sobra</li>
+        <li>Bolsa para tu basura</li>
+        <li>Número del puesto de abajo a mano</li></ul></div>
+    </div>
+    <div class="pie-bot">
+      <p>© <span id="year">—</span> Refugio Piedra del Águila · sin fines de lucro</p>
+      <p>Parte actualizado a las <span id="pieHora">—</span> · VHF canal 12</p>
+    </div>
+  </div>
+</footer>
+
+<div class="chip amar" id="chip"><i></i>Estado <b id="chipTxt">PRECAUCIÓN</b> · 2.140 m</div>
+
+<script>
+(function(){
+"use strict";
+document.documentElement.classList.add('js');
+window.addEventListener('error',function(){document.documentElement.classList.add('js','js-error');});
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function $(s){return document.querySelector(s);}
+function $$(s){return [].slice.call(document.querySelectorAll(s));}
+
+/* --- curvas de nivel de fondo --- */
+(function(){
+  var svg=$('#topo'); if(!svg) return;
+  var w=1200,h=800,d='',i,j,y,x,py;
+  svg.setAttribute('viewBox','0 0 '+w+' '+h);
+  svg.setAttribute('preserveAspectRatio','none');
+  for(i=0;i<14;i++){
+    y=40+i*58; py='';
+    for(j=0;j<=24;j++){
+      x=j*52;
+      var yy=y+Math.sin((j*0.55)+i*0.8)*22+Math.cos(j*0.22+i)*12;
+      py+=(j===0?'M':'L')+x.toFixed(1)+' '+yy.toFixed(1)+' ';
+    }
+    d+=py;
+  }
+  svg.innerHTML='<path d="'+d+'" fill="none" stroke="rgba(18,26,26,.09)" stroke-width="1"/>';
+})();
+
+/* --- PARTE DE MONTAÑA --- */
+var parte={t:-4,v:34,d:'O',vis:8,n:20,plazas:17};
+function estado(){
+  if(parte.v>=60||parte.vis<2) return {c:'rojo',n:'CIERRE',txt:'Viento extremo o nula visibilidad. Vías de roca y hielo cerradas. Quedate en el refugio.'};
+  if(parte.v>=42||parte.vis<5||parte.n>=60) return {c:'amar',n:'PRECAUCIÓN',txt:'Ventana corta. Salir temprano, itinerario fácil, retorno obligatorio antes de las 14.'};
+  return {c:'verde',n:'NORMAL',txt:'Condiciones estables. Ventana amplia, protección solar y agua: hace más calor del que parece.'};
+}
+function pintaParte(){
+  var e=estado();
+  var pe=$('#parEstado'); if(pe){pe.className='par-estado '+e.c; pe.textContent=e.n;}
+  var pn=$('#parNota'); if(pn) pn.textContent=e.txt;
+  var t=$('#pT'); if(t) t.innerHTML='−'+Math.abs(parte.t)+'<small>°C</small>';
+  var v=$('#pV'); if(v) v.innerHTML=parte.v+'<small> km/h '+parte.d+'</small>';
+  var vi=$('#pVis'); if(vi) vi.innerHTML=parte.vis+'<small> km</small>';
+  var n=$('#pN'); if(n) n.innerHTML=parte.n+'<small> %</small>';
+  var p=$('#pP'); if(p) p.innerHTML=parte.plazas+'<small> / 46</small>';
+  var ch=$('#chip'); if(ch){ch.className='chip '+e.c;}
+  var ct=$('#chipTxt'); if(ct) ct.textContent=e.n;
+  var ph=$('#parHora'); if(ph) ph.textContent='últ. lectura '+new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+  var pieh=$('#pieHora'); if(pieh) pieh.textContent=new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+}
+pintaParte();
+var act=$('#parAct');
+if(act) act.addEventListener('click',function(){
+  act.classList.add('girando');
+  setTimeout(function(){
+    parte.t=Math.max(-18,Math.min(6,parte.t+(Math.random()*4-2)));
+    parte.v=Math.max(4,Math.min(78,Math.round(parte.v+(Math.random()*26-13))));
+    parte.d=['O','SO','S','NE','E'][Math.floor(Math.random()*5)];
+    parte.vis=Math.max(0.5,Math.min(25,Math.round(parte.vis+(Math.random()*8-4))));
+    parte.n=Math.max(0,Math.min(95,Math.round(parte.n+(Math.random()*30-15))));
+    parte.plazas=Math.max(0,Math.min(46,parte.plazas+Math.floor(Math.random()*5)-2));
+    parte.t=Math.round(parte.t);
+    pintaParte(); act.classList.remove('girando');
+  },280);
+});
+
+/* --- PIZARRA FECHA --- */
+var pf=$('#pizFecha');
+if(pf){
+  var dias=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  var meses=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  var d0=new Date();
+  pf.textContent=dias[d0.getDay()]+' '+d0.getDate()+' de '+meses[d0.getMonth()]+' · cena 19:30';
+}
+
+/* --- VIAS: expandir + perfles --- */
+function perfilSVG(des,dis,w,h){
+  var n=18,pts=[],i,x,y,noise;
+  for(i=0;i<=n;i++){
+    x=(i/n)*w;
+    var base=(i/n);
+    noise=Math.sin(i*1.7)*0.035+Math.cos(i*0.8)*0.02;
+    y=h-6-(base+noise)*Math.min(h-16,h*0.82);
+    if(i===n) y=8;
+    if(y<6)y=6; if(y>h-4)y=h-4;
+    pts.push(x.toFixed(1)+' '+y.toFixed(1));
+  }
+  var area='M0 '+h+' L'+pts.join(' L')+' L'+w+' '+h+' Z';
+  var linea='M'+pts.join(' L');
+  var out='<path d="'+area+'" fill="rgba(47,93,58,.28)"/>';
+  out+='<path d="'+linea+'" fill="none" stroke="#121a1a" stroke-width="2" stroke-linejoin="round"/>';
+  out+='<circle cx="'+w+'" cy="8" r="3.5" fill="#e0670f"/>';
+  for(i=1;i<5;i++){out+='<line x1="0" y1="'+(h*i/5)+'" x2="'+w+'" y2="'+(h*i/5)+'" stroke="rgba(18,26,26,.08)" stroke-width="1"/>';}
+  return out;
+}
+$$('.via').forEach(function(v){
+  var des=parseFloat(v.getAttribute('data-des'))||300;
+  var dis=parseFloat(v.getAttribute('data-dis'))||3;
+  var svg=v.querySelector('svg');
+  if(svg) svg.innerHTML=perfilSVG(des,dis,300,150);
+  var dp=v.querySelector('.via-desc'); if(dp) dp.textContent=v.getAttribute('data-desc');
+  var eq=(v.getAttribute('data-eq')||'').split(',');
+  var li=v.querySelector('.via-lista');
+  if(li) li.innerHTML=eq.map(function(x){return '<span>'+x.trim()+'</span>';}).join('')+'<span>Tiempo estimado: '+v.getAttribute('data-tiempo')+'</span>';
+  var btn=v.querySelector('.via-head');
+  if(btn) btn.addEventListener('click',function(){
+    var abierto=v.classList.contains('open');
+    $$('.via.open').forEach(function(o){o.classList.remove('open');});
+    if(!abierto) v.classList.add('open');
+  });
+  var usar=v.querySelector('.via-usar');
+  if(usar) usar.addEventListener('click',function(ev){
+    ev.stopPropagation();
+    var cd=$('#cDes'),cdis=$('#cDis');
+    if(cd) cd.value=des; if(cdis) cdis.value=dis.toFixed(1);
+    var sec=$('#ascenso'); if(sec) sec.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+    var f=$('#calcFrm'); if(f && f.requestSubmit) f.requestSubmit(); else if(f) f.dispatchEvent(new Event('submit'));
+  });
+});
+var ht=$('#heroTrazo');
+if(ht){
+  var len=ht.getTotalLength?ht.getTotalLength():900;
+  if(!reduce){
+    ht.style.strokeDasharray=len; ht.style.strokeDashoffset=len;
+    var ob=new IntersectionObserver(function(en){
+      en.forEach(function(e){ if(e.isIntersecting){ ht.style.transition='stroke-dashoffset 1.8s cubic-bezier(.4,.1,.2,1)'; ht.style.strokeDashoffset=0; ob.disconnect(); } });
+    },{threshold:.3});
+    ob.observe($('#heroPerfil'));
+  }
+}
+var rt=$('#ruta');
+if(rt && !reduce){
+  var rl=rt.getTotalLength?rt.getTotalLength():0;
+  rt.style.strokeDasharray='6 7';
+  var ob2=new IntersectionObserver(function(en){
+    en.forEach(function(e){ if(e.isIntersecting){ rt.style.animation='dibuja 2.4s ease forwards'; ob2.disconnect(); } });
+  },{threshold:.2});
+  ob2.observe(rt.closest('.mapa'));
+  var st=document.createElement('style');
+  st.textContent='@keyframes dibuja{from{stroke-dashoffset:'+rl+'}to{stroke-dashoffset:0}}';
+  document.head.appendChild(st);
+  rt.style.strokeDasharray=rl; rt.style.strokeDashoffset=rl;
+}
+
+/* --- CALCULADORA --- */
+var fMoch=1,fTerr=1;
+function pila(id,cb){
+  var cont=$(id); if(!cont) return;
+  $$('button',cont).forEach(function(b){
+    b.addEventListener('click',function(){
+      $$('button',cont).forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on'); cb(parseFloat(b.getAttribute('data-f')));
+    });
+  });
+}
+function hijos(c){return [].slice.call(c.children);}
+pila('#pilaMoch',function(f){fMoch=f;correr();});
+pila('#pilaTerr',function(f){fTerr=f;correr();});
+function hhmm(min){var h=Math.floor(min/60),m=Math.round(min%60); if(m===60){h++;m=0;} return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');}
+function toMin(s){var p=(s||'0:0').split(':');return parseInt(p[0],10)*60+parseInt(p[1]||0,10);}
+function fmtH(min){var h=Math.floor(min/60),m=Math.round(min%60);return h+'h'+String(m).padStart(2,'0');}
+function correr(){
+  var des=parseFloat($('#cDes').value)||0;
+  var dis=parseFloat($('#cDis').value)||0;
+  var paus=parseFloat($('#cPausa').value)||0;
+  var sal=toMin($('#cSalida').value||'05:30');
+  var atar=toMin($('#cAtardecer').value||'20:41');
+  var subM=des/300*60;                 // Naismith: 300 m/hora
+  var subK=dis/4*60;                   // 4 km/hora
+  var subBase=(subM+subK)*fMoch*fTerr;
+  var marchas=Math.max(1,Math.floor(subBase/60));
+  var pausaTot=paus*marchas;
+  var sub=subBase+pausaTot;
+  var baj=sub*0.62;
+  var tot=sub+baj;
+  $('#oSub').textContent=fmtH(sub);
+  $('#oBaj').textContent=fmtH(baj);
+  $('#oPaus').textContent=pausaTot+' min';
+  $('#oTotal').innerHTML=(tot/60).toFixed(1)+'<small> h</small>';
+  $('#oRet').textContent=hhmm(sal+tot);
+  var margen=atar-120-(sal+tot);
+  var maxSal=atar-120-tot;
+  $('#oMax').textContent=maxSal>0?hhmm(maxSal):'no conviene';
+  $('#oVel').textContent=Math.round(des/(sub/60))+' m/h';
+  var av=$('#oAviso');
+  if(av){
+    var txt,color;
+    if(margen<0){color='#ff7a5c';txt='<b>Riesgo de nocturno</b>Con esta salida volvés después del atardecer menos dos horas. Recorré la salida a las '+hhmm(Math.max(60,maxSal))+' o elegí un itinerario más corto.';}
+    else if(margen<90){color='#f0c04a';txt='<b>Margen justo</b>Te quedan '+Math.round(margen)+' minutos de colchón sobre el retorno de seguridad. Sin excusas para demorarse en la cumbre.';}
+    else{color='#5fbf7d';txt='<b>Ventana cómoda</b>Sobraron '+Math.round(margen)+' minutos. Igual llevá frontal: siempre.';}
+    av.innerHTML=txt; av.style.color=color; av.style.borderColor=color;
+  }
+  var g=$('#oCurva');
+  if(g){
+    var n=16,pts=[],i;
+    for(i=0;i<=n;i++){
+      var t=i/n;
+      var x=10+t*380;
+      var asc=t<0.55?(t/0.55):1;
+      var y=158-Math.pow(asc,1.1)*140;
+      if(t>0.55) y=18+((t-0.55)/0.45)*140*0.92;
+      pts.push(x.toFixed(1)+' '+Math.min(162,Math.max(14,y)).toFixed(1));
+    }
+    g.innerHTML='<line x1="10" y1="158" x2="390" y2="158" stroke="rgba(231,229,221,.25)"/>'+
+      '<path d="M'+pts.join(' L')+'" fill="none" stroke="#e0670f" stroke-width="2.5" stroke-linejoin="round"/>'+
+      '<text x="12" y="30" fill="rgba(231,229,221,.5)" font-family="IBM Plex Mono,monospace" font-size="9">CUMBRE '+des+' m</text>'+
+      '<text x="330" y="170" fill="rgba(231,229,221,.5)" font-family="IBM Plex Mono,monospace" font-size="9">BASE</text>';
+  }
+}
+var cf=$('#calcFrm');
+if(cf) cf.addEventListener('submit',function(e){e.preventDefault();correr();});
+['#cDes','#cDis','#cPausa','#cSalida','#cAtardecer'].forEach(function(s){
+  var el=$(s); if(el) el.addEventListener('input',function(){clearTimeout(el._t);el._t=setTimeout(correr,400);});
+});
+correr();
+
+/* --- RESERVA --- */
+var MESES=['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+var DIAS=['do','lu','ma','mi','ju','vi','sá'];
+var KEY='aguila_reservas_v1';
+var hoy=new Date(); hoy.setHours(0,0,0,0);
+var lista=[];
+for(var i=0;i<14;i++){var dd=new Date(hoy); dd.setDate(hoy.getDate()+i); lista.push(dd);}
+function libres(d){
+  var s=(d.getDate()*13+d.getMonth()*29+d.getDay()*7)%47;
+  if(s<4) return 0;
+  if(s<12) return s-2;
+  return Math.min(46,s+4);
+}
+var checkin=null,checkout=null;
+var cd=$('#calDias');
+function pintaCal(){
+  if(!cd) return;
+  cd.innerHTML='';
+  lista.forEach(function(d,idx){
+    var l=libres(d);
+    var b=document.createElement('button');
+    b.type='button';
+    b.className='cal-dia'+(l===0?' lleno':'');
+    b.innerHTML='<em>'+DIAS[d.getDay()]+'</em><b>'+d.getDate()+'</b><small>'+(l===0?'lleno':l+' libres')+'</small>';
+    if(checkin && idx===checkin) b.classList.add('sel');
+    if(checkin!==null&&checkout!==null&&idx>checkin&&idx<=checkout) b.classList.add('rango');
+    if(checkin!==null&&idx===checkin) b.classList.add('sel');
+    if(l===0){b.disabled=true;}
+    else b.addEventListener('click',function(){ pick(idx); });
+    cd.appendChild(b);
+  });
+  var cm=$('#calMes');
+  if(cm) cm.textContent=MESES[lista[0].getMonth()].toUpperCase()+' — '+MESES[lista[13].getMonth()].toUpperCase()+' · cupos del refugio';
+}
+function pick(idx){
+  var err=$('#calErr'); if(err) err.textContent='';
+  if(checkin===null||idx<=checkin||(checkout!==null)){ checkin=idx; checkout=null; }
+  else{
+    var ok=true,min=99;
+    for(var k=checkin;k<idx;k++){ if(libres(lista[k])===0){ok=false;break;} min=Math.min(min,libres(lista[k])); }
+    if(!ok){ checkin=idx; checkout=null; }
+    else if(idx-checkin>6){ if(err) err.textContent='Máximo 6 noches por reserva. Empecé de nuevo.'; checkin=idx; checkout=null; }
+    else{ checkout=idx; }
+  }
+  pintaCal(); resumen();
+}
+function extrasSel(){
+  var total=0,items=[];
+  $$('.res-extra input').forEach(function(c){
+    if(c.checked){
+      var p=parseInt(c.getAttribute('data-p'),10);
+      var x=c.getAttribute('data-x');
+      var per=$('#rPer')?parseInt($('#rPer').value,10):1;
+      var noches=(checkout!==null&&checkin!==null)?(checkout-checkin):0;
+      var monto=x==='persona/noche'?p*per*Math.max(1,noches):(x==='persona'?p*per:p);
+      total+=monto;
+      items.push({p:c.parentNode.textContent.replace(/\s+/g,' ').trim().split('$')[0].trim(),m:monto});
+    }
+  });
+  return {total:total,items:items};
+}
+function resumen(){
+  var rs=$('#rResumen'),rt=$('#rTotal');
+  if(checkin===null){ if(rs) rs.textContent='Sin fechas elegidas.'; if(rt) rt.textContent='$0'; return; }
+  var noches=checkout===null?1:(checkout-checkin);
+  var per=parseInt($('#rPer').value,10);
+  var min=99; for(var k=checkin;k<(checkout===null?checkin+1:checkout);k++){min=Math.min(min,libres(lista[k]));}
+  var base=26000*per*noches;
+  var ex=extrasSel();
+  var tot=base+ex.total;
+  var ini=lista[checkin],fin=checkout===null?null:lista[checkout];
+  var txt=ini.getDate()+' '+MESES[ini.getMonth()]+(fin?(' → '+fin.getDate()+' '+MESES[fin.getMonth()]):' (una noche)')+' · '+per+' pers · '+noches+' noche'+(noches>1?'s':'');
+  txt+=' · cupo mínimo del rango: '+Math.max(0,min)+' plazas';
+  if(rs) rs.textContent=txt;
+  if(rt) rt.textContent='$'+tot.toLocaleString('es-AR');
+  if(checkout!==null&&per>min){ var err=$('#calErr'); if(err) err.textContent='Quedan '+min+' plazas en la noche más cargada del rango: bajá la cantidad de personas.'; }
+}
+pintaCal(); resumen();
+var rf=$('#resFrm');
+if(rf) rf.addEventListener('submit',function(e){
+  e.preventDefault();
+  var err=$('#calErr'),en=$('#eNom');
+  if(en) en.textContent='';
+  if(err) err.textContent='';
+  var nom=$('#rNom').value.trim();
+  if(checkin===null){ if(err) err.textContent='Elegí al menos una noche en el calendario.'; return; }
+  if(nom.length<3){ if(en) en.textContent='Poné el nombre como va a figurar en el libro.'; return; }
+  var noches=checkout===null?1:(checkout-checkin);
+  var per=parseInt($('#rPer').value,10);
+  var min=99; for(var k=checkin;k<(checkout===null?checkin+1:checkout);k++){min=Math.min(min,libres(lista[k]));}
+  if(per>min){ if(err) err.textContent='No entran '+per+' personas: la noche más cargada tiene '+min+' plazas.'; return; }
+  var tot=26000*per*noches+extrasSel().total;
+  var cod='PDA-'+(lista[checkin].getDate()*100+lista[checkin].getMonth()+1).toString().slice(-4)+(per*7+noches*13).toString().slice(-2);
+  var tk=$('#rTicket'); if(tk) tk.classList.add('on');
+  var rc=$('#rCod'); if(rc) rc.textContent=cod;
+  var rd=$('#rDetalle');
+  var ini=lista[checkin],fin=checkout===null?null:lista[checkout];
+  if(rd) rd.innerHTML=nom+' · '+per+' pers · '+noches+' noche'+(noches>1?'s':'')+' · '+ini.getDate()+'/'+(ini.getMonth()+1)+(fin?(' al '+fin.getDate()+'/'+(fin.getMonth()+1)):'')+
+    ' · $'+tot.toLocaleString('es-AR')+'. Presentarse en la guardiola antes de las 19:00 y firmar la planilla de salida.';
+  var l=[]; try{l=JSON.parse(localStorage.getItem(KEY))||[];}catch(x){}
+  l.unshift({c:cod,n:nom,f:ini.getDate()+'/'+(ini.getMonth()+1),p:per,t:tot});
+  try{localStorage.setItem(KEY,JSON.stringify(l.slice(0,8)));}catch(x){}
+  pintaHist();
+});
+function pintaHist(){
+  var h=$('#rHist'); if(!h) return;
+  var l=[]; try{l=JSON.parse(localStorage.getItem(KEY))||[];}catch(x){}
+  if(!l.length){h.innerHTML='';return;}
+  h.innerHTML='<div style="border:none;letter-spacing:.18em;text-transform:uppercase;font-size:9px;color:rgba(231,229,221,.4)">Reservas en este dispositivo</div>'+
+    l.map(function(r){return '<div>'+r.c+' · '+r.n+' · '+r.f+' · '+r.p+' pers · $'+r.t.toLocaleString('es-AR')+'</div>';}).join('');
+}
+pintaHist();
+$('#rPer').addEventListener('change',resumen);
+$$('.res-extra input').forEach(function(c){c.addEventListener('change',resumen);});
+
+/* --- LIBRO DE CUMBRES --- */
+var libro=[
+  {f:'06/04/2025',c:'Aguja Norte · 2.736',v:'Arista Norte',t:'seco',cond:'Roca seca, viento 18 km/h',dur:'5h50'},
+  {f:'04/04/2025',c:'Cumbre refugio · 2.140',v:'Sendero del Carancho',t:'aprox',cond:'Soleado, −2 °C',dur:'2h40'},
+  {f:'30/03/2025',c:'Glaciar Colgado · travesía',v:'Traversada',t:'glaciar',cond:'Puentes blandos, precaución',dur:'10h20'},
+  {f:'28/03/2025',c:'Pared del Cóndor · largo 3',v:'Multilargo V+',t:'seco',cond:'Sombra desde las 13',dur:'4h35'},
+  {f:'22/03/2025',c:'Portezuelo Negro · vivac',v:'Travesada',t:'nieve',cond:'Nueva 12 cm, viento',dur:'2 días'},
+  {f:'19/03/2025',c:'Corredor Sur',v:'HI 4',t:'nieve',cond:'Frío sostenido, hielo duro',dur:'6h40'},
+  {f:'16/03/2025',c:'Mirador de los Juncos',v:'Familiar',t:'aprox',cond:'Seco, 14 °C',dur:'0h55'},
+  {f:'12/03/2025',c:'Aguja Norte · 2.736',v:'Arista Norte',t:'nieve',cond:'Costra inestable, se dio media vuelta',dur:'3h10 (retorno)'},
+  {f:'09/03/2025',c:'Pared del Cóndor',v:'Multilargo V+',t:'seco',cond:'Ideal, sin viento',dur:'5h05'},
+  {f:'02/03/2025',c:'Glaciar Colgado · cordada 3',v:'Travesada',t:'glaciar',cond:'Grietas señalizadas',dur:'11h'},
+  {f:'26/02/2025',c:'Cumbre refugio',v:'Sendero del Carancho',t:'aprox',cond:'Niebla arriba, visibilidad 2 km',dur:'3h'},
+  {f:'21/02/2025',c:'Corredor Sur',v:'HI 4',t:'nieve',cond:'Cerrado por parte: no se hizo',dur:'—'}
+];
+function pintaLibro(f){
+  var tb=$('#libBody'); if(!tb) return;
+  var rows=libro.filter(function(x){return f==='todas'||x.t===f;});
+  tb.innerHTML=rows.map(function(x){
+    return '<tr><td class="f">'+x.f+'</td><td class="n">'+x.c+'</td><td>'+x.v+'</td><td class="m">'+x.cond+'</td><td class="m">'+x.dur+'</td></tr>';
+  }).join('');
+  var v=$('#libVacio'); if(v) v.hidden=rows.length>0;
+}
+pintaLibro('todas');
+$$('#libFilt button').forEach(function(b){
+  b.addEventListener('click',function(){
+    $$('#libFilt button').forEach(function(x){x.classList.remove('on');});
+    b.classList.add('on'); pintaLibro(b.getAttribute('data-f'));
+  });
+});
+
+/* --- REVEAL --- */
+var io=new IntersectionObserver(function(en){
+  en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+},{threshold:.1});
+$$('.rev').forEach(function(el){io.observe(el);});
+
+$('#year').textContent=new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
