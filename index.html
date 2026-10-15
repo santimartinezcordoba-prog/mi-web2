@@ -85,14 +85,14 @@
           </span>
           <span class="proj__go" aria-hidden="true">↗</span>
         </a>
-        <!-- 04 EN OBRA -->
-        <a class="proj proj--wip" href="#" data-wip>
-          <span class="proj__n">04</span>
+              <!-- 04 DESTACADO: aviso antes de entrar -->
+        <a class="proj proj--feat" href="./proyecto-4/" data-gate>
+          <span class="proj__n">★</span>
           <span class="proj__body">
             <span class="proj__title">PROYECTO 4</span>
-            <span class="proj__desc">En desarrollo.</span>
+            <span class="proj__desc">Lo más grande que he hecho. En proceso.</span>
           </span>
-          <span class="proj__badge">EN OBRA</span>
+          <span class="proj__ribbon">DESTACADO</span>
           <span class="proj__go" aria-hidden="true">↗</span>
         </a>
       </div>
@@ -233,5 +233,18 @@
 
   <audio id="dj" preload="none"></audio>
   <script src="script.js"></script>
+    <div class="gate" id="gate" hidden>
+    <div class="gate__back" data-close></div>
+    <article class="gate__card" role="dialog" aria-modal="true" aria-labelledby="gateT">
+      <button class="gate__x" data-close aria-label="Cerrar">✕</button>
+      <p class="gate__k">/// EN PROCESO ///</p>
+      <h3 class="gate__t" id="gateT">ESTO AÚN SE ESTÁ COCINANDO</h3>
+      <p class="gate__m">Puede que falten cosas o que cambie. ¿Entrar de todos modos?</p>
+      <div class="gate__btns">
+        <button class="gate__no" data-close>AHORA NO</button>
+        <button class="gate__yes" id="gateGo">ENTRAR →</button>
+      </div>
+    </article>
+  </div>
 </body>
 </html>
