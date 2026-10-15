@@ -332,3 +332,24 @@ textarea.form__input{resize:vertical;min-height:110px}
 [data-theme="pixel"] .wip__card{border-radius:0}
 [data-theme="pixel"] .wip__btn{border-radius:0}
 @media(prefers-reduced-motion:reduce){.wip__card{animation:none}}
+/* ===== PROYECTO DESTACADO ===== */
+.proj--feat{grid-column:1 / -1;order:-1;padding:26px 26px 30px;border-color:color-mix(in srgb,currentColor 55%,transparent);background:color-mix(in srgb,currentColor 9%,transparent)}
+.proj--feat .proj__n{font-size:2.6rem;opacity:.55}
+.proj--feat .proj__title{font-size:1.5rem}
+.proj__ribbon{position:absolute;top:16px;right:16px;font-size:10px;font-weight:800;letter-spacing:.14em;padding:5px 10px;color:currentColor;border:1px solid color-mix(in srgb,currentColor 55%,transparent);border-radius:999px}
+/* ===== MODAL AVISO (gate) ===== */
+.gate{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:20px}
+.gate[hidden]{display:none}
+.gate__back{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(3px)}
+.gate__card{position:relative;width:min(440px,92vw);padding:28px 26px;display:flex;flex-direction:column;gap:12px;color:inherit;background:color-mix(in srgb,currentColor 12%,transparent);border:1px solid color-mix(in srgb,currentColor 50%,transparent);border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.5);animation:wipIn .25s ease}
+.gate__x{position:absolute;top:10px;right:12px;background:none;border:0;color:inherit;font-size:18px;cursor:pointer;opacity:.6}
+.gate__x:hover{opacity:1}
+.gate__k{font-size:12px;letter-spacing:.2em;opacity:.6}
+.gate__t{margin:0;font-size:1.3rem}
+.gate__m{margin:0;font-size:.9rem;opacity:.85;line-height:1.5}
+.gate__btns{display:flex;gap:10px;margin-top:6px}
+.gate__no,.gate__yes{font:inherit;font-weight:700;letter-spacing:.06em;padding:11px 18px;cursor:pointer;border-radius:10px;color:inherit}
+.gate__no{background:transparent;border:1px solid color-mix(in srgb,currentColor 35%,transparent)}
+.gate__yes{background:currentColor;border:1px solid currentColor;color:var(--bg,#0a0d12)}
+.gate__no:hover{background:color-mix(in srgb,currentColor 10%,transparent)}
+[data-theme="pixel"] .proj--feat,[data-theme="pixel"] .gate__card{border-radius:0}
