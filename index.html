@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SANTI MARTÍNEZ · Discografía</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="mascota-ia.css">
   <meta name="description" content="Discografía de Santiago Martínez Córdoba: mi vida, álbum a álbum. Web hecha a mano con HTML, CSS y JS.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="SANTI MARTÍNEZ · Discografía">
@@ -17,6 +16,48 @@
   <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/favicon-192.png">
+  <style id="mascota-ia-styles">
+/* Mascota de la IA — estilos integrados para no depender de un archivo CSS extra. */
+.ai-chat__fab{
+  position:relative!important;
+  width:88px!important;height:96px!important;min-width:88px;min-height:96px;
+  padding:0!important;display:grid;place-items:center;overflow:visible;
+  border:0!important;border-radius:0!important;background:transparent!important;
+  box-shadow:none!important;color:inherit;isolation:isolate;
+  transform-origin:50% 85%;
+  animation:mascotLauncherBob 1.8s ease-in-out infinite;
+  transition:filter .2s ease;
+}
+.ai-chat__fab:hover{filter:brightness(1.14) drop-shadow(0 0 7px rgba(255,212,0,.3));}
+.ai-chat__fab:focus-visible{outline:2px solid var(--c3);outline-offset:5px;border-radius:28px}
+.ai-mascot{display:block;width:100%;height:100%;overflow:visible;pointer-events:none;transform-origin:center;animation:mascotGlow 2.4s ease-in-out infinite;filter:drop-shadow(0 8px 11px rgba(0,0,0,.3));}
+.ai-mascot__float{transform-box:fill-box;transform-origin:center;animation:mascotFloat 2.6s ease-in-out infinite}
+.ai-mascot__flame{transform-box:fill-box;transform-origin:center bottom;animation:mascotFlame 1.25s ease-in-out infinite}
+.ai-mascot__eye{transform-box:fill-box;transform-origin:center;animation:mascotBlink 4.2s ease-in-out infinite}
+.ai-mascot__eye--right{animation-delay:.07s}
+.ai-mascot__ear--left{transform-box:fill-box;transform-origin:right center;animation:mascotEar 3.2s ease-in-out infinite}
+.ai-mascot__ear--right{transform-box:fill-box;transform-origin:left center;animation:mascotEar 3.2s ease-in-out infinite;animation-delay:.12s}
+.ai-mascot__spark{transform-box:fill-box;transform-origin:center;animation:mascotSpark 1.8s ease-in-out infinite}
+.ai-mascot__shadow{transform-box:fill-box;transform-origin:center;animation:mascotShadow 1.8s ease-in-out infinite}
+.ai-mascot__hint{position:absolute;right:calc(100% + 10px);top:50%;transform:translate(5px,-50%);padding:.45rem .65rem;border:1px solid var(--line);border-radius:7px;background:var(--card);color:var(--ink);font:700 .62rem/1 var(--mono);letter-spacing:.08em;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;box-shadow:var(--shadow)}
+.ai-chat__fab:hover .ai-mascot__hint,.ai-chat__fab:focus-visible .ai-mascot__hint{opacity:1;transform:translate(0,-50%)}
+.ai-chat.is-open .ai-chat__fab{animation:mascotClick .48s cubic-bezier(.2,.8,.2,1) both,mascotLauncherBob 1.8s ease-in-out .48s infinite}
+.ai-chat.is-thinking .ai-chat__fab{animation-duration:.58s}
+.ai-chat.is-thinking .ai-mascot__flame{animation-duration:.42s}
+.ai-chat.is-thinking .ai-mascot__spark{animation-duration:.42s}
+@keyframes mascotLauncherBob{0%,100%{transform:translateY(0) rotate(0)}28%{transform:translateY(-8px) rotate(-2deg)}62%{transform:translateY(-3px) rotate(1.5deg)}78%{transform:translateY(-6px) rotate(-.8deg)}}
+@keyframes mascotFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2px) rotate(-1.2deg)}}
+@keyframes mascotFlame{0%,100%{transform:rotate(-3deg) scale(1)}50%{transform:rotate(4deg) scale(1.08,1.11)}}
+@keyframes mascotBlink{0%,42%,46%,78%,82%,100%{transform:scaleY(1)}44%,80%{transform:scaleY(.12)}}
+@keyframes mascotEar{0%,88%,100%{transform:scale(1)}93%{transform:scale(1.14,.9)}}
+@keyframes mascotSpark{0%,100%{opacity:.3;transform:scale(.65) rotate(0)}50%{opacity:1;transform:scale(1.25) rotate(35deg)}}
+@keyframes mascotShadow{0%,100%{transform:scaleX(1);opacity:.22}50%{transform:scaleX(.7);opacity:.08}}
+@keyframes mascotGlow{0%,100%{filter:drop-shadow(0 7px 8px rgba(0,0,0,.28)) drop-shadow(0 0 2px rgba(255,212,0,.16))}50%{filter:drop-shadow(0 9px 12px rgba(0,0,0,.3)) drop-shadow(0 0 9px rgba(255,212,0,.52))}}
+@keyframes mascotClick{0%{transform:scale(.84) translateY(5px)}65%{transform:scale(1.1) translateY(-4px)}100%{transform:scale(1) translateY(0)}}
+@media(max-width:480px){.ai-chat__fab{width:78px!important;height:86px!important;min-width:78px;min-height:86px}.ai-mascot__hint{display:none}}
+/* Respect reduced-motion preferences while retaining a gentle, visible pulse. */
+@media(prefers-reduced-motion:reduce){.ai-chat__fab{animation-duration:3.8s}.ai-mascot{animation-duration:4s}.ai-mascot__flame,.ai-mascot__spark{animation-duration:3.5s}}
+  </style>
 </head>
 <body>
 
