@@ -1,11 +1,11 @@
 name = "santi-web-ai"
 main = "src/index.js"
 compatibility_date = "2025-10-01"
-npx wrangler deploy
+
 [ai]
 binding = "AI"
 
 [vars]
 AI_MODEL = "@cf/meta/llama-4-scout-17b-16e-instruct"
-ALLOWED_ORIGIN = "santimartinezcordoba-prog.github.io/mi-web2/"
+ALLOWED_ORIGIN = "https://santimartinezcordoba-prog.github.io"
 MAX_MESSAGES = "6"
