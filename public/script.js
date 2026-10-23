@@ -247,14 +247,8 @@ paintProgress();
   const send = document.getElementById("aiSend");
   const quick = document.getElementById("aiQuick");
 
-  /*
-    Si el Worker sirve también la web, deja:
-    const endpoint = "/chat";
-
-    Si tu web sigue en GitHub Pages y el Worker es una API aparte, cambia por:
-    const endpoint = "https://TU-WORKER.TU-SUBDOMINIO.workers.dev/chat";
-  */
-  const endpoint = window.SANTI_CHAT_ENDPOINT || "/chat";
+  /* ⬇️ ÚNICA LÍNEA QUE CAMBIA: URL ABSOLUTA del Worker (web en GitHub) */
+  const endpoint = "https://santi-web-ai.santimartinezcordoba.workers.dev/chat";
 
   let history = [];
   let typingEl = null;
