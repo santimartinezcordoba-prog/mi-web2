@@ -234,19 +234,33 @@
   <div class="toast" id="toast" hidden></div>
 
   <audio id="dj" preload="none"></audio>
-  <script src="script.js"></script>
-    <div class="gate" id="gate" hidden>
-    <div class="gate__back" data-close></div>
-    <article class="gate__card" role="dialog" aria-modal="true" aria-labelledby="gateT">
-      <button class="gate__x" data-close aria-label="Cerrar">✕</button>
-      <p class="gate__k">/// EN PROCESO ///</p>
-      <h3 class="gate__t" id="gateT">ESTO AÚN SE ESTÁ COCINANDO</h3>
-      <p class="gate__m">Puede que falten cosas o que cambie. ¿Entrar de todos modos?</p>
-      <div class="gate__btns">
-        <button class="gate__no" data-close>AHORA NO</button>
-        <button class="gate__yes" id="gateGo">ENTRAR →</button>
+
+  <!-- ===== ASISTENTE IA ===== -->
+  <div class="ai-chat" id="aiChat">
+    <button class="ai-chat__fab" id="aiFab" aria-label="Abrir asistente de la web" aria-expanded="false">✦</button>
+    <div class="ai-chat__panel" role="dialog" aria-labelledby="aiChatTitle">
+      <header class="ai-chat__head">
+        <div>
+          <p class="ai-chat__k">SIMARRO REC.</p>
+          <h3 id="aiChatTitle">PREGUNTA A LA IA</h3>
+        </div>
+        <button class="ai-chat__x" id="aiClose" aria-label="Cerrar asistente">✕</button>
+      </header>
+      <div class="ai-chat__log" id="aiLog" aria-live="polite"></div>
+      <div class="ai-chat__quick" id="aiQuick">
+        <button class="ai-chat__chip" data-q="¿Quién eres?">¿Quién eres?</button>
+        <button class="ai-chat__chip" data-q="¿Qué proyectos ha hecho?">Proyectos</button>
+        <button class="ai-chat__chip" data-q="¿De qué va la discografía?">Discografía</button>
+        <button class="ai-chat__chip" data-q="¿Cómo contacto con Santi?">Contacto</button>
       </div>
-    </article>
+      <form class="ai-chat__form" id="aiForm">
+        <input class="ai-chat__input" id="aiInput" type="text" maxlength="500" placeholder="Escribe una pregunta..." autocomplete="off" aria-label="Mensaje para la IA">
+        <button class="ai-chat__send" id="aiSend" type="submit">ENVIAR</button>
+      </form>
+    </div>
   </div>
+  <!-- ===== /ASISTENTE IA ===== -->
+
+  <script src="script.js"></script>
 </body>
 </html>
