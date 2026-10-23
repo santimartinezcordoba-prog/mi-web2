@@ -1,11 +1,7 @@
 name = "santi-web-ai"
 main = "src/index.js"
 compatibility_date = "2025-10-01"
-
-[assets]
-directory = "./public"
-binding = "ASSETS"
-
+npx wrangler deploy
 [ai]
 binding = "AI"
 
