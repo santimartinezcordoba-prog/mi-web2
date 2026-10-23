@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SANTI MARTÍNEZ · Discografía</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mascota-ia.css">
   <meta name="description" content="Discografía de Santiago Martínez Córdoba: mi vida, álbum a álbum. Web hecha a mano con HTML, CSS y JS.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="SANTI MARTÍNEZ · Discografía">
@@ -237,7 +238,31 @@
 
   <!-- ===== ASISTENTE IA ===== -->
   <div class="ai-chat" id="aiChat">
-    <button class="ai-chat__fab" id="aiFab" aria-label="Abrir asistente de la web" aria-expanded="false">✦</button>
+    <button class="ai-chat__fab" id="aiFab" aria-label="Abrir asistente de la web" aria-expanded="false" title="Habla con mi IA">
+      <svg class="ai-mascot" viewBox="0 0 120 126" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mascotShell" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf5"/><stop offset=".5" stop-color="#e9e4dc"/><stop offset="1" stop-color="#aaa9b4"/></linearGradient>
+          <linearGradient id="mascotGold" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#fff36a"/><stop offset=".5" stop-color="#ffd400"/><stop offset="1" stop-color="#ff7a00"/></linearGradient>
+          <linearGradient id="mascotFace" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#151827"/><stop offset="1" stop-color="#03040a"/></linearGradient>
+          <filter id="mascotGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g class="ai-mascot__float">
+          <ellipse class="ai-mascot__shadow" cx="60" cy="116" rx="27" ry="4" fill="#ffb700" opacity=".2"/>
+          <g class="ai-mascot__flame"><path d="M37 43C42 31 40 22 51 13C49 24 61 22 67 7C77 22 79 31 72 43Z" fill="url(#mascotGold)" stroke="#ff9d00" stroke-width="1.5" stroke-linejoin="round"/><path d="M58 34C65 29 67 25 67 20C73 28 69 35 62 39Z" fill="#17131a"/><path d="M46 34L51 21" fill="none" stroke="#fff7a4" stroke-width="2" stroke-linecap="round"/></g>
+          <path d="M24 51C27 36 42 29 60 29C79 29 94 37 97 52L103 79C104 98 88 110 60 112C32 110 16 98 17 79Z" fill="url(#mascotShell)" stroke="#fff5d1" stroke-width="1.5"/>
+          <path d="M28 51C34 40 46 36 60 36C75 36 87 41 93 52" fill="none" stroke="#fff" stroke-width="2" opacity=".7" stroke-linecap="round"/>
+          <g class="ai-mascot__ear ai-mascot__ear--left"><ellipse cx="19" cy="72" rx="10" ry="17" fill="#d7d4d7" stroke="#a4a2ad" stroke-width="1.5"/><ellipse cx="18" cy="72" rx="6.5" ry="12" fill="#171925" stroke="url(#mascotGold)" stroke-width="2.8"/><ellipse cx="18" cy="72" rx="2" ry="6" fill="#ffb900"/></g>
+          <g class="ai-mascot__ear ai-mascot__ear--right"><ellipse cx="101" cy="72" rx="10" ry="17" fill="#d7d4d7" stroke="#a4a2ad" stroke-width="1.5"/><ellipse cx="102" cy="72" rx="6.5" ry="12" fill="#171925" stroke="url(#mascotGold)" stroke-width="2.8"/><ellipse cx="102" cy="72" rx="2" ry="6" fill="#ffb900"/></g>
+          <rect x="26" y="44" width="68" height="55" rx="24" fill="url(#mascotFace)" stroke="#777987" stroke-width="1.8"/>
+          <path d="M36 51C45 46 75 46 84 51" fill="none" stroke="#6b7184" stroke-width="1.4" opacity=".35" stroke-linecap="round"/>
+          <g class="ai-mascot__eyes" fill="none" stroke="url(#mascotGold)" stroke-width="5.4" stroke-linecap="round" filter="url(#mascotGlow)"><path class="ai-mascot__eye ai-mascot__eye--left" d="M39 70Q46 59 53 70"/><path class="ai-mascot__eye ai-mascot__eye--right" d="M67 70Q74 59 81 70"/></g>
+          <path d="M52 82Q60 89 68 82" fill="none" stroke="#ffb900" stroke-width="3.3" stroke-linecap="round" opacity=".9"/>
+          <path d="M31 95Q60 107 89 95" fill="none" stroke="#fff" stroke-width="1.4" opacity=".17"/>
+          <path class="ai-mascot__spark" d="M106 39l2.2 5.2 5.2 2.2-5.2 2.2-2.2 5.2-2.2-5.2-5.2-2.2 5.2-2.2Z" fill="#ffe44d"/>
+        </g>
+      </svg>
+      <span class="ai-mascot__hint" aria-hidden="true">HABLA CON MI IA</span>
+    </button>
     <div class="ai-chat__panel" role="dialog" aria-labelledby="aiChatTitle">
       <header class="ai-chat__head">
         <div>

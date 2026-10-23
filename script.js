@@ -292,6 +292,7 @@ paintProgress();
 
     showTyping();
     send.disabled = true;
+    root.classList.add("is-thinking");
 
     try {
       const res = await fetch(endpoint, {
@@ -322,6 +323,7 @@ paintProgress();
       );
     } finally {
       send.disabled = false;
+      root.classList.remove("is-thinking");
     }
   }
 
