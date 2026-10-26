@@ -92,60 +92,78 @@
   </header>
 
   <main>
-    <section class="section">
-      <div class="section__head">
-        <h2>DISCOGRAFÍA</h2>
-        <p class="hint">Pulsa cualquier álbum para ver su ficha completa.</p>
-      </div>
-      <div class="grid" id="grid"></div>
-    </section>
+<div class="projects">
 
-    <section class="section" id="proyectos" aria-labelledby="proyectos-h">
-      <div class="section__head">
-        <h2 id="proyectos-h">MIS PROYECTOS</h2>
-        <p class="hint">Cosas que he hecho. Pulsa una para abrirla.</p>
-      </div>
-                  <div class="projects">
-        <div class="pcard">
-          <a class="proj" href="https://santimartinezcordoba-prog.github.io/proyecto-1/" target="_blank" rel="noopener">
-            <span class="proj__n">01</span>
-            <span class="proj__body"><span class="proj__title">PROYECTO 1</span><span class="proj__desc">Ya funcionando.</span></span>
-            <span class="proj__go" aria-hidden="true">↗</span>
-          </a>
-          <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-1" target="_blank" rel="noopener" aria-label="Repositorio de Proyecto 1"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
-        </div>
+  <!-- 01 -->
+  <div class="pcard">
+    <a class="proj" href="https://santimartinezcordoba-prog.github.io/proyecto-1/" target="_blank" rel="noopener">
+      <span class="proj__n">01</span>
+      <span class="proj__body">
+        <span class="proj__title">FERRETERÍA AURORA</span>
+        <span class="proj__desc">
+          <span class="proj__line"><b>Problema.</b> En DAM te dejan hacer un ToDo list. Yo quería un proyecto que pareciera un negocio real, con lógica de verdad, no un CRUD de prueba con relleno.</span>
+          <span class="proj__line"><b>Cómo.</b> Un solo archivo HTML, sin frameworks ni librerías: horario que abre solo según la hora, cuenta atrás al sábado, buscador que ignora acentos, cuatro calculadoras (pintura, cerámico, hormigón y corte de tablero) con rinde y merma reales, y un formulario que guarda el encargo en localStorage.</span>
+          <span class="proj__line"><b>Resultado.</b> <b class="proj__dato">12 secciones</b>, <b class="proj__dato">4 calculadoras</b> y <b class="proj__dato">0 dependencias</b>. Cada número que sale en pantalla tiene una fórmula detrás, no un lorem ipsum. Lo defendí entero sin abrir el código.</span>
+        </span>
+      </span>
+      <span class="proj__go" aria-hidden="true">↗</span>
+    </a>
+    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-1" target="_blank" rel="noopener" aria-label="Repositorio de Ferretería Aurora"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+  </div>
 
-        <div class="pcard">
-          <a class="proj" href="https://santimartinezcordoba-prog.github.io/proyecto-2/" target="_blank" rel="noopener">
-            <span class="proj__n">02</span>
-            <span class="proj__body"><span class="proj__title">PROYECTO 2</span><span class="proj__desc">Ya funcionando.</span></span>
-            <span class="proj__go" aria-hidden="true">↗</span>
-          </a>
-          <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-2" target="_blank" rel="noopener" aria-label="Repositorio de Proyecto 2"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
-        </div>
+   <!-- 02 -->
+  <div class="pcard">
+    <a class="proj" href="https://santimartinezcordoba-prog.github.io/proyecto-2/" target="_blank" rel="noopener">
+      <span class="proj__n">02</span>
+      <span class="proj__body">
+        <span class="proj__title">RADIO CORDÓN 97.3</span>
+        <span class="proj__desc">
+          <span class="proj__line"><b>Problema.</b> Una web de radio no puede ser un folleto. Si son las 18:00 tiene que decir qué suena a las 18:00, no lo que sonaba cuando yo la subí. Casi ninguna plantilla hace eso.</span>
+          <span class="proj__line"><b>Cómo.</b> Un solo HTML, sin frameworks: un reloj lee la hora del visitante y pinta el programa al aire, la escaleta se ilumina sola en la franja viva, los conductores cambian de "al aire" a "off mic" según quién toca, y la calculadora de pauta saca el descuento de la campaña.</span>
+          <span class="proj__line"><b>Resultado.</b> <b class="proj__dato">10 secciones</b>, <b class="proj__dato">12 programas</b> y <b class="proj__dato">8 conductores</b> que se actualizan solos con la hora real. <b class="proj__dato">0 librerías</b>. Si entras a las 7 de la mañana y a las 7 de la tarde ves cosas distintas, es porque no es un folleto.</span>
+        </span>
+      </span>
+      <span class="proj__go" aria-hidden="true">↗</span>
+    </a>
+    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-2" target="_blank" rel="noopener" aria-label="Repositorio de Radio Cordón"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+  </div>
 
-        <div class="pcard">
-          <a class="proj" href="https://santimartinezcordoba-prog.github.io/proyecto-3/" target="_blank" rel="noopener">
-            <span class="proj__n">03</span>
-            <span class="proj__body"><span class="proj__title">POMODORO</span><span class="proj__desc">Temporizador de enfoque.</span></span>
-            <span class="proj__go" aria-hidden="true">↗</span>
-          </a>
-          <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-3" target="_blank" rel="noopener" aria-label="Repositorio del Pomodoro"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
-        </div>
+  <!-- 03 POMODORO -->
+  <div class="pcard">
+    <a class="proj" href="https://santimartinezcordoba-prog.github.io/proyecto-3/" target="_blank" rel="noopener">
+      <span class="proj__n">03</span>
+      <span class="proj__body">
+        <span class="proj__title">POMODORO</span>
+        <span class="proj__desc">
+          <span class="proj__line"><b>Problema.</b> Me dispersaba estudiando DAM y no sabía cuánto llevaba realmente delante del portátil.</span>
+          <span class="proj__line"><b>Cómo.</b> HTML, CSS y JS a mano: ciclos 25/5, pausa larga cada 4 rondas, aviso sonoro y contador de sesiones guardado en localStorage.</span>
+          <span class="proj__line"><b>Resultado.</b> Lo uso a diario. <b class="proj__dato">42 sesiones (≈17 h)</b> en tres semanas y el parcial aprobado entero.</span>
+        </span>
+      </span>
+      <span class="proj__go" aria-hidden="true">↗</span>
+    </a>
+    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-3" target="_blank" rel="noopener" aria-label="Repositorio del Pomodoro"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+  </div>
 
-        <!-- 04 DESTACADO: gate -->
-        <div class="pcard pcard--feat">
-          <a class="proj proj--feat" href="https://santimartinezcordoba-prog.github.io/pokeforge/
-" data-gate>
-            <span class="proj__n">★</span>
-            <span class="proj__body"><span class="proj__title">PokeForge</span><span class="proj__desc">Lo más grande que he hecho. En proceso.</span></span>
-            <span class="proj__go" aria-hidden="true">↗</span>
-          </a>
-          <span class="proj__ribbon">DESTACADO</span>
-          <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/pokemultipaste" target="_blank" rel="noopener" aria-label="Repositorio de Pokemultipaste"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
-        </div>
-      </div>
-    </section>
+  <!-- 04 DESTACADO: PokeForge (gate) -->
+  <div class="pcard pcard--feat">
+    <a class="proj proj--feat" href="https://santimartinezcordoba-prog.github.io/pokeforge/" data-gate>
+      <span class="proj__n">★</span>
+      <span class="proj__body">
+        <span class="proj__title">PokeForge</span>
+        <span class="proj__desc">
+          <span class="proj__line"><b>Problema.</b> Quería llevar a la pantalla lo que hacía con las cartas en el recreo, pero con dos jugadores a la vez.</span>
+          <span class="proj__line"><b>Cómo.</b> Batallas por turnos en JavaScript, estado compartido entre pestañas y sprites dibujados a mano. Sin backend, todo en el navegador.</span>
+          <span class="proj__line"><b>Resultado.</b> Lo probó mi clase entera: <b class="proj__dato">28 partidas</b> la primera semana y el mejor marcador del recreo, que vale más que cualquier nota.</span>
+        </span>
+      </span>
+      <span class="proj__go" aria-hidden="true">↗</span>
+    </a>
+    <span class="proj__ribbon">DESTACADO</span>
+    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/pokemultipaste" target="_blank" rel="noopener" aria-label="Repositorio de PokeForge"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+  </div>
+
+</div>
 
     <section class="section" id="contacto">
       <div class="section__head">
