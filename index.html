@@ -3,19 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#121214">
   <title>SANTI MARTÍNEZ · Discografía</title>
-  <link rel="stylesheet" href="styles.css">
   <meta name="description" content="Discografía de Santiago Martínez Córdoba: mi vida, álbum a álbum. Web hecha a mano con HTML, CSS y JS.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="SANTI MARTÍNEZ · Discografía">
   <meta property="og:description" content="Mi vida, álbum a álbum.">
   <meta property="og:image" content="https://santimartinezcordoba-prog.github.io/mi-web2/covers/la%20espalda%20del%20sol.jpg">
+  <meta property="og:image:alt" content="Portada de La espalda del sol">
   <meta property="og:url" content="https://santimartinezcordoba-prog.github.io/mi-web2/">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="./favicon.ico" sizes="any">
+  <meta name="twitter:title" content="SANTI MARTÍNEZ · Discografía">
+  <meta name="twitter:description" content="Mi vida, álbum a álbum.">
+  <!-- FIX 7: twitter:image era obligatorio al declarar summary_large_image -->
+  <meta name="twitter:image" content="https://santimartinezcordoba-prog.github.io/mi-web2/covers/la%20espalda%20del%20sol.jpg">
+  <link rel="icon" href="./favicon.ico">
   <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="./icons/favicon-192.png">
+  <link rel="stylesheet" href="styles.css">
+
   <style id="mascota-ia-styles">
 /* Mascota de la IA — estilos integrados para no depender de un archivo CSS extra. */
 .ai-chat__fab{
@@ -55,8 +62,14 @@
 @keyframes mascotGlow{0%,100%{filter:drop-shadow(0 7px 8px rgba(0,0,0,.28)) drop-shadow(0 0 2px rgba(255,212,0,.16))}50%{filter:drop-shadow(0 9px 12px rgba(0,0,0,.3)) drop-shadow(0 0 9px rgba(255,212,0,.52))}}
 @keyframes mascotClick{0%{transform:scale(.84) translateY(5px)}65%{transform:scale(1.1) translateY(-4px)}100%{transform:scale(1) translateY(0)}}
 @media(max-width:480px){.ai-chat__fab{width:78px!important;height:86px!important;min-width:78px;min-height:86px}.ai-mascot__hint{display:none}}
-/* Respect reduced-motion preferences while retaining a gentle, visible pulse. */
 @media(prefers-reduced-motion:reduce){.ai-chat__fab{animation-duration:3.8s}.ai-mascot{animation-duration:4s}.ai-mascot__flame,.ai-mascot__spark{animation-duration:3.5s}}
+  </style>
+
+  <!-- FIX 2: guardas que faltaban. Muévelas a styles.css cuando quieras. -->
+  <style id="fixes">
+[hidden]{display:none!important}
+.hp{position:absolute;left:-5000px;top:0;width:1px;height:1px;overflow:hidden}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
@@ -74,18 +87,19 @@
         <div class="stat"><span class="stat__k">LANZAMIENTO</span><span class="stat__v" id="bday">--</span></div>
         <div class="stat"><span class="stat__k">SELO</span><span class="stat__v">SIMARRO REC.</span></div>
         <div class="stat stat--weather" id="wStat" title="Pulsa para actualizar">
-  <span class="stat__k">TIEMPO</span>
-  <span class="stat__v" id="wTemp">--°</span>
-  <span class="w__meta"><span class="w__icon" id="wIcon">☀️</span> <span class="w__cond" id="wCond">—</span></span>
-  <button class="w__geo" id="wGeo" type="button" aria-label="Usar mi ubicación">📍 Mi ubicación</button>
-</div>
+          <span class="stat__k">TIEMPO</span>
+          <span class="stat__v" id="wTemp">--°</span>
+          <span class="w__meta"><span class="w__icon" id="wIcon" aria-hidden="true">☀️</span> <span class="w__cond" id="wCond">—</span></span>
+          <button class="w__geo" id="wGeo" type="button" aria-label="Usar mi ubicación">📍 Mi ubicación</button>
+        </div>
       </div>
       <div class="themes" role="group" aria-label="Tema">
-        <button class="theme" data-set="vinilo">VINILO</button>
-        <button class="theme" data-set="papel">PAPEL</button>
-        <button class="theme" data-set="pixel">PIXEL</button>
-        <button class="easter" id="easterBtn" aria-label="Juego oculto" title="SNAKE">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8h10a5 5 0 0 1 5 5v1a3 3 0 0 1-5.3 1.9L15 15H9l-1.7.9A3 3 0 0 1 2 14v-1a5 5 0 0 1 5-5zm-1 4v2H4v-2h2zm2 0h2v2H8v-2zm7 .5h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
+        <!-- FIX 8: aria-pressed para indicar el tema activo (+ type="button", FIX 4) -->
+        <button class="theme" type="button" data-set="vinilo" aria-pressed="true">VINILO</button>
+        <button class="theme" type="button" data-set="papel" aria-pressed="false">PAPEL</button>
+        <button class="theme" type="button" data-set="pixel" aria-pressed="false">PIXEL</button>
+        <button class="easter" id="easterBtn" type="button" aria-label="Juego oculto" title="SNAKE">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M7 8h10a5 5 0 0 1 5 5v1a3 3 0 0 1-5.3 1.9L15 15H9l-1.7.9A3 3 0 0 1 2 14v-1a5 5 0 0 1 5-5zm-1 4v2H4v-2h2zm2 0h2v2H8v-2zm7 .5h2v2h-2v-2zm3 0h2v2h-2v-2z"/></svg>
         </button>
       </div>
     </div>
@@ -108,7 +122,7 @@
       </span>
       <span class="proj__go" aria-hidden="true">↗</span>
     </a>
-    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-1" target="_blank" rel="noopener" aria-label="Repositorio de Ferretería Aurora"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-1" target="_blank" rel="noopener" aria-label="Repositorio de Ferretería Aurora"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
   </div>
 
    <!-- 02 -->
@@ -125,7 +139,7 @@
       </span>
       <span class="proj__go" aria-hidden="true">↗</span>
     </a>
-    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-2" target="_blank" rel="noopener" aria-label="Repositorio de Radio Cordón"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-2" target="_blank" rel="noopener" aria-label="Repositorio de Radio Cordón"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
   </div>
 
   <!-- 03 POMODORO -->
@@ -142,13 +156,13 @@
       </span>
       <span class="proj__go" aria-hidden="true">↗</span>
     </a>
-    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-3" target="_blank" rel="noopener" aria-label="Repositorio del Pomodoro"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/proyecto-3" target="_blank" rel="noopener" aria-label="Repositorio del Pomodoro"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
   </div>
 
   <!-- 04 DESTACADO: PokeForge (gate) -->
   <div class="pcard pcard--feat">
     <a class="proj proj--feat" href="https://santimartinezcordoba-prog.github.io/pokeforge/" data-gate>
-      <span class="proj__n">★</span>
+      <span class="proj__n" aria-hidden="true">★</span>
       <span class="proj__body">
         <span class="proj__title">PokeForge</span>
         <span class="proj__desc">
@@ -160,7 +174,7 @@
       <span class="proj__go" aria-hidden="true">↗</span>
     </a>
     <span class="proj__ribbon">DESTACADO</span>
-    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/pokemultipaste" target="_blank" rel="noopener" aria-label="Repositorio de PokeForge"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+    <a class="proj__gh" href="https://github.com/santimartinezcordoba-prog/pokemultipaste" target="_blank" rel="noopener" aria-label="Repositorio de PokeForge"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
   </div>
 
 </div>
@@ -175,12 +189,12 @@
         <div class="form__grid">
           <div class="form__field">
             <label class="form__label" for="cfName">Nombre *</label>
-            <input class="form__input" id="cfName" name="name" type="text" autocomplete="name" minlength="2" maxlength="60" aria-describedby="cfNameErr">
+            <input class="form__input" id="cfName" name="name" type="text" autocomplete="name" minlength="2" maxlength="60" aria-describedby="cfNameErr" required>
             <p class="field__err" id="cfNameErr" aria-live="polite"></p>
           </div>
           <div class="form__field">
             <label class="form__label" for="cfEmail">Email *</label>
-            <input class="form__input" id="cfEmail" name="email" type="email" autocomplete="email" aria-describedby="cfEmailErr">
+            <input class="form__input" id="cfEmail" name="email" type="email" autocomplete="email" aria-describedby="cfEmailErr" required>
             <p class="field__err" id="cfEmailErr" aria-live="polite"></p>
           </div>
         </div>
@@ -195,7 +209,7 @@
         </div>
         <div class="form__field">
           <label class="form__label" for="cfMsg">Mensaje *</label>
-          <textarea class="form__input" id="cfMsg" name="message" rows="5" minlength="10" maxlength="600" aria-describedby="cfMsgErr cfCount"></textarea>
+          <textarea class="form__input" id="cfMsg" name="message" rows="5" minlength="10" maxlength="600" aria-describedby="cfMsgErr cfCount" required></textarea>
           <p class="field__err" id="cfMsgErr" aria-live="polite"></p>
           <p class="form__count" id="cfCount">0/600</p>
         </div>
@@ -213,24 +227,25 @@
     <div class="foot__box">
       <p class="foot__k">CONTACTO</p>
       <p class="foot__mail" id="mail">santimartinezcordoba@gmail.com</p>
-      <button class="btn-copy" id="copy">COPIAR CORREO</button>
-            <a class="foot__gh" href="https://github.com/santimartinezcordoba-prog" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>MI GITHUB</a>
+      <button class="btn-copy" id="copy" type="button">COPIAR CORREO</button>
+      <a class="foot__gh" href="https://github.com/santimartinezcordoba-prog" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>MI GITHUB</a>
       <p class="foot__c">© <span id="year"></span> Simarro Rec. · Hecho a mano con HTML, CSS y JS.</p>
     </div>
   </footer>
 
-  <div class="now" id="now" aria-hidden="true">
-    <button class="now__btn" id="playBtn" aria-label="Play / Pausa">
-      <svg class="ic ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="ic ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+  <!-- FIX 3: fuera aria-hidden (dentro hay controles focusables). Ahora es una región normal. -->
+  <div class="now" id="now" role="region" aria-label="Reproductor">
+    <button class="now__btn" id="playBtn" type="button" aria-label="Play / Pausa">
+      <svg class="ic ic-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ic ic-pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
     </button>
-    <div class="now__bars"><i></i><i></i><i></i><i></i></div>
+    <div class="now__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <div class="now__txt"><span class="now__k">Reproduciendo:</span> <span class="now__v" id="nowTitle">—</span></div>
     <div class="now__prog" id="nowProg"><i id="nowBar"></i></div>
     <span class="now__time" id="nowTime">--:-- / --:--</span>
     <div class="now__vol">
-      <button class="now__mute" id="muteBtn" aria-label="Silenciar">
-        <svg class="spk" viewBox="0 0 24 24" aria-hidden="true">
+      <button class="now__mute" id="muteBtn" type="button" aria-label="Silenciar">
+        <svg class="spk" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path class="body" d="M3 10v4h4l5 5V5L7 10H3z"/>
           <path class="wave" d="M16 8a5 5 0 0 1 0 8"/>
           <path class="slash" d="M4 4l16 16"/>
@@ -242,8 +257,8 @@
 
   <div class="modal" id="modal" hidden>
     <div class="modal__back" data-close></div>
-    <article class="modal__card" role="dialog" aria-modal="true">
-      <button class="modal__x" data-close aria-label="Cerrar">✕</button>
+    <article class="modal__card" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="modal__x" data-close type="button" aria-label="Cerrar">✕</button>
       <div class="modal__cover" id="mCover"></div>
       <div class="modal__info">
         <p class="modal__fmt" id="mFmt"></p>
@@ -258,28 +273,28 @@
 
   <div class="snake" id="snake" hidden>
     <div class="snake__back" data-close></div>
-    <article class="snake__card" role="dialog" aria-modal="true">
+    <article class="snake__card" role="dialog" aria-modal="true" aria-labelledby="snakeTitle">
       <header class="snake__head">
-        <p class="snake__brand">SNAKE <span>// SESIÓN</span></p>
+        <p class="snake__brand" id="snakeTitle">SNAKE <span>// SESIÓN</span></p>
         <p class="snake__score">PISTAS <b id="snakeScore">0</b> · RÉCORD <b id="snakeBest">0</b></p>
-        <button class="snake__x" data-close aria-label="Cerrar">✕</button>
+        <button class="snake__x" data-close type="button" aria-label="Cerrar">✕</button>
       </header>
       <div class="snake__stage">
         <canvas id="snakeCanvas"></canvas>
         <div class="snake__over" id="snakeOver" hidden>
           <p class="snake__over-t">FIN DE SESIÓN</p>
           <p class="snake__over-m" id="snakeOverMsg"></p>
-          <button class="snake__retry" id="snakeRetry">REINTENTAR</button>
+          <button class="snake__retry" id="snakeRetry" type="button">REINTENTAR</button>
         </div>
         <div class="snake__pause" id="snakePause" hidden>PAUSA · pulsa espacio</div>
       </div>
       <div class="snake__pad">
-        <button data-dir="up" aria-label="Arriba">▲</button>
+        <button data-dir="up" type="button" aria-label="Arriba">▲</button>
         <div>
-          <button data-dir="left" aria-label="Izquierda">◀</button>
-          <button data-dir="right" aria-label="Derecha">▶</button>
+          <button data-dir="left" type="button" aria-label="Izquierda">◀</button>
+          <button data-dir="right" type="button" aria-label="Derecha">▶</button>
         </div>
-        <button data-dir="down" aria-label="Abajo">▼</button>
+        <button data-dir="down" type="button" aria-label="Abajo">▼</button>
       </div>
       <p class="snake__hint">Flechas / WASD · Espacio = pausa · Esc = cerrar</p>
     </article>
@@ -289,22 +304,22 @@
   <div class="wip" id="wip" hidden>
     <div class="wip__back" data-close></div>
     <article class="wip__card" role="dialog" aria-modal="true" aria-labelledby="wipTitle">
-      <button class="wip__x" data-close aria-label="Cerrar">✕</button>
+      <button class="wip__x" data-close type="button" aria-label="Cerrar">✕</button>
       <p class="wip__k">/// EN OBRA ///</p>
       <h3 class="wip__title" id="wipTitle">SE ESTÁ TRABAJANDO EN ESTO</h3>
       <p class="wip__msg">Este proyecto todavía no está terminado. Vuelve pronto, que va a salir algo chulo.</p>
-      <button class="wip__btn" data-close>ENTENDIDO</button>
+      <button class="wip__btn" data-close type="button">ENTENDIDO</button>
     </article>
   </div>
 
-  <div class="toast" id="toast" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
   <audio id="dj" preload="none"></audio>
 
   <!-- ===== ASISTENTE IA ===== -->
   <div class="ai-chat" id="aiChat">
-    <button class="ai-chat__fab" id="aiFab" aria-label="Abrir asistente de la web" aria-expanded="false" title="Habla con mi IA">
-      <svg class="ai-mascot" viewBox="0 0 120 126" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <button class="ai-chat__fab" id="aiFab" type="button" aria-label="Abrir asistente de la web" aria-expanded="false" aria-controls="aiPanel" title="Habla con mi IA">
+      <svg class="ai-mascot" viewBox="0 0 120 126" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="mascotShell" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf5"/><stop offset=".5" stop-color="#e9e4dc"/><stop offset="1" stop-color="#aaa9b4"/></linearGradient>
           <linearGradient id="mascotGold" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#fff36a"/><stop offset=".5" stop-color="#ffd400"/><stop offset="1" stop-color="#ff7a00"/></linearGradient>
@@ -328,20 +343,20 @@
       </svg>
       <span class="ai-mascot__hint" aria-hidden="true">HABLA CON MI IA</span>
     </button>
-    <div class="ai-chat__panel" role="dialog" aria-labelledby="aiChatTitle">
+    <div class="ai-chat__panel" id="aiPanel" role="dialog" aria-modal="false" aria-labelledby="aiChatTitle" hidden>
       <header class="ai-chat__head">
         <div>
           <p class="ai-chat__k">SIMARRO REC.</p>
           <h3 id="aiChatTitle">PREGUNTA A LA IA</h3>
         </div>
-        <button class="ai-chat__x" id="aiClose" aria-label="Cerrar asistente">✕</button>
+        <button class="ai-chat__x" id="aiClose" type="button" aria-label="Cerrar asistente">✕</button>
       </header>
       <div class="ai-chat__log" id="aiLog" aria-live="polite"></div>
       <div class="ai-chat__quick" id="aiQuick">
-        <button class="ai-chat__chip" data-q="¿Quién eres?">¿Quién eres?</button>
-        <button class="ai-chat__chip" data-q="¿Qué proyectos ha hecho?">Proyectos</button>
-        <button class="ai-chat__chip" data-q="¿De qué va la discografía?">Discografía</button>
-        <button class="ai-chat__chip" data-q="¿Cómo contacto con Santi?">Contacto</button>
+        <button class="ai-chat__chip" type="button" data-q="¿Quién eres?">¿Quién eres?</button>
+        <button class="ai-chat__chip" type="button" data-q="¿Qué proyectos he hecho?">Proyectos</button>
+        <button class="ai-chat__chip" type="button" data-q="¿De qué va la discografía?">Discografía</button>
+        <button class="ai-chat__chip" type="button" data-q="¿Cómo contacto con Santi?">Contacto</button>
       </div>
       <form class="ai-chat__form" id="aiForm">
         <input class="ai-chat__input" id="aiInput" type="text" maxlength="500" placeholder="Escribe una pregunta..." autocomplete="off" aria-label="Mensaje para la IA">
@@ -352,4 +367,5 @@
   <!-- ===== /ASISTENTE IA ===== -->
 
 <script type="module" src="js/main.js"></script>
+</body><!-- FIX 1: esta etiqueta era la que faltaba -->
 </html>
