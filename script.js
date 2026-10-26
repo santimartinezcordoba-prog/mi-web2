@@ -2,7 +2,7 @@
 const BIRTH = { year: 2008, month: 10, day: 11 };
 const MAIL = "santimartinezcordoba@gmail.com";
 const COVER_DIR = "covers/";
-const TRY_EXTS = [".jpep", ".jpeg", ".jpg", ".png", ".webp"];
+const TRY_EXTS = [".webp"];
 const AUDIO_DIR = "audio/";
 const AUDIO_EXTS = [".mp3", ".ogg", ".m4a", ".webm", ".wav"];
 
@@ -70,7 +70,10 @@ function calcAge(){ const n = new Date(); let a = n.getFullYear() - BIRTH.year; 
 function setHeader(){ const e = document.getElementById("age"); if (e) e.textContent = calcAge(); const b = document.getElementById("bday"); if (b) b.textContent = String(BIRTH.day).padStart(2,"0") + " OCT"; const y = document.getElementById("year"); if (y) y.textContent = new Date().getFullYear(); }
 
 /* ===== PORTADAS ===== */
-function coverCandidates(al){ const base = al.cover ? stripExt(al.cover) : al.id; const list = []; if (al.cover) list.push(COVER_DIR + encodeURIComponent(al.cover)); for (const e of TRY_EXTS) list.push(COVER_DIR + encodeURIComponent(base + e)); return list; }
+function coverCandidates(al){
+  const base = al.cover ? stripExt(al.cover) : al.id;
+  return [COVER_DIR + encodeURIComponent(base + ".webp")];
+}
 window.__tryNext = function(img){ const arr = img.getAttribute("data-list").split("||"); let i = parseInt(img.getAttribute("data-i") || "0", 10) + 1; if (i < arr.length){ img.setAttribute("data-i", i); img.src = arr[i]; } else { img.remove(); } };
 function coverHTML(al, big){ const cls = big ? "modal__cover" : "cover"; const arr = coverCandidates(al); const listAttr = arr.join("||"); const init = al.title.replace(/[^A-ZÁÉÍÓÚ]/g,"").slice(0,1) || al.title[0]; return `<div class="${cls}" style="--c1:${al.c[0]};--c2:${al.c[1]}"><span class="init">${init}</span><img src="${arr[0]}" alt="Portada de ${al.title}" loading="lazy" data-i="0" data-list="${listAttr}" onload="this.parentElement.style.setProperty('--cover','url(&quot;'+this.src+'&quot;)');this.parentElement.classList.add('has-img')" onerror="__tryNext(this)">${big ? "" : `<span class="badge">${al.fmt}</span><span class="disc" aria-hidden="true"></span>`}</div>`; }
 function renderGrid(){ const g = document.getElementById("grid"); if(!g) return; g.innerHTML = ALBUMS.map(al => `<button class="album" data-id="${al.id}" aria-label="Abrir ${al.title}">${coverHTML(al,false)}<span class="meta"><h3>${al.title}</h3><span class="tag">${al.tag}</span><span class="yr">${al.yr}</span></span></button>`).join(""); g.querySelectorAll(".album").forEach(b => b.addEventListener("click", () => openModal(b.dataset.id))); }
@@ -101,9 +104,7 @@ const HEARD_KEY="santi-heard", UNLOCK_KEY="santi-snake-unlocked", BEST_KEY="sant
 const egg=document.getElementById("egg"), toast=document.getElementById("toast");
 function getHeard(){try{return new Set(JSON.parse(localStorage.getItem(HEARD_KEY)||"[]"))}catch(e){return new Set()}}
 function saveHeard(s){try{localStorage.setItem(HEARD_KEY,JSON.stringify([...s]))}catch(e){}}
-// >>> isUnlocked derivada del progreso real (no del flag), para que el candado no se engañe
 function isUnlocked(){return getHeard().size>=ALBUMS.length}
-// <<<
 function paintProgress(){if(!egg)return;const n=getHeard().size,t=ALBUMS.length;if(n===0){egg.hidden=true;return}egg.hidden=false;egg.innerHTML=isUnlocked()?`★ Sesión completa <b>${t}/${t}</b> · pulsa el logo o el mando`:`★ Álbumes escuchados <b>${n}/${t}</b>`}
 function markHeard(id){const s=getHeard();if(s.has(id)){paintProgress();return}s.add(id);saveHeard(s);if(s.size===ALBUMS.length&&!document.body.classList.contains("has-snake")){try{localStorage.setItem(UNLOCK_KEY,"1")}catch(e){}document.body.classList.add("has-snake");paintProgress();showToast(`★ <b>EASTER EGG desbloqueado</b> · pulsa el logo`)}else paintProgress()}
 function showToast(html){if(!toast)return;toast.innerHTML=html;toast.hidden=false;clearTimeout(showToast._t);showToast._t=setTimeout(()=>toast.hidden=true,4500)}
@@ -128,9 +129,7 @@ function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,
 function render(){if(!ctx)return;const W=GRID*cell,bg2=cssVar("--bg2"),line=cssVar("--line"),c1=cssVar("--c1"),c3=cssVar("--c3");ctx.fillStyle=bg2;ctx.fillRect(0,0,W,W);ctx.strokeStyle=line;ctx.globalAlpha=.25;ctx.lineWidth=1;const cx=W/2,cy=W/2;for(let r=cell;r<W*.72;r+=cell*1.4){ctx.beginPath();ctx.arc(cx,cy,r,0,7);ctx.stroke()}ctx.globalAlpha=.12;ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(W,cy);ctx.moveTo(cx,0);ctx.lineTo(cx,W);ctx.stroke();ctx.globalAlpha=1;if(food){const fx=food.x*cell+cell/2,fy=food.y*cell+cell/2;drawVinyl(fx,fy,cell*.42);ctx.strokeStyle=c3;ctx.globalAlpha=.5+.5*Math.sin(Date.now()/200);ctx.lineWidth=2;ctx.beginPath();ctx.arc(fx,fy,cell*.55,0,7);ctx.stroke();ctx.globalAlpha=1}const n=snakeArr.length;for(let i=n-1;i>=0;i--){const s=snakeArr[i],t=i/Math.max(1,n-1);ctx.fillStyle=i===0?c1:mix(c1,c3,t);const pad=cell*.12,x=s.x*cell+pad,y=s.y*cell+pad,sz=cell-pad*2;roundRect(x,y,sz,sz,i===0?sz*.45:sz*.3);ctx.fill()}const h=snakeArr[0];ctx.fillStyle="#fff";const ex=h.x*cell+cell/2+dir.x*cell*.18-cell*.06,ey=h.y*cell+cell/2+dir.y*cell*.18-cell*.06;ctx.fillRect(ex,ey,cell*.12,cell*.12)}
 function gameOver(){ if (!alive) return; alive = false; if (snakePause) snakePause.hidden = true; if (snakeOver) { snakeOver.hidden = false; snakeOver.style.removeProperty("display"); } let b = 0; try { b = parseInt(localStorage.getItem(BEST_KEY) || "0", 10) || 0; } catch (e) {} if (score > b) { b = score; try { localStorage.setItem(BEST_KEY, String(b)); } catch (e) {} } if (snakeBestEl) snakeBestEl.textContent = b; if (snakeOverMsg) snakeOverMsg.textContent = "Has sumado " + score + " pistas · Récord " + b; }
 function loop(ts){rafId=requestAnimationFrame(loop);if(!alive||paused){render();return}if(ts-lastStep>=speed){lastStep=ts;step()}render()}
-// >>> candado: sin desbloquear, openSnake no abre nada
 function openSnake(){if(!isUnlocked())return;if(!snake)return;snake.hidden=false;document.body.style.overflow="hidden";if(snakeBestEl){try{snakeBestEl.textContent=localStorage.getItem(BEST_KEY)||"0"}catch(e){}}sizeCanvas();resetSnake();cancelAnimationFrame(rafId);rafId=requestAnimationFrame(loop);if(actx&&actx.state==="suspended")actx.resume()}
-// <<<
 function closeSnake(){if(!snake)return;snake.hidden=true;document.body.style.overflow="";cancelAnimationFrame(rafId);alive=false}
 document.addEventListener("keydown",e=>{if(!snake||snake.hidden){if(e.key==="Escape"&&modal&&!modal.hidden)closeModal();return}const k=e.key.toLowerCase();if(k==="arrowup"||k==="w")setDir("up");else if(k==="arrowdown"||k==="s")setDir("down");else if(k==="arrowleft"||k==="a")setDir("left");else if(k==="arrowright"||k==="d")setDir("right");else if(k===" "){e.preventDefault();paused=!paused;if(snakePause)snakePause.hidden=!paused}else if(k==="escape")closeSnake()});
 if(snake){snake.querySelectorAll("[data-dir]").forEach(b=>b.addEventListener("click",()=>setDir(b.dataset.dir)));snake.addEventListener("click",e=>{if(e.target.hasAttribute("data-close"))closeSnake()});const retry=document.getElementById("snakeRetry");if(retry)retry.addEventListener("click",()=>resetSnake());let sx=0,sy=0;canvas.addEventListener("pointerdown",e=>{sx=e.clientX;sy=e.clientY});canvas.addEventListener("pointerup",e=>{const dx=e.clientX-sx,dy=e.clientY-sy;if(Math.abs(dx)<20&&Math.abs(dy)<20)return;if(Math.abs(dx)>Math.abs(dy))setDir(dx>0?"right":"left");else setDir(dy>0?"down":"up")})}
@@ -141,7 +140,6 @@ if(isUnlocked())document.body.classList.add("has-snake");
 paintProgress();
 
 /* ===== BUSCADOR + FILTRO ===== */
-// >>> función real: busca y filtra la grid sin tocar renderGrid
 (function(){
   const grid=document.getElementById("grid"); if(!grid) return;
   const search=document.getElementById("search");
@@ -157,10 +155,8 @@ paintProgress();
   const clear=document.getElementById("clearBtn");
   if(clear) clear.addEventListener("click",()=>{if(search)search.value="";activeTag="";if(filtersBox)filtersBox.querySelectorAll(".chip").forEach(c=>c.classList.remove("is-on"));apply();});
 })();
-// <<<
 
 /* ===== FORM CONTACTO (Formspree / Web3Forms) ===== */
-// >>> bloque autocontenido: `form` se declara DENTRO del IIFE (esto arregla el ReferenceError:469)
 (function(){
   const form = document.getElementById("contactForm");
   if(!form) return;
@@ -186,25 +182,7 @@ paintProgress();
   });
   if (f.again) f.again.addEventListener("click", () => { f.ok.hidden = true; f.name.focus(); });
 })();
-// <<</* ===== MODAL EN OBRA ===== */
-(function(){
-  const wip = document.getElementById("wip");
-  if(!wip) return;
-  let lastFocus = null;
-  const open = (e)=>{
-    e.preventDefault();
-    lastFocus = e.currentTarget;
-    wip.hidden = false;
-    wip.querySelector(".wip__btn").focus();
-  };
-  const close = ()=>{
-    wip.hidden = true;
-    if(lastFocus) lastFocus.focus();
-  };
-  document.querySelectorAll("[data-wip]").forEach(a=>a.addEventListener("click", open));
-  wip.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click", close));
-  document.addEventListener("keydown", e=>{ if(e.key==="Escape" && !wip.hidden) close(); });
-})();
+
 /* ===== MODAL EN OBRA ===== */
 (function(){
   const wip = document.getElementById("wip");
@@ -224,6 +202,7 @@ paintProgress();
   wip.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click", close));
   document.addEventListener("keydown", e=>{ if(e.key==="Escape" && !wip.hidden) close(); });
 })();
+
 /* ===== AVISO ANTES DE ENTRAR (gate) ===== */
 (function(){
   const g=document.getElementById("gate"); if(!g)return;
@@ -234,6 +213,7 @@ paintProgress();
   g.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>g.hidden=true));
   document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!g.hidden)g.hidden=true;});
 })();
+
 /* ===== ASISTENTE IA ===== */
 (function () {
   const root = document.getElementById("aiChat");
@@ -247,7 +227,6 @@ paintProgress();
   const send = document.getElementById("aiSend");
   const quick = document.getElementById("aiQuick");
 
-  /* ⬇️ ÚNICA LÍNEA QUE CAMBIA: URL ABSOLUTA del Worker (web en GitHub) */
   const endpoint = "https://santi-web-ai.santimartinezcordoba.workers.dev/chat";
 
   let history = [];
@@ -363,6 +342,7 @@ paintProgress();
     }
   });
 })();
+
 /* ===== TIEMPO (Open-Meteo, sin API key) ===== */
 (function(){
   const tempEl=document.getElementById("wTemp"),
@@ -371,10 +351,8 @@ paintProgress();
         geoBtn=document.getElementById("wGeo");
   if(!tempEl) return;
 
-  // Por defecto: Córdoba (España). Cambia el valor si quieres otra ciudad.
   const DEFAULT_CITY={name:"Córdoba",lat:37.88,lon:-4.77};
 
-  // WMO weather codes → icono + texto
   const WMO={
     0:["☀️","Despejado"],1:["🌤️","Mayormente despejado"],2:["⛅","Parcialmente nublado"],3:["☁️","Nublado"],
     45:["🌫️","Niebla"],48:["🌫️","Niebla con escarcha"],
@@ -412,10 +390,8 @@ paintProgress();
     }
   }
 
-  // Carga inicial con la ciudad por defecto
   load(DEFAULT_CITY.lat,DEFAULT_CITY.lon);
 
-  // Botón "Mi ubicación"
   geoBtn.addEventListener("click",()=>{
     if(!navigator.geolocation){ condEl.textContent="geoloc no soportada"; return; }
     geoBtn.disabled=true; geoBtn.textContent="…";
