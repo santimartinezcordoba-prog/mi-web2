@@ -300,9 +300,11 @@ textarea.form__input{resize:vertical;min-height:110px}
 }
 :where(button,a,input,select,textarea):focus-visible{outline:3px solid var(--c2);outline-offset:3px}
 /* ===== MIS PROYECTOS ===== */
-.projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:6px}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:6px}
 .pcard{position:relative;display:flex}
 .pcard--feat{grid-column:1 / -1;order:-1}
+@media(max-width:900px){.projects{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.projects{grid-template-columns:1fr}}
 .proj{flex:1;position:relative;display:flex;flex-direction:column;gap:10px;padding:18px 18px 22px;text-decoration:none;color:inherit;background:color-mix(in srgb,currentColor 6%,transparent);border:1px solid color-mix(in srgb,currentColor 22%,transparent);border-radius:12px;overflow:hidden;transition:transform .18s ease,border-color .18s,background .18s}
 .proj::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:currentColor;opacity:.85;transition:width .3s ease}
 .pcard:hover .proj,.pcard:focus-within .proj{transform:translateY(-4px);background:color-mix(in srgb,currentColor 10%,transparent);border-color:color-mix(in srgb,currentColor 45%,transparent)}
