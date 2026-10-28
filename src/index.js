@@ -24,7 +24,7 @@ Proyectos:
 - Proyecto 1: https://santimartinezcordoba-prog.github.io/proyecto-1/
 - Proyecto 2: https://santimartinezcordoba-prog.github.io/proyecto-2/
 - Pomodoro: temporizador de enfoque, https://santimartinezcordoba-prog.github.io/proyecto-3/
-- Pokemultipaste: proyecto destacado, en proceso, https://santimartinezcordoba-prog.github.io/pokeforge/
+- PokeForge: proyecto destacado, editor de pokepastes con intercambio ciego de equipos por salas con código y relay en Cloudflare Workers, en proceso, https://santimartinezcordoba-prog.github.io/pokeforge/
 
 Discografía:
 - LIFE: autobiografía en forma de disco.
